@@ -1,0 +1,110 @@
+
+{{#if category.products }}
+<div class="sb-deals-detail"
+	data-slick='{
+		"slidesToShow": 1,
+		"slidesToScroll": 1,
+		"dots": false,
+		"arrows": true,
+		"responsive": [
+			{
+				"breakpoint": 1200,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": 1
+				}
+			},
+			{
+				"breakpoint": 1199,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": 1
+				}
+			},
+			{
+				"breakpoint": 992,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": 1,
+					"centerMode" : false
+				}
+			},
+			{
+				"breakpoint": 767,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": 1,
+					"centerMode" : false
+				}
+			},
+			{
+				"breakpoint": 479,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": 1,
+					"centerMode" : false
+				}
+			}
+		]
+	}'
+>
+	
+	{{#forEach category.products }}
+		<article class="product-item-container">
+			<div class="left-block">
+				
+				
+				<a href="{{url}}" class="product-item-photo">
+					<img class="card-image lazyload" data-sizes="auto" src="{{cdn '/assets/img/loading.svg'}}" data-src="{{getImage image 'deals_size' (cdn ../../theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}" width="300" height="300">
+				</a>
+				{{#if ../../theme_settings.settings_countdown}}
+					{{> components/sbthemes/shortcode/default prefix="countdown" product_id= id content = summary }}
+				{{/if}}
+			</div>
+
+			<div class="right-block">
+
+				<div class="ratings ">
+					<div class="prod-rating" data-test-info-type="productRating">
+						<span class="rating--small">
+							{{> components/products/ratings rating=rating}}
+						</span>
+					</div>
+				</div>
+
+				<h4 class="card-title">
+					<a href="{{url}}">{{name}}</a>
+				</h4>
+				
+				{{#if ../../theme_settings.show_product_brand}}
+					<p class="card-text" data-test-info-type="brandName">{{brand.name}}</p>
+				{{/if}}
+				
+				
+				<!-- <div class="description">
+					{{> components/sbthemes/shortcode/summary content = summary }}
+					
+				</div> -->
+
+				{{#or customer (if ../../theme_settings.restrict_to_login '!==' true)}}
+					{{> components/products/price price=price customer=customer}}
+				{{else}}
+					{{> components/common/login-for-pricing}}
+				{{/or}}
+				
+				
+			</div>
+		</article>
+		
+	{{/forEach}}
+
+</div>
+
+
+
+{{else}}
+	<div class="alert alert-info" role="alert" style="margin:60px 20px 0">
+		<i class="fa fa-info-circle"></i> 
+	    {{{lang 'sb_themes.sb_deals.noCategory' }}}
+	</div>
+{{/if}}

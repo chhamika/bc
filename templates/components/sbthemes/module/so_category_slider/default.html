@@ -1,0 +1,19 @@
+{{!--
+Arguments:
+	- category_id (number):  is the number is category ID.
+	- moduleId (number): section instance index number
+	- class_sfx (string): Use for CSS class styling suffix
+--}}
+
+{{#if status }}
+<div class="module clearfix {{class_sfx}}">
+{{> components/sbthemes/module/so_category_slider/default/default_tabs
+    category_id=(lang (concat (concat 'sb_themes.so_category_slider.category_' moduleId) '.id'))
+	viewAll=(lang 'sb_themes.so_category_slider.view_all')
+	limit_feature   = limit_itemfeature
+	limit_total 		= limit_total
+	
+}}
+
+</div>
+{{/if}}

@@ -1,0 +1,20 @@
+{{!--
+Arguments:
+	- moduleId (number): section instance index number
+	- class_sfx (string): Use for CSS class styling suffix
+--}}
+
+{{#if status }}
+<div class="module clearfix {{class_sfx}}">
+{{> components/sbthemes/module/sb_listing_tabs/default_tabs
+    category_id=(lang (concat (concat 'sb_themes.sb_listing_tabs.category_' moduleId) '.id'))
+    style=(concat 'instance' index)
+    banner=(lang (concat (concat 'sb_themes.sb_listing_tabs.category_' moduleId) '.image'))
+    placeholder=(lang (concat (concat 'sb_themes.sb_listing_tabs.category_' moduleId) '.placeholderImage'))
+    url=(lang (concat (concat 'sb_themes.sb_listing_tabs.category_' moduleId) '.url'))
+	alignBanner = banner
+	columns= columns
+}}
+
+</div>
+{{/if}}

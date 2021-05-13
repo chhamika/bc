@@ -1,0 +1,107 @@
+.sb-fb-message.right-bottom {
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    z-index: 9999;
+}
+.sb-fb-message.left-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 20px;
+    z-index: 9999;
+}
+.sb-fb-message.left-bottom .sb-fb-message-style-icon{ float: left;}
+.sb-fb-ms-inner {
+    position: relative;
+}
+.sb-fb-message-style-default .sb-fb-message-head {
+    background-color: #4267b2;
+    border: 1px solid #29487d;
+    cursor: pointer;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    color: #fff;
+    font-family: arial, sans-serif;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    height: 29px;
+    padding: 5px;
+    position: relative;
+}
+.sb-fb-message-style-default .sb-fb-message-head:hover {
+    background-color: #3b5998;
+}
+.sb-fb-message .online {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.sb-fb-message-style-metro .sb-fb-message-head-metro {
+    width: 100%;
+}
+.sb-fb-message-style-metro .sb-fb-message-head-metro a {
+    width: 100%;
+    display: inline-block;
+   
+    color: #fff;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 20px 0 48px;
+    background-color: #3b5998;
+    position: relative;
+   
+}
+
+.sb-fb-message-style-metro .sb-fb-message-head-metro a span {
+    width: 40px;
+    height: 36px;
+    padding: 0;
+    margin: 0;
+    left: 0;
+    top: 0;
+    position: absolute;
+    background: url("#{$imgPath}sb_facebook_message/iconmetro.png") no-repeat left top;
+}
+.sb-fb-message-style-icon{
+    text-align: right; margin-bottom: 15px; float: right;
+
+    .sb-fb-message-head-icon{
+        cursor: pointer;
+        display: inline-block; width: 60px; height: 60px;
+        background: $background;
+        border-radius: 50%;
+        padding: 5px;
+        text-align: center;
+        line-height: 50px;
+        transition: 0.2s all ease-in-out ;
+        &:hover{box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);}
+    }
+}
+.sb-fb-message-style-metro .sb-fb-message-head-metro a:hover {
+    background-color: #2e4b89;
+    color: #fff;
+    border: none;
+    text-shadow: none;
+}
+.offline_heading, .online_heading {
+    position: absolute;
+    top: -40px;
+    z-index: 999;
+    height: 41px;
+    padding: 6px 0px;
+    color: #FFF;
+    cursor: pointer;
+    float: left;
+    background-color: #2e4b89;
+    width: calc(100% - 2px);
+    margin: 0 1px;
+}
+.button_chat_offline_text {
+    max-width: 85%;
+    padding-left: 12px;
+    display: inline-block;
+    padding-right: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}

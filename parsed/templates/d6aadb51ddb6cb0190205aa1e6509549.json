@@ -1,0 +1,1 @@
+{"components/sbthemes/module/sb_menu/default-item":"{{#if (lang (concat menu_info '.title')) '!=' ' '}}\r\n\t{{#if horizontal '==' 'true'}}\r\n    <li class=\"list-inline-item\">\r\n\t{{else}}\r\n\t<li class=\"list-item\">\r\n\t{{/if}}\r\n\t\r\n\t<a href=\"{{lang (concat menu_info '.url')}}\">{{lang (concat menu_info '.title')}}</a>\r\n\t</li>\r\n{{/if}}\r\n\r\n"}

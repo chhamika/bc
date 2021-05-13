@@ -1,0 +1,47 @@
+// =============================================================================
+// RESPONSIVE (CSS)
+// =============================================================================
+@include breakpoints(xxxs){
+
+    /*====== Home Page 2 - Can Remove =======*/
+    .home2--style{
+	  	.sb-listing-tabs .ltabs-container .productCarousel .productCarousel-slide .product-item-container .left-block .product-item-photo{
+	  		display: block; width: 100%;
+	  		img{
+		  		width: 100%;
+		  	}
+	  	} 
+	  	.sb-banner--home2Banner3{
+	  		.flex-row{
+                .banners{
+                    width: 100%;
+                -webkit-box-flex: 0;
+            -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+                }
+            }
+	  	}
+	}
+	.header-bottom-left{
+		display: none;
+	}
+	.header-bottom-right {
+		width: 100% !important;
+		max-width: 100% !important;
+		flex-basis: 100% !important;
+	}
+	.search-info-heading{
+		display: none;
+	}
+	.search-info-content{
+		display: block !important;
+		padding: 5px;
+		position: relative !important;
+		width: 100%;
+		z-index: 1 !important;
+	}
+	.slideshow {
+		min-height: 1px;
+	}
+
+}

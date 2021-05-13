@@ -1,0 +1,19 @@
+
+<section class="products-list">
+	<ul class="yt-clearfix yt-accordion">
+
+	{{#forEach (limit products 5)}}
+
+		<li class="yt-accordion-group">
+			<h3 class="accordion-heading {{#if isFirst}} enable active {{else}} disable {{/if}}"><span>{{ add @index 1 }}</span>{{name}}</h3>
+			<div class="yt-accordion-inner {{#if isFirst}} active {{/if}}">
+				<div  class="product-layout product-grid">
+				{{> components/sbthemes/products/card_listing theme_settings=../theme_settings customer=../customer}}
+				</div>
+			</div>
+		</li>
+		
+    {{/forEach}}
+    </ul>
+   
+</section>

@@ -1,0 +1,59 @@
+---
+products:
+    new:
+        limit: {{theme_settings.homepage_new_products_count}}
+    featured:
+        limit: {{theme_settings.homepage_featured_products_count}}
+    top_sellers:
+        limit: {{theme_settings.homepage_top_products_count}}
+        
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: {{theme_settings.productpage_related_products_count}}
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+---
+{{#partial "head"}}
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+	
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>  
+{{/partial}}
+
+{{#partial "page"}}
+	
+
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    {{#each product.shipping_messages}}
+        {{> components/common/alert-info message}}
+    {{/each}}
+
+    <div class="row page">
+        <main class="col-lg-9 col-md-12 page-content"  id="product-listing-container">
+			<div itemscope itemtype="http://schema.org/Product">
+				<div class="sidebar-overlay"></div>
+				<a href="javascript:void(0)" class="open-sidebar d-md-block d-lg-none"><i class="fa fa-bars"></i> {{lang 'sb_themes.categories.sidebar' }} </a>
+			
+				{{> components/sbthemes/products/product-view 
+					gallery = theme_settings.settings_productgallery 
+					title_sizechart= (lang 'sb_themes.products.name_sizechart')
+					img_sizechart= (lang 'sb_themes.products.image_sizechart')
+					schema=true
+				}}
+
+			</div>
+        </main>
+        <aside class="col-sm-3 page-sidebar sidebar-offcanvas" id="faceted-search-container">
+            {{> components/category/sidebar}}
+            {{#if product.related_products}}
+            {{> components/products/tabsRight}}
+            {{/if}}
+        </aside>
+    </div>
+{{/partial}}
+{{> layout/base}}

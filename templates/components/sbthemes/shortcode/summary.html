@@ -1,0 +1,5 @@
+{{#contains content "[/shortcode]"}}
+	{{{last (split ../content '[/shortcode]')}}}
+{{else}}
+	{{{../content}}}
+{{/contains}}

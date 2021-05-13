@@ -1,0 +1,21 @@
+{{!--
+Arguments:
+	- category_id (number):  is the number is category ID.
+	- moduleId (number): section instance index number
+	- class_sfx (string): Use for CSS class styling suffix
+--}}
+
+{{#if status }}
+<div class="module clearfix {{class_sfx}}">
+{{> components/sbthemes/module/sb_supper_category/default/default_tabs
+    category_id=(lang (concat (concat 'sb_themes.sb_supper_category.category_' moduleId) '.id'))
+	viewAll=(lang 'sb_themes.sb_supper_category.view_all')
+    banner=(lang (concat (concat 'sb_themes.sb_supper_category.category_' moduleId) '.image'))
+    placeholder=(lang (concat (concat 'sb_themes.sb_supper_category.category_' moduleId) '.placeholderImage'))
+	statusBanner = showBanner
+	limit_subcategory = limit_subcategory
+	heading-iconAwesome = (lang (concat (concat 'sb_themes.sb_supper_category.category_' moduleId) '.heading-iconAwesome'))
+}}
+
+</div>
+{{/if}}

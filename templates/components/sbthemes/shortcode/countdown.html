@@ -1,0 +1,5 @@
+{{#contains textCountdown "[countdown]"}}
+	<div class="countdown--box d-none d-sm-block">
+		<div class="defaultCountdown defaultCountdown-{{product_id}}" data-timer="{{last (split (first (split textCountdown '[/countdown]')) '[countdown]')}}" data-countdown-id="{{product_id}}"></div>
+	</div>
+{{/contains}}

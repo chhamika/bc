@@ -1,0 +1,67 @@
+
+{{#if category.products }}
+<section class="productCarousel products-list {{#if theme_settings.general_rtl '==' 'rtl' }}dir-rtl{{/if}}"
+	data-slick='{
+		"dots": false,
+        "infinite": true,
+        "mobileFirst": true,
+        "slidesToShow": 1,
+        "slidesToScroll": 1,
+		"arrows": true,
+		"responsive": [
+			{
+				"breakpoint": 1200,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": {{ theme_settings.homepage_deals_col }}
+				}
+			},
+			{
+				"breakpoint": 1199,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": 3
+				}
+			},
+			{
+				"breakpoint": 992,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": 3
+				}
+			},
+			{
+				"breakpoint": 480,
+				"settings": {
+					"slidesToScroll": 1,
+					"slidesToShow": 2
+				}
+			}
+		]
+	}'
+>
+	{{#forEach (limit category.products theme_settings.homepage_extraslider_count) }}
+		{{#ifOdd index}}
+			<div class="productCarousel-slide product-layout product-grid">
+		{{/ifOdd}}
+		
+			{{> components/sbthemes/products/card_listing 
+				show_rating=../theme_settings.show_product_rating
+				theme_settings=../theme_settings 
+				customer=../customer
+				alternate=../alternate
+			}}
+			
+		{{#ifEven index}}
+			</div>
+		{{/ifEven}}
+	{{/forEach}}
+	
+</div>
+
+{{else}}
+	<div class="alert alert-info" role="alert" style="margin:60px 20px 0">
+		<i class="fa fa-info-circle"></i> 
+	    {{{lang 'sb_themes.sb_topdeals_home4.noItem' }}}
+	</div>
+{{/if}}

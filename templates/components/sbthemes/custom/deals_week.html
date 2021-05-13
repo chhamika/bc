@@ -1,0 +1,76 @@
+
+<div class="module">
+	
+	<div class="modcontent" >
+		<div class="sb_deals"
+		    data-slick='{
+		        "dots": false,
+		        "infinite": false,
+		        "mobileFirst": true,
+		        "slidesToShow": 1,
+		        "slidesToScroll": 1,
+		        
+		    }'
+		>
+		{{#each products}}
+	    <div class="productCarousel-slide productBlockContainer">
+	    	<div class="row no-gutters">
+		    	<div class="col-sm-6" >
+		    		<a href="{{url}}" class="product-item-photo">
+			            <img class="lazyload" data-sizes="auto" src="{{cdn '/assets/img/loading.svg'}}" data-src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+			        </a>
+		    	</div>
+		    	<div class="col-sm-6" >
+		    		<div class="sb_deal--info">
+		    			<h3 class="sb_deal--title">{{lang 'simolux.deals_of_week.heading'}}</h3>
+			    		<h2 class="card-title">
+				            <a href="{{url}}">{{name}}</a>
+				        </h2>
+				        <p class="card-description"> 
+				        	There are many variations of passages of Lorem Ipsum available, but the on majority have suffered alteration in some form, by injected humour, or rannn domised words which don't look even slightly believable. If you are going too use a passage of Lorem Ipsum, you need to be sure there isn't anything .
+
+	             		</p>
+				        <div class="prod-rating" data-test-info-type="productRating">
+		                    <span class="rating--small">
+		                        {{> components/products/ratings rating=rating}}
+		                    </span>
+		                </div>
+		                <div class="prod-price" data-test-info-type="price">
+				            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+				                {{> components/products/price price=price customer=customer}}
+				            {{else}}
+				                {{> components/common/login-for-pricing}}
+				            {{/or}}
+				        </div>
+				        <div class="action-item">
+			                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+			                    {{#if show_cart_action}}
+			                        {{#if has_options}}
+			                            <a href="{{url}}" class="button  button--primary button--cart" data-product-id="{{id}}" data-toggle="tooltip" data-placement="top" title="{{lang 'products.choose_options'}}">{{lang 'products.choose_options'}}</a>
+			                        {{/if}}
+			                        {{#if pre_order}}
+			                            <a href="{{url}}" class="button  button--primary button--cart" title="{{lang 'products.pre_order'}}">
+			                            	{{lang 'products.add_to_cart'}}
+			                            </a>
+			                        {{/if}}
+			                        {{#if add_to_cart_url }}
+			                            <a href="{{add_to_cart_url}}" class="button  button--primary button--cart" title="{{lang 'products.add_to_cart'}}">{{lang 'products.add_to_cart'}}</a>
+			                        {{/if}}
+			                        {{#if out_of_stock_message }}
+			                            <a href="{{url}}" class="button  button--primary button--cart" data-product-id="{{id}}" ">{{lang 'products.add_to_cart'}}</a>
+			                        {{/if}}
+			                    {{/if}}
+			                {{/or}}
+			            </div>
+		            </div>  
+		    	</div>
+	        </div>
+	    </div>
+	    {{/each}}
+
+		</div>
+	</div>
+	
+
+
+</div>

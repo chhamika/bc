@@ -1,0 +1,71 @@
+{{#if status }}
+<div class="module extraslider--home1 extraslider--banner_{{banner}} {{class_sfx}}">
+		<h1>bigcommerce {{lang (concat (concat 'sb_themes.sb_extraslider.category_' moduleId) '.heading-iconAwesome')}}</h1>
+		<h5 class="block-title">
+			{{#if (lang (concat (concat 'sb_themes.sb_extraslider.category_' moduleId) '.heading-iconAwesome')) '!=' ' '}}
+				<span class="block-title--icon"><i class="fa fa-{{lang (concat (concat 'sb_themes.sb_extraslider.category_' moduleId) '.heading-iconAwesome')}}"></i> </span>
+			{{/if}}
+			{{lang (concat (concat 'sb_themes.sb_extraslider.category_' moduleId) '.heading')}}
+		</h5>
+		<div class="block-content row no-gutters" >
+			{{#if products }}
+			 
+			{{#if banner '==' 'left'}}
+			<div class="sb-extraslider-image col-sm-6 d-none d-sm-block">
+				<div class="banners" {{#if theme_settings.general_fadeimage}}data-fade-image data-size-image{{/if}} >
+					<div class="banner-figure">
+						
+						{{#if (lang (concat (concat 'sb_themes.sb_extraslider.category_' moduleId) '.image')) '!=' ' '}}
+							<a href="{{lang (concat (concat 'sb_themes.sb_extraslider.category_' moduleId) '.url')}}">
+								<img  class="img-fluid" src="{{cdn (lang (concat (concat 'sb_themes.sb_extraslider.category_' moduleId) '.image'))}}" alt="banner"  />
+							</a>
+						{{else}}
+							<a href="{{lang (concat (concat 'sb_themes.sb_extraslider.category_' moduleId) '.url')}}">
+								<img  class="img-fluid" src="{{cdn (lang (concat (concat 'sb_themes.sb_extraslider.category_' moduleId) '.placeholderImage'))}}" alt="banner" />
+							</a>
+						{{/if}}
+						
+					</div>
+				</div>
+			</div>
+			{{/if}}
+			
+			{{#or (if banner '==' 'left') (if banner '==' 'right') }}
+			<div class="sb-extraslider-container col-sm-6 col-12">
+			{{/or}} 
+
+			{{#if banner '==' 'no'}}
+			<div class="sb-extraslider-container">
+			{{/if}}
+				{{> components/sbthemes/module/sb_extraslider/default_items products=products row = row}}
+			</div>
+			
+			{{#if banner '==' 'right'}}
+			<div class="sb-extraslider-image col-sm-6 d-none d-sm-block">
+				<div class="banners" {{#if theme_settings.general_fadeimage}}data-fade-image data-size-image{{/if}} >
+					<div class="banner-figure">
+						{{#if (lang (concat (concat 'sb_themes.sb_extraslider.category_' moduleId) '.image')) '!=' ' '}}
+							<a href="{{lang (concat (concat 'sb_themes.sb_extraslider.category_' moduleId) '.url')}}">
+								<img  class="img-fluid" src="{{cdn (lang (concat (concat 'sb_themes.sb_extraslider.category_' moduleId) '.image'))}}"  alt="banner" />
+							</a>
+						{{else}}
+							<a href="{{lang (concat (concat 'sb_themes.sb_extraslider.category_' moduleId) '.url')}}">
+								<img  class="img-fluid" src="{{cdn (lang (concat (concat 'sb_themes.sb_extraslider.category_' moduleId) '.placeholderImage'))}}" alt="banner" />
+							</a>
+						{{/if}}
+					</div>
+				</div>
+			</div>
+			{{/if}}
+			
+			{{else}}
+				<div class="alert alert-info" role="alert" style="margin:10px">
+					<i class="fa fa-info-circle"></i> 
+				   {{{lang 'sb_themes.sb_listing_tabs.noItem' }}}
+				</div>
+	    	{{/if}}
+			
+		</div>
+	
+</div>
+{{/if}}

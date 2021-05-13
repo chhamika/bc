@@ -1,0 +1,194 @@
+{{!--
+Arguments:Module sb_menu
+    - prefix (string): section instance index number
+    - limitation  (number): The number of menu item to display.
+    - icon-fontawesome(string): show icon fontawesome on  heading menu. Ex (icon-fontawesome=gift)
+    - class_sfx (string) : Class suffix for module. 
+    - horizontal : this menus items show horizontal
+    
+Arguments:Module sb_banner
+    - prefix (string): section instance index number
+    - limitation  (number): The number of menu item to display.
+    - class_sfx (string) : Class suffix for module. 
+    - display_mode : this Banner items show horizontal
+--}}
+
+<footer class="footer " role="contentinfo"> 
+    {{!-- FOOTER TOP --}}
+    <section class="footer-top">
+        <div class="container">
+			<div class="row">
+				<div class="footer-newsletter text-center">
+					{{#if settings.show_newsletter_box}}
+						{{> components/sbthemes/common/subscription-form}}
+					{{/if}}
+				</div>
+				
+			</div>
+        </div>
+    </section>
+
+    {{!-- FOOTER CENTER --}}
+    <section class="footer-center ">
+        <div class="footer-center__first">
+            <div class="container">
+                <div class="row">
+				
+                    {{#if theme_settings.show_footer_info_3}}
+                    <article class="custom_categories col-xs-12 ">
+                        {{> components/common/store-logo}}
+                        <p>{{{lang 'sb_themes.footer.message' }}}</p>
+						
+						{{#if theme_settings.social_icon_placement_top}}
+						<div class="footer-socials d-flex justify-content-center">
+							{{> components/sbthemes/common/social-links}}
+						</div>
+						{{/if}}
+						
+                    </article>
+                    {{/if}}
+					
+                    {{#if theme_settings.show_footer_info_1}}
+                        {{> components/sbthemes/module/sb_menu/default status=true prefix="menu_info_1" limitation=5 icon-fontawesome="" class_sfx="col-lg-2 col-sm-12" }}
+                    {{/if}}
+                    
+                    
+                    <article class="col collapsed-block" data-section-type="footer-webPages">
+                        <h5 class="footer-info-heading">
+                            {{lang 'footer.navigate'}} 
+                            <span class="expander" ><i class="fa fa-chevron-circle-down"></i></span>
+                        </h5>
+                        <ul class="footer-info-list">
+                            {{#each pages}}
+                                <li>
+                                    <a href="{{url}}">{{name}}</a>
+                                </li>
+                            {{/each}}
+                            <li>
+                                <a href="{{urls.sitemap}}">{{lang 'sitemap.page_title'}}</a>
+                            </li>
+                        </ul>
+                    </article>
+                    
+                    
+                    {{#and theme_settings.shop_by_brand_show_footer shop_by_brand.length}}
+                    <article class="col collapsed-block" data-section-type="footer-brands">
+						<h5 class="footer-info-heading">
+                           {{lang 'footer.brands'}}
+                            <span class="expander" ><i class="fa fa-chevron-circle-down"></i></span>
+                        </h5>
+                        <ul class="footer-info-list">
+                            {{#each (limit shop_by_brand 5)}}
+                                <li>
+                                    <a href="{{url}}">{{name}}</a>
+                                </li>
+                            {{/each}}
+                            <li><a href="{{urls.brands}}"><strong>{{lang 'common.view_all'}}</strong></a></li>
+                        </ul>
+                    </article>
+                    {{/and}}
+
+                    
+                    
+                    <article class="col collapsed-block" data-section-type="footer-categories">
+                        <h5 class="footer-info-heading">
+                            {{lang 'category.label'}}
+                            <span class="expander" ><i class="fa fa-chevron-circle-down"></i></span>
+                        </h5>
+                        <ul class="footer-info-list">
+                            {{#each (limit categories 5)}}
+                                <li>
+                                    <a href="{{url}}">{{name}}</a>
+                                </li>
+                            {{/each}}
+                            <li>
+                                <a href="/categories"><strong>{{lang 'common.view_all'}}</strong></a>
+                            </li>
+                        </ul>
+                    </article>
+                    
+                    <article class="col-lg-4 col-sm-12 footer-info collapsed-block" data-section-type="storeInfo">
+                        <h5 class="footer-info-heading">
+                            {{lang 'footer.info'}}
+                            <span class="expander" ><i class="fa fa-chevron-circle-down"></i></span>
+                        </h5>
+                        <div class="footer-info-list">
+                        <address><i class="fa fa-map-marker"></i> {{lang 'account.addresses.heading' }} :  {{nl2br settings.address}}</address>
+                        
+                        {{#if settings.phone_number}}
+                            <address><i class="fa fa-phone"></i> {{lang 'sb_themes.header.my_phone' }} {{lang 'footer.call_us' phone_number=settings.phone_number}}</address>
+                        {{/if}}
+                        <address>
+                          <i class="fa fa-envelope"></i>
+                          {{lang 'sb_themes.header.my_email' }}<a href="mailto:{{theme_settings.address_email}}">{{theme_settings.address_email}}</a>
+                        </address>
+                        </div>
+                        
+						{{#if theme_settings.show_footer_info_2}}
+							{{> components/sbthemes/module/sb_banner/banner status=true prefix="downloadApp" showContent=false display_mode="horizontal" limitation=3 class_sfx=""}}
+						{{/if}}
+						
+                    </article>
+					
+                </div>
+            </div>
+        </div>
+       
+       
+    </section>
+    
+    {{!-- FOOTER BOTTOM --}}
+    <section class="footer-bottom">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="footer-copyright col-sm-12">
+					{{#if theme_settings.show_copyright_footer}}
+					<span class="powered-by">&copy; {{moment format="YYYY"}} {{settings.store_name}} </span>
+					{{/if}}
+					{{#if theme_settings.show_powered_by}}
+						<span class="powered-by">Powered by <a href="https://www.bigcommerce.com/" rel="nofollow">BigCommerce</a>. Designed by <a href="http://www.revotheme.com/" target="_blank">Revotheme.com</a></span>
+					{{/if}}
+                </div>
+			
+                <div class="col-sm-12 ">
+                    {{> components/common/payment-icons}}
+                </div>
+
+                {{#if theme_settings.geotrust_ssl_common_name}}
+                    <div class="footer-geotrust-ssl-seal">
+                        {{> components/common/geotrust-ssl-seal}}
+                    </div>
+                {{/if}}
+
+            </div>
+        </div>
+    </section>
+    
+    {{#if theme_settings.general_backtotop}}
+    <section class="sb-backtotop">
+        <div class="container">
+            <div class="back-fixed-panel">
+                <div class="back-panel-shares" data-role="sharesArea" >
+                {{> components/sbthemes/common/social-links}}
+                </div>
+                <div class="back-panel-operation">
+                    {{#if social_media}}
+                    <div class="back-panel-unit back-panel-toggle" >
+                    </div>
+                    {{/if}}
+                    <div class="back-panel-unit back-totop"><i class="fa fa-angle-up"></i></div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    {{/if}}
+    
+    {{#if theme_settings.fbMessage_status}}
+    <section class="sb-message">
+       {{> components/sbthemes/module/sb_facebook_message/default status=true}}
+    </section>
+    {{/if}}
+    
+    
+</footer>

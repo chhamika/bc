@@ -1,0 +1,298 @@
+// =============================================================================
+// BODY (CSS)
+//
+// 1. Header is fixed on small screens, use the content body to create the whitespace
+//    between it and the header on all situations. If you change the spacing here,
+//    please update .heroCarousel too.
+//
+// =============================================================================
+@import "module/facebook_message";
+@import "module/listing_tabs";
+@import "module/heroCarousel";
+
+
+.module{margin-bottom: 35px; display: inline-block; width: 100%;
+    .block-title{
+        /*background: #f2f2f2;
+        padding: 12px 15px;
+        border-bottom: 1px solid #dedede;
+        margin: 0;
+        font-size:16px;*/
+    }
+}
+.home2--style .page-sidebar .module .block-title{
+    padding: side-values(12px 0 12px 15px);
+}
+.page-sidebar{
+   .module{
+        position: relative;
+        margin-bottom: 35px;
+        border: 1px solid #dedede;
+        .block-title{
+            background: #f2f2f2;
+            padding: side-values(5px 0 5px 15px);
+            border-bottom: 1px solid #dedede;
+            margin: 0;
+            color: $gray-darker;
+            .fa {
+                color: $color-primary;
+                font-size: 18px;
+                display: inline-block;
+                margin-#{$right}: 7px;
+            }
+            &:before{ display: none; }
+        }
+        .block-content{ padding: 15px; }
+    } 
+    .sidebar--bestsell{
+        .block-content{ padding: 0; }
+    }
+}
+
+.card-title{margin-bottom: 5px;}
+
+.banner-figcaption__title{
+    margin-top: 10px;
+}
+/*============MODULE BANNER TOP + BOTTOM==================*/
+
+.banners--top{
+    padding:15px 0;
+    background-color: rgba(26, 20, 116, 1.0);
+    font-size: 1.15rem;
+    text-align:center;
+    color:white;
+    >  div > p:first-child{ margin-bottom:0; }
+}
+.alert-box {position: relative;z-index:1;
+    .close {
+        #{$right}: 2rem;
+       
+        color: $white;
+        font-size: 2rem;
+        line-height: .9;
+        margin-top: -1rem;
+        text-shadow: none;
+        opacity: 1;
+        position: absolute;
+        top: 50%;
+    }
+}
+/*============MODULE QUICKSEARCH RESULTS==================*/
+section.quickSearchResults {
+    ul.products-list{padding: 0; margin:0;}
+    li.product-list{
+        .product-item-container{border:none;    margin: 0;border-bottom: 1px solid #e5e5e5; padding: 10px;
+            .left-block{width:80px; padding: 0; border: none;}
+            .right-block{margin:0; overflow:hidden; padding: 0 15px;
+                .price-section{font-size: 16px;}
+                .card-title{font-size: 14px;}
+            }
+            &:hover{
+                background: #f4f4f4;
+            }
+        }
+    }
+    
+}
+/*============MODULE BREADCRUMB ==================*/
+.breadcrumb{
+    margin: 0;
+    background-color: transparent;
+    padding: 30px 0 20px ;
+    width: 100%;
+    font-size: 13px;
+    li.breadcrumb-item {display: inline-block;
+    	a,span{
+    		@include linkGray();
+        	text-transform: uppercase;
+    	}
+    	
+    }
+   
+	>li.breadcrumb-item +li.breadcrumb-item:before {
+	    padding: 0 10px;
+	  	 content: if-ltr('\f105', '\f104');
+	 	display: inline-block;
+	  	font-family: $FontAwesome;
+	    font-size: 14px;
+	}
+   
+	
+}
+
+
+/*============MODULE SIDEBAR ==================*/
+//  ALL Category
+// -----------------------------------------------------------------------------
+
+.sidebar--categories{
+    .block-content{ padding: 0 !important; }
+    ul.navList {
+        list-style: none;
+        padding: 0px;
+        margin: 0px;
+        border:none;
+        .navList-item {
+            position: relative;
+            box-shadow: none;
+            background: transparent;
+            border-bottom: 1px solid #e8e8e8;
+            &:last-child{ border: none; }
+
+            > .navList-action {
+                padding: 10px 20px;
+                display: block;
+                color: $gray;
+               
+                &.has-subMenu {
+                    
+                }
+                &:hover,
+                &.is-current {
+                    color: $color-textLink-hover;
+                     background: #f4f4f4;
+                }
+
+                .sidebarBlock--categories & {
+                    margin-bottom: spacing("quarter");
+                }
+            }
+        }
+
+        
+         
+    }
+}
+
+.navList-subSection .navList-item {
+    margin-left: spacing("half");
+
+    &:before {
+        content: '-';
+        float: left;
+        margin-left: -(spacing("half"));
+    }
+}
+
+.navList-action{
+    &:hover{color: $color-textLink-hover;};
+}
+
+
+.navList-toggle {
+    position: absolute;
+    top: 0;
+    #{$right}: 0;
+    padding: $navList-action-padding;
+    transform: rotate(-90deg) scale(0.7);
+    @include if-rtl {
+        transform: rotate(90deg) scale(0.7);
+    }
+    transition: 0.2s transform;
+    padding:10px;
+    &:hover{
+        fill: $background;
+    }
+
+    &.is-open {
+        transform: rotate(0deg)  scale(0.7);
+    }
+}
+
+ul.navList-subMenu-list {
+    display: none;
+    margin-#{$left}: 18px;
+    padding: 0 0 10px 0;
+    &.is-open {display: block; }
+    .navList-action{ padding: 6px 0;}
+}
+
+.navList-subMenu-item {
+    position: relative;
+     .navList-action::before{ content:"\f111"; font-family: $FontAwesome;    font-size: 6px;padding-#{$right}: 7px; vertical-align: middle; color:#999;
+        @include if-rtl {
+            float: right; margin: 8px 0 0;
+        }
+    }
+}
+
+.navList-subMenu-action {
+    padding-#{$left}: spacing("single");
+}
+
+ul.navList-childList {
+    display: none;
+    margin-#{$left}: 15px;
+    padding: 0 0 10px 0;
+    &.is-open {
+        display: block;
+    }
+}
+
+.navList-childList-action {
+    padding-#{$left}: spacing("double");
+}
+
+//  REFINE BY
+// -----------------------------------------------------------------------------
+.facetedSearch-toggle + .facetedSearch-navList,
+.sidebarBlock + .facetedSearch-navList {
+    margin-top: 0rem;
+}
+
+@media (min-width: 801px){
+    .accordion--navList .accordion-indicator {
+        visibility: visible;    border: 1px solid #a5a5a5;
+    }   
+}
+
+//  Recent Articles
+// -----------------------------------------------------------------------------
+
+.block-recent{
+    ul.navList li{margin-bottom: 10px;
+        > a {
+            display: block;
+        	@include linkGray();
+        }
+        time{font-style: italic; color:#999; font-size: 12px;}
+    }
+}
+
+//  Blog Tags
+// -----------------------------------------------------------------------------
+
+.blog-tags{
+    .tags{text-align: $left;  display: inline;}
+    .tag{border: 1px solid #dfdfdf; float:$left; margin: 0 10px 10px 0;border-radius: 3px;
+        &:hover{background:$linkColor;border-color:$linkColor;
+            a{color:white;}
+        }
+    }
+}
+
+
+
+#sideShopByBrands ul, #sideShopByPrice ul{
+    display: block;
+    position: relative;
+    margin: 0;
+    list-style: none;
+    ul.navList{}
+    li{
+        position: relative;
+        display: block;
+        padding: 5px 0;
+        a{display: block;@include linkGray();}
+    }
+}
+
+
+
+// 2. INSTAGRAM GALLERY
+// -----------------------------------------------------------------------------
+.sb-instagram-gallery{
+    .instagram-item{padding: 0;}
+}
+

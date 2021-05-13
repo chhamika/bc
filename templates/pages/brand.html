@@ -1,0 +1,44 @@
+---
+brand:
+    products:
+        limit: {{theme_settings.brandpage_products_per_page}}
+---
+{{inject "brandProductsPerPage" theme_settings.brandpage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.brand.previous}}
+        <link rel="prev" href="{{pagination.brand.previous}}">
+    {{/if}}
+    {{#if pagination.brand.next}}
+        <link rel="next" href="{{pagination.brand.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+
+
+{{{snippet 'brand'}}}
+<div class="row page ">
+	 <aside class="col-sm-3 page-sidebar sidebar-offcanvas" id="faceted-search-container">
+        {{> components/category/sidebar }}
+    </aside>
+    
+    <main class="col-lg-9 col-md-12 page-content" id="product-listing-container">
+		<h1 class="page-heading">{{brand.name}}</h1>
+		{{#if brand.image}}
+		<div class="form-group">
+			<img src="{{getImage brand.image 'thumb_size'}}">
+		</div>
+		{{/if}}
+		
+        {{#if brand.products}}
+            {{> components/brand/product-listing}}
+        {{else}}
+            <p>{{lang 'brands.no_products'}}</p>
+        {{/if}}
+    </main>
+</div>
+
+{{/partial}}
+{{> layout/base}}

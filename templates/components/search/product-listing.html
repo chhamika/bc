@@ -1,0 +1,8 @@
+{{#if product_results.products.length}}
+    {{> components/products/filter sort=pagination.product_results.sort}}
+{{/if}}
+<form action="{{urls.compare}}" method='POST' data-product-compare>
+    {{> components/products/grid products=product_results.products is_search="yes" show_compare=product_results.show_compare theme_settings=theme_settings}}
+</form>
+
+{{> components/common/paginator pagination.product_results}}

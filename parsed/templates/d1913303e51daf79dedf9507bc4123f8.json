@@ -1,0 +1,1 @@
+{"components/sbthemes/shortcode/summary":"{{#contains content \"[/shortcode]\"}}\r\n\t{{{last (split ../content '[/shortcode]')}}}\r\n{{else}}\r\n\t{{{../content}}}\r\n{{/contains}}\n"}

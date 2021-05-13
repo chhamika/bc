@@ -1,0 +1,85 @@
+
+
+<div class="sidebarBlock">
+  
+    <div class="sidebarBlock box-category module">
+        <h5 class="block-title"><i class="fa fa-diamond"></i> {{lang 'category.label'}}</h5>
+        
+        <ul class="accordion" id="accordion-category">
+            {{#each categories}} 
+            <li class="panel">
+                {{#if  id '===' category.subcategories }}
+                    <a class="active" href="{{url}}" alt="{{name}}" title="{{name}}">{{name}}</a>
+                {{else}}
+                    <a  href="{{url}}" alt="{{name}}" title="{{name}}">{{name}}</a>
+                {{/if}}
+
+                {{#if children}}
+                <span class="head"><a  class="pull-right accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-category" href="#category{{id}}"></a></span>
+                <ul  id="category{{id}}" class="panel-collapse collapse ">
+                    {{#each children}}
+                    <li class="navList-subMenu-item">
+                        <a class="navList-subMenu-action" href="{{url}}" alt="{{name}}" title="{{name}}">{{name}}</a>
+                         
+                    </li>
+                    {{/each}}
+                </ul>
+                {{/if}}
+
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+
+    
+    <div class="module block-recent">
+      <h5 class="block-title"><i class="fa fa-file-text-o"></i> {{lang 'blog.recent_posts'}}</h5>
+   
+      {{#if blog.posts}}
+        <div class="block-content">
+         <ul class="navList">
+             {{#each blog.posts}}
+              <li class="navList-item">
+                 <a href="{{url}}">{{title}}</a>
+                  <time >{{date_published}}</time>
+             </li>
+             {{/each}}
+         </ul>
+      </div>
+     {{/if}}
+   </div>
+     
+   <div class="module blog-tags">
+        <h5 class="block-title"><i class="fa fa-tag"></i> {{lang 'sb_themes.blog.popular_tags'}}</h5>
+        <div class="block-content clearfix">
+        {{#each blog.posts}}
+            {{#if tags}}
+                <ul class="tags">
+                    {{#each tags}}
+                    <li class="tag">
+                        <a href="{{url}}">#{{name}}</a>
+                    </li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+        {{/each}}
+        </div>
+   </div>
+   
+    <div class="module ">
+        <div class="block-content no-padding">
+            <div class="banners" >
+                <div>
+                    <a href="{{lang 'sb_themes.blog.banner_url'}}" title="{{lang 'sb_themes.blog.banner_title'}}">
+                      <img src="{{cdn (lang 'sb_themes.blog.image')}}" alt="">
+                    </a>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+
+  
+</div>
+

@@ -1,0 +1,8 @@
+<div class="sb-brand--item">
+	
+	{{#if image '!=' ' '}}
+		<a href="{{url}}" title="{{title}}"><img class="img-fluid lazyload" src="{{cdn '/assets/img/loading.svg'}}" data-src="{{cdn image}}" alt="{{title}}"/></a>
+	{{else}}
+		<a href="{{url}}" title="{{title}}"><img class="img-fluid" src="{{cdn placeholder}}" alt="{{title}}"  /></a>
+	{{/if}}
+</div>

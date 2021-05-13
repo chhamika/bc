@@ -1,0 +1,33 @@
+{{#if status }}
+<div class="module sb-promotion sb-promotion--{{prefix}} {{class_sfx}}">
+	<div class="block-content clearfix">
+	{{#if limitation '>' 1}}
+		<div class="sb-promotion--carousel"
+           data-slick='{
+				"dots": false,
+				"arrows": false,
+				"mobileFirst": true,
+				"slidesToShow": 1,
+				"slidesToScroll": 1,
+				"vertical": true,
+				"verticalSwiping": true,
+				"autoplay": true,
+				"autoplaySpeed": 5000
+			}'
+    	>
+		{{#for  limitation }}
+			{{> components/sbthemes/module/sb_promotion/default-item 
+				url		= (lang  (concat (concat (concat (concat 'sb_mainbanner.' ../prefix) '.item') $index)'.url'))
+				title	= (lang  (concat (concat (concat (concat 'sb_mainbanner.' ../prefix) '.item') $index)'.title'))
+			}}
+		{{/for}}
+		</div>
+	{{else}}
+		{{> components/sbthemes/module/sb_promotion/default-item 
+			url		= (lang    (concat (concat 'sb_mainbanner.' ../prefix) '.item1.url'))
+			title	= (lang    (concat (concat 'sb_mainbanner.' ../prefix) '.item1.title'))
+		}}
+	{{/if}}
+	</div>
+</div>
+{{/if}}

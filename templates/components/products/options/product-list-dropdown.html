@@ -1,0 +1,36 @@
+<div class="form-field" data-product-attribute="product-list" style="margin-bottom: 0px;">
+    <label class="form-label form-label--alternate form-label--inlineSmall" for="attribute_{{id}}" style="margin-bottom: 0rem; margin-top: 0.77rem;">
+        {{ this.display_name }}:
+
+        {{#if required}}
+        <small>{{lang 'common.required'}}</small>
+        {{/if}}
+    </label>
+    <div style="width: 100%;">
+        <div style="width: 15%; float: left">
+            <figure class="productOptions-list-item-figure">
+                <img class="productOptions-list-item-image" id="attribute_{{id}}_img" data-sizes="auto" style="max-height: 35px;" src="{{cdn 'img/loading.svg'}}">
+            </figure>
+        </div>
+        <div style="width: 85%; float: left">
+    <select class="form-select form-select--small custom-kit-select" name="attribute[{{this.id}}]" id="attribute_{{id}}" style="max-width: 100%; margin-top: 3px; margin-bottom: 3px">
+    {{#if required}}
+        {{else}}
+        <option value="" data-img-src="{{cdn 'img/info.png'}}" selected="selected">No, thanks!</option>
+    {{/if}}
+    {{#each values}}
+        <option data-product-attribute-value="{{id}}" value="{{id}}" data-img-src="{{getImage image 'productthumb_size'}}" {{#if selected}}selected data-default{{/if}}>{{label}}</option>
+    {{/each}}
+    </select>
+            <script>
+
+            </script>
+    </div>
+    </div>
+</div>
+<script>
+    $("#attribute_{{id}}").bind("change", function(){
+        $('#attribute_{{id}}_img').attr("src", $(this).find(':selected').attr('data-img-src'));
+    });
+    $('#attribute_{{id}}_img').attr("src", $("#attribute_{{id}}").find(":selected").attr('data-img-src').toString());
+</script>

@@ -1,0 +1,25 @@
+{{#if status }}
+<div class="module sb-accordion {{class_sfx}}">
+	<h5 class="block-title">
+		{{#if (lang 'sb_themes.sb_accordion.heading-iconAwesome') '!=' ' '}}
+			<span class="block-title--icon"><i class="fa fa-{{lang 'sb_themes.sb_accordion.heading-iconAwesome'}}"></i> </span>
+		{{/if}}
+		{{lang (concat (concat 'sb_themes.sb_accordion.category_' moduleId) '.heading')}}
+		
+	</h5>
+	<div class="block-content row no-gutters" >
+		{{#if products }}
+			<div class="sb-accordion-container">
+				{{> components/sbthemes/module/sb_accordion/default_items products=products}}
+			</div>
+		{{else}}
+			<div class="alert alert-info" role="alert" style="margin:10px">
+				<i class="fa fa-info-circle"></i> 
+			   {{{lang 'sb_themes.sb_accordion.noItem' }}}
+			</div>
+		{{/if}}
+		
+	</div>
+	
+</div>
+{{/if}}

@@ -1,0 +1,46 @@
+{{!--
+Arguments: Module banner
+	- status    	(boolean):is display state of add on
+    - prefix 		(string): Prefixes are added to the banner 
+    - showContent   (boolean): is display show content of banner
+    - limitation    (number): The number of banner item to display.
+    - display_mode  (string) : Support format  (horizontal , vertical)
+    - class_sfx     (string) : Class suffix for module. 
+	
+Arguments:Module sb_supper_category & so_category_slider
+    - status    	(boolean):is display state of add on
+	- moduleId (number): section instance index number
+    - limit_subcategory  (number): The number of sub category item to display.
+    - showBanner   (boolean): is display show  banner
+    - class_sfx (string) : Class suffix for module. 
+
+--}}
+
+{{#if   section '==' 'section1'}}   
+    {{> components/sbthemes/module/sb_banner/banner
+        status=true  prefix="home3Banner1"  showContent=false  limitation=3  display_mode="horizontal"  class_sfx=""
+    }}
+{{else if   section '==' 'section2'}}   
+    {{> components/sbthemes/module/sb_extraslider/horizontal status=true products= products.top_sellers moduleId=3 row=1 columns=5 banner="no" class_sfx=" extraslider--new" }}                                    
+{{else if   section '==' 'section3'}}   
+    {{> components/sbthemes/module/sb_banner/banner status=true prefix="blockBanner1" showContent=false limitation=2 display_mode="horizontal" class_sfx=""}}
+{{else if   section '==' 'section4'}}   
+    {{> components/sbthemes/module/sb_extraslider/horizontal status=true products= products.new moduleId=1  row=1 columns=5 banner="no" class_sfx=" extraslider--feature" }}
+    
+{{else if   section '==' 'section5'}}   
+   {{> components/sbthemes/module/sb_banner/banner status=true prefix="home3FeatureCat" showContent=true limitation=4 display_mode="horizontal" class_sfx=""}}
+                                        
+{{else if   section '==' 'section6'}}   
+	{{> components/sbthemes/module/sb_extraslider/horizontal status=true products= products.featured moduleId=2  row=1 columns=5 banner="no" class_sfx=" extraslider--bestsell" }}
+    
+{{else if   section '==' 'section7'}}   
+    {{> components/sbthemes/module/sb_banner/banner  status=true prefix="blockBanner2" showContent=false limitation=1 class_sfx=""}}
+                                        
+{{else if   section '==' 'section8'}}   
+    {{> components/sbthemes/module/sb_latest_blog/default  status=true blogs= blog.recent_posts   show_desc="no"  hide_heading=false}}
+{{else if   section '==' 'section9'}}   
+    {{> components/sbthemes/module/sb_brand/default status=true prefix="static_brand" limitation=7  }}
+{{else if   section '==' 'section10'}}  
+	{{> components/sbthemes/module/sb_banner/banner status=no prefix="services"  showContent=true   limitation=5  display_mode="horizontal"  class_sfx=""}}
+
+{{/if}}

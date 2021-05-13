@@ -1,0 +1,13 @@
+<div class="module listing-tabs">
+	<div class="modtitle text-center">
+		<h3>NEW ARRIVALS</h3>
+		<p class="subtitle ">The standard chunk of Lorem Ipsum used since the 1500s</p>
+	</div>
+	
+	<div class="tab-content" id="myTabContent">
+		{{#if products.new}}
+		     {{> components/products/new products=products.new columns=theme_settings.homepage_new_products_column_count}}
+		{{/if}}
+		
+	</div>
+</div>

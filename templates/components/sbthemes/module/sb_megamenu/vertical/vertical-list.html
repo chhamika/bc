@@ -1,0 +1,139 @@
+<li class="navPages-item {{#if type-menu '==' 'default'}}navPages-item--{{type-menu}} {{/if}}">
+{{#if children}}
+<a class="navPages-action has-subMenu" href="{{url}}">
+	{{#if ../icon-awesome '!=' ' '}}
+
+	{{else if ../icon-image '!=' ' '}}
+		<img data-sizes="auto" class="navPages__icon lazyload" src="{{cdn '/assets/img/loading.svg'}}" data-src="{{cdn ../icon-image }}" alt="icons">
+	{{/if}}
+	{{name}} 
+	<span class=" has-subMenu" data-collapsible="navPages-vertical-{{id}}">
+		<i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-right" /></svg></i>
+	</span>
+	
+</a>
+<div class="navPage-subMenu subMenu--{{../type-menu}}" id="navPages-vertical-{{id}}" aria-hidden="true" tabindex="-1">
+    {{#if ../type-menu '==' 'mega'}}
+	<div class="row">
+		{{#if ../banner_mode '==' 'vertical'}}
+		<div class="col-lg-9">
+		{{else if ../banner_mode '==' 'horizontal'}}
+		<div class="col-lg-12">
+		{{else}}
+		<div class="col-lg-12">
+		{{/if}}
+		
+			<ul class="navPage-subMenu-list grid-{{../content_column}}">
+				{{#forEach children}}
+					<li class="navPage-subMenu-item">
+						{{#if children}}
+							<a
+								class="navPage-subMenu-action navPages-action has-subMenu"
+								href="{{url}}"
+							>
+								{{name}} 
+								
+								<span class=" has-subMenu" 
+								data-collapsible="navPages-vertical-{{id}}"
+								data-collapsible-disabled-breakpoint="medium"
+								data-collapsible-disabled-state="open"
+								data-collapsible-enabled-state="closed">
+									<i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-right" /></svg></i>
+								</span>
+								
+							</a>
+							<ul class="navPage-childList" id="navPages-vertical-{{id}}">
+								{{#each children}}
+								<li class="navPage-childList-item">
+									<a class="navPage-childList-action navPages-action" href="{{url}}">{{name}}</a>
+								</li>
+								{{/each}}
+								
+							</ul>
+						{{else}}
+							<a class="navPage-subMenu-action navPages-action" href="{{url}}">{{name}}</a>
+						{{/if}}
+						
+					</li>
+				{{/forEach}}
+			</ul>
+		</div>
+		
+		{{#if ../banner_mode '==' 'vertical'}}
+			{{#if ../banner_enable '==' 'yes'}}
+			<div class="col-lg-3">
+				<div class="banners">
+					<div>
+						{{#if banner_image '!=' ' '}}
+							<a href="{{../banner_url}}"><img data-sizes="auto" class="img-fluid lazyload" src="{{cdn '/assets/img/loading.svg'}}" data-src="{{cdn ../banner_image}}" alt="banner"></a> 
+						{{else}}
+							<a href="{{../banner_url}}"><img class="img-fluid" src="{{cdn placeholder}}" alt="{{banner}}" /></a>
+						{{/if}}
+					</div>
+				</div>
+			</div>
+			{{/if}}
+		{{else if ../banner_mode '==' 'horizontal'}}
+			{{#if ../banner_enable '==' 'yes'}}
+			<div class="col-lg-12">
+				<div class="banners">
+					<div>
+						{{#if banner_image '!=' ' '}}
+							<a href="{{../banner_url}}"><img data-sizes="auto" class="img-fluid lazyload" src="{{cdn '/assets/img/loading.svg'}}" data-src="{{cdn ../banner_image}}" alt="banner"></a> 
+						{{else}}
+							<a href="{{../banner_url}}"><img class="img-fluid" src="{{cdn placeholder}}" alt="{{banner}}" /></a>
+						{{/if}}
+					</div>
+				</div>
+			</div>
+			{{/if}}
+		{{/if}}
+		
+	</div>
+	{{else}}
+		<ul class="navPage-subMenu-list">
+			{{#forEach children}}
+				<li class="navPage-subMenu-item">
+					{{#if children}}
+						<a
+							class="navPage-subMenu-action navPages-action has-subMenu"
+							href="{{url}}"
+						>
+							{{name}} 
+							
+							<span class=" has-subMenu" 
+							data-collapsible="navPages-vertical-{{id}}">
+								<i class="icon navPages-action-moreIcon" aria-hidden="false"><svg><use xlink:href="#icon-chevron-right" /></svg></i>
+							</span>
+							
+						</a>
+						<div class="navPage-subMenu subMenu--default subMenu--level2" id="navPages-vertical-{{id}}" aria-hidden="false" tabindex="-1">
+							<ul class="navPage-childList" >
+								{{#each children}}
+								<li class="navPage-childList-item">
+									<a class="navPage-subMenu-action navPages-action" href="{{url}}">{{name}}</a>
+								</li>
+								{{/each}}
+								
+							</ul>
+						</div>
+					{{else}}
+						<a class="navPage-subMenu-action navPages-action" href="{{url}}">{{name}}</a>
+					{{/if}}
+					
+				</li>
+			{{/forEach}}
+		</ul>
+	{{/if}}
+</div>
+{{else}}
+<a class="navPages-action" href="{{url}}">
+	{{#if ../icon-awesome '!=' ' '}}
+
+	{{else if ../icon-image '!=' ' '}}
+		<img data-sizes="auto" class="navPages__icon lazyload" src="{{cdn '/assets/img/loading.svg'}}" data-src="{{cdn ../icon-image }}" alt="icons">
+	{{/if}}
+	{{name}}
+</a>
+{{/if}}
+</li>

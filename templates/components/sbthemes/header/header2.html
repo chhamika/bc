@@ -1,0 +1,82 @@
+{{#if banners.top}}
+    <div data-alert  class="banners--top alert-box" data-banner-location="top">
+        <div class="container">
+            {{{limit banners.top 1}}}
+           
+        </div>
+        <a href="#" class="close">&times;</a>
+    </div>
+   
+{{/if}}
+
+<header class="header logo-content--{{logoPosition}}" >
+
+    {{!-- HEADER TOP --}}
+    
+
+    {{!-- HEADER CENTER --}}
+    <div class="header-center"  {{#if stickyHeader }} data-sticky-header  {{/if}}>
+        <div class="container ">
+            <div class="row justify-content-between">
+                <div class="col-xl-2 col-lg-2 col-md-3 col-12 logo-container">
+               
+                    {{> components/common/store-logo}}
+
+                </div>
+                <div class="col-xl-10 col-lg-10 col-md-9 col-12 header-right">
+                    <div class="header-top ">                       
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-5 col-sm-12 d-none d-lg-block" >
+                                {{#if theme_settings.show_address_email}}
+                                <div class="navbar-phone">
+                                    
+                                    <ul class="navbar-phone__inner">    
+                                        <li><i class="fa fa-envelope"></i>{{lang 'sb_themes.header.my_email' }}<a href="mailto:{{theme_settings.address_email}}"> {{theme_settings.address_email}}</a></li>
+                                    </ul>                            
+                                </div>
+                               {{/if}}
+                            </div>
+                            <div class="col-xl-6 col-lg-7 col-sm-12 text-right">
+                                {{> components/common/navigation}}
+                            </div>
+                        </div>                      
+                    </div>
+                    <div class="header-bottom">
+                        <div class="row">
+                            <div class="bottom-left col-xl-9 col-lg-9">
+                                {{> components/sbthemes/module/sb_megamenu/default status=true  display_mode="horizontal" }}
+                            </div>
+                            <div class="bottom-right col-xl-3 col-lg-3">
+                                <div class="header-bottom__search collapsed-block">
+                                    <h5 class="search-info-heading">
+                                        <span class="expander btn btn-outline-secondary" > <i class="fa fa-search"></i> </span>
+                                    </h5>
+                                    <div class="sb-quickSearch search-info-content"  aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
+                                        {{> components/sbthemes/common/quick-search}}
+                                    </div>
+                                </div>
+                                <div class="navUser-item header__cart">
+                                    <a
+                                        class="cart-button cart-button--primary"
+                                        data-cart-preview
+                                        data-dropdown="cart-preview-dropdown"
+                                        data-options="align:left"
+                                        href="{{urls.cart}}">
+                                        <svg class="icon-shopping-cart" width="24" height="24"><use xlink:href="#icon-shopping-cart"></use></svg> 
+                                        <span class="countPill{{#if cart.items}} countPill--positive{{/if}} cart-quantity">{{cart.quantity}} {{lang 'header.txt_item'}}</span>
+                                    </a>
+                                    <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div> 
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+  
+   
+</header>

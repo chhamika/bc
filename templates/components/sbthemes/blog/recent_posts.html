@@ -1,0 +1,13 @@
+<div class="module block-recent">
+<h5 class="block-title"><i class="fa fa-file-text-o"></i>{{lang 'blog.recent_posts' }}</h5>
+
+	<div class="block-content">
+		<ul class="blogRecent">
+			{{#each posts}}
+			    {{> components/sbthemes/blog/recent_posts_item post=this hide_social_icons=false settings=../settings hide_summary=false hide_readmore=false recent_size=100x70}}
+			{{/each}}
+		</ul>
+	</div>
+</div> 
+
+ 

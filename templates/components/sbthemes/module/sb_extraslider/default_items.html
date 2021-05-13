@@ -1,0 +1,56 @@
+
+<section class="productCarousel products-list {{#if theme_settings.general_rtl '==' 'rtl' }}dir-rtl{{/if}}"
+    
+    data-slick='{
+        "dots": false,
+        "infinite": true,
+        "mobileFirst": true,
+        "slidesToShow": 1,
+        "slidesToScroll": 1,
+        "responsive": [
+            {
+                "breakpoint": 1260,
+                "settings": {
+                    "slidesToScroll": 1,
+                    "slidesToShow": {{ columns }}
+                }
+            },
+            {
+                "breakpoint": 800,
+                "settings": {
+                    "slidesToScroll": 1,
+                    "slidesToShow": 1
+                }
+            },
+            {
+                "breakpoint": 550,
+                "settings": {
+                    "slidesToScroll": 1,
+                    "slidesToShow": 1
+                }
+            }
+        ]
+    }'
+    
+>
+   
+   
+	{{#forEach (limit products theme_settings.homepage_extraslider_count)}}
+		{{#if isFirst}}
+			<div class="first-side productCarousel-slide product-layout product-list">
+		{{/if}}
+		
+		{{#or (if index '===' (add 1 ../row)) (if index '===' (add 1 (multiply 2 ../row))) (if index '===' (add 1 (multiply 3 ../row))) }}
+			<div class="productCarousel-slide product-layout product-list">
+		{{/or}} 
+		
+			{{> components/sbthemes/products/card_row theme_settings=../theme_settings customer=../customer}}
+			
+		{{#or (if index '===' ../row)(if index '==='(multiply 2 ../row)) (if index '==='(multiply 3 ../row) (if index '===' total))}}
+			</div>
+		{{/or}}
+		
+    {{/forEach}}
+    
+   
+</section>

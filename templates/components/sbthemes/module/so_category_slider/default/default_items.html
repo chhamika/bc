@@ -1,0 +1,73 @@
+{{#if category.products }}
+<div class="spcat-items-feature col-sm-5  d-none d-sm-block">
+	<div class="productsByCategoryTabs-products--carousel {{#if theme_settings.general_rtl '==' 'rtl' }}dir-rtl{{/if}}">
+		<section class="productCarousel products-list"
+			data-slick='{
+				"dots": true,
+				"infinite": false,
+				"mobileFirst": true,
+				"slidesToShow": 1,
+				"slidesToScroll": 1,
+				"arrows": false
+			}'
+			
+		>
+		{{#forEach (limit category.products theme_settings.homepage_extraslider_count) }}
+		{{#or price.non_sale_price_with_tax price.non_sale_price_without_tax}}
+			<div class="productCarousel-slide product-layout product-grid">
+				{{> components/sbthemes/products/card_listing
+					show_rating=../../theme_settings.show_product_rating
+					alternate=../../alternate
+					theme_settings=../../theme_settings customer=../../customer}}
+			</div>
+		
+		{{/or}}
+		{{/forEach}}
+		</section>
+	</div>
+</div>
+
+<div class="spcat-items-content col-sm-7 col-12">
+	<div class="productsByCategoryTabs-products--carousel {{#if theme_settings.general_rtl '==' 'rtl' }}dir-rtl{{/if}}">
+		<section class="productCarousel products-list"
+			
+			data-slick='{
+				"dots": false,
+				"infinite": false,
+				"mobileFirst": true,
+				"slidesToShow": 1,
+				"slidesToScroll": 1,
+				"arrows": false
+			}'
+			
+		>
+			
+		{{#forEach (limit category.products theme_settings.homepage_extraslider_count)}}
+			{{#if isFirst}}
+				<div class="first-side productCarousel-slide product-layout product-list">
+			{{/if}}
+			
+			{{#or (if index '===' (add 1 ../theme_settings.homepage_categoryslider_row)) (if index '===' (add 1 (multiply 2 ../theme_settings.homepage_categoryslider_row))) (if index '===' (add 1 (multiply 3 ../theme_settings.homepage_categoryslider_row))) }}
+				<div class="productCarousel-slide product-layout product-list">
+			{{/or}} 
+			
+			{{> components/sbthemes/products/card_row
+				show_rating=../../theme_settings.show_product_rating
+				alternate=../../alternate
+				theme_settings=../../theme_settings customer=../../customer}}
+					
+			{{#or (if index '===' ../theme_settings.homepage_categoryslider_row)(if index '==='(multiply 2 ../theme_settings.homepage_categoryslider_row)) (if index '==='(multiply 3 ../theme_settings.homepage_categoryslider_row) (if index '===' total))}}
+			</div>
+			{{/or}}
+		{{/forEach}}
+			
+		</section>
+	</div>
+</div>
+
+{{else}}
+	<div class="alert alert-info" role="alert" style="margin:30px 20px;width:100%;">
+		<i class="fa fa-info-circle"></i> 
+	    {{{lang 'sb_themes.so_category_slider.noItem' }}}
+	</div>
+{{/if}}

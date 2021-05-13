@@ -1,0 +1,18 @@
+{{!--
+Arguments:
+	- moduleId (number): section instance index number
+	- class_sfx (string): Use for CSS class styling suffix
+--}}
+
+{{#if status }}
+
+<div class="module clearfix {{class_sfx}}">
+{{> components/sbthemes/module/sb_deals/topdeal/default_deals
+    category_id =(lang (concat (concat 'sb_themes.sb_topdeals_home4.category_' moduleId) '.id'))
+    banner_img = (lang (concat (concat 'sb_themes.sb_topdeals_home4.category_' moduleId) '.image'))
+    banner_placeholder =(lang (concat (concat 'sb_themes.sb_topdeals_home4.category_' moduleId) '.placeholderImage'))
+    banner_url =(lang (concat (concat 'sb_themes.sb_topdeals_home4.category_' moduleId) '.url'))
+    countdown  =(lang  'sb_themes.sb_topdeals_home4.countdown' )
+}}
+</div>
+{{/if}}

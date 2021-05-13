@@ -1,0 +1,1 @@
+{"components/sbthemes/shortcode/countdown":"{{#contains textCountdown \"[countdown]\"}}\r\n\t<div class=\"countdown--box d-none d-sm-block\">\r\n\t\t<div class=\"defaultCountdown defaultCountdown-{{product_id}}\" data-timer=\"{{last (split (first (split textCountdown '[/countdown]')) '[countdown]')}}\" data-countdown-id=\"{{product_id}}\"></div>\r\n\t</div>\r\n{{/contains}}\r\n"}

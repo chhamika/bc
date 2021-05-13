@@ -1,0 +1,25 @@
+<div class="products-list row" >
+    {{#each products}}
+    {{#if ../is_search}}
+    {{#if show_cart_action}}
+    {{#if (occurrences sku "CUS")}}
+    <script type="text/javascript">
+        console.log('SEARCH VALIDATOR: [search] Product "{{name}}" was excluded from search results (by "CUS" key in SKU).');
+    </script>
+    {{else}}
+    <div class="product-layout product-grid product-grid-4 col-lg-3 col-md-4 col-12">
+        {{>components/sbthemes/products/card_listing  show_rating=../settings.show_product_rating theme_settings=../theme_settings customer=../customer}}
+    </div>
+    {{/if}}
+    {{else}}
+    <script type="text/javascript">
+        console.log('SEARCH VALIDATOR: [search] Product "{{name}}" was excluded from search results.');
+    </script>
+    {{/if}}
+    {{else}}
+    <div class="product-layout product-grid product-grid-4 col-lg-3 col-md-4 col-12">
+        {{>components/sbthemes/products/card_listing  show_rating=../settings.show_product_rating theme_settings=../theme_settings customer=../customer}}
+    </div>
+    {{/if}}
+    {{/each}}
+</div>

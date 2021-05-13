@@ -1,0 +1,171 @@
+{{#if (occurrences sku "CUS")}}
+<script type="text/javascript">
+    console.log('NEW PRODUCTS VALIDATOR: [search] Product "{{name}}" was excluded from search results (by "CUS" key in SKU).');
+</script>
+{{else}}
+<article class="product-item-container {{#if alternate}}card--alternate{{/if}}" >
+    <div class="left-block ">
+        {{#or price.non_sale_price_with_tax price.non_sale_price_without_tax}}
+        {{#if theme_settings.product_sale_badges '===' 'sash'}}
+        <div class="sale-flag-sash">
+            <span class="sale-text">On Sale!</span>
+        </div>
+        {{else if theme_settings.product_sale_badges '===' 'topleft'}}
+        <div class="sale-flag-side">
+            <span class="sale-text">On Sale!</span>
+        </div>
+        {{else if theme_settings.product_sale_badges '===' 'discount'}}
+        {{#if price.with_tax}}
+        {{> components/sbthemes/products/discount discounts = (multiply (divide (subtract price.with_tax.value price.rrp_with_tax.value ) price.rrp_with_tax.value) 100)}}
+        {{/if}}
+        {{#if price.non_sale_price_with_tax}}
+        {{> components/sbthemes/products/discount discounts = (multiply (divide (subtract price.with_tax.value price.non_sale_price_with_tax.value ) price.non_sale_price_with_tax.value) 100)}}
+        {{/if}}
+        {{#if price.without_tax}}
+        {{> components/sbthemes/products/discount discounts = (multiply (divide (subtract price.without_tax.value  price.non_sale_price_without_tax.value) price.without_tax.value) 100)}}
+        {{/if}}
+        {{else if theme_settings.product_sale_badges '===' 'burst'}}
+        <div class="starwrap">
+            <div class="sale-text-burst">On Sale!</div>
+            <div class="sale-flag-star"></div>
+        </div>
+        {{/if}}
+        {{/or}}
+
+        {{#if theme_settings.settings_productlabel}}
+        {{> components/sbthemes/shortcode/default prefix="badges" content = summary }}
+        {{/if}}
+        {{#if theme_settings.settings_countdown}}
+        {{> components/sbthemes/shortcode/default prefix="countdown" product_id= id content = summary }}
+        {{/if}}
+        {{#if theme_settings.product_list_display_gallery}}
+        {{#if images.length '>' 1}}
+        <div class="product-card__gallery product-card__{{theme_settings.product_list_display_gallery}} d-none d-sm-block" >
+            {{#each (limit images 3)}}
+            <div class="item-img {{#if @first}}thumb-active {{/if}}" data-src="{{getImage this 'gallery_size' (cdn theme_settings.default_image_product)}}">
+                <img class="card-image lazyload" data-sizes="auto" src="{{cdn '/assets/img/loading.svg'}}" data-src="{{getImage this 'cardGallery_size' (cdn theme_settings.default_image_product)}}" alt="{{this.alt}}" title="{{this.alt}}" />
+            </div>
+            {{/each}}
+        </div>
+        {{/if}} 
+        {{/if}}
+
+        <a href="{{url}}" class="product-item-photo">
+            <img class="img-responsive lazyload"  data-sizes="auto" src="{{cdn '/assets/img/loading.svg'}}" data-src="{{getImage image 'gallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+        </a>
+
+        {{#if theme_settings.show_product_quick_view}}
+        <a href="#" class="quickview btn-button d-none d-md-block" data-animation="false" data-product-id="{{id}}"  title="{{lang 'products.quick_view'}}"> <i class="fa fa-search"></i></a>
+        {{/if}}
+
+        {{#if theme_settings.show_product_wishlist}}
+        <div class="action-item wishlist">
+            <form class="form" method="post" action="{{add_to_wishlist_url}}" data-wishlist-add>
+                <input type="hidden" name="variation_id" value="">
+                <input class="button button--small card-figcaption-button" type="hidden" value="{{lang 'account.wishlists.add_item'}}">
+
+                <button class="action-link button--wishlist" type="submit"  title="{{lang 'account.wishlists.add_item'}}">
+                    <i class="fa fa-heart-o"></i>
+                </button>
+            </form>
+
+
+        </div>
+
+        {{/if}}
+
+
+    </div>
+
+    <div class="right-block">
+
+        <h4 class="card-title">
+            <a href="{{url}}">{{name}}</a>
+
+        </h4>
+        {{#if theme_settings.show_product_brand}}
+        <p class="card-text" data-test-info-type="brandName">{{brand.name}}</p>
+        {{/if}}
+        {{#if theme_settings.show_product_rating}}
+        <div class="ratings ">
+            <div class="prod-rating" data-test-info-type="productRating">
+                <span class="rating--small">
+                    {{> components/products/ratings rating=rating}}
+					
+                </span>
+            </div>
+        </div>
+        {{/if}}
+
+        {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+        {{> components/products/price price=price customer=customer}}
+        {{else}}
+        {{> components/common/login-for-pricing}}
+        {{/or}}
+
+
+        <div class="description">
+            {{> components/sbthemes/shortcode/summary content = summary }}
+        </div>
+        <div class="product-colors" data-product-id="{{id}}"></div>
+        <div class="button-group">
+
+{{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+            {{#if show_cart_action}}
+
+            {{#if has_options}}
+            <div class="action-item addToCart">
+                <a href="{{url}}" class="action-link  button--cart" data-product-id="{{id}}"  title="{{lang 'products.choose_options'}}">{{lang 'products.choose_options'}}</a>
+            </div>
+            {{/if}}
+            
+            {{#if pre_order}}
+            <div class="action-item addToCart card-listing__pre-order">
+                <a href="{{url}}" class="action-link  button--cart"  title="{{lang 'products.pre_order'}}">{{lang 'products.pre_order'}}</a>
+            </div>
+            {{/if}}
+            
+            {{#if add_to_cart_url }}
+            <div class="action-item addToCart">
+                <a href="{{add_to_cart_url}}" class="action-link  button--cart"  title="{{lang 'products.add_to_cart'}}">{{lang 'products.add_to_cart'}}</a>
+            </div>
+            {{else}}
+            {{#if has_options}}
+            
+            {{else}}
+            {{#if pre_order}}
+            
+            {{else}}
+            <div class="action-item addToCart">
+                <a href="{{url}}" class="action-link  button--cart type113">READ MORE</a>
+            </div>
+            {{/if}}
+            {{/if}}
+            {{/if}}
+            {{#if out_of_stock_message }}
+            <!--<div class="action-item addToCart type112">
+                <a href="{{url}}" class="action-link button--cart" data-product-id="{{id}}" title="{{out_of_stock_message}}">{{out_of_stock_message}}</a>
+            </div>-->
+            {{/if}}
+            {{else}}
+            <div class="action-item addToCart">
+                <a href="{{url}}" class="action-link  button--cart type111">READ MORE</a>
+            </div>
+            {{/if}}
+            {{/or}}
+
+
+
+            {{#if theme_settings.show_product_compare}}
+            <div class="action-item compare ">
+                <input class="form-check-input" type="checkbox" name="products[]" value="{{id}}"  data-compare-id="{{id}}">
+                <label class="form-check-label">
+                    <i class="fa fa-refresh"></i>
+                </label>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</article>
+{{/if}}
+

@@ -1,0 +1,36 @@
+
+<div class="sidebarBlock">
+	<span id="close-sidebar" class="fa fa-times"></span>
+    <!-- BEGIN Side All Categories -->
+    
+    {{#if blog.posts}}
+        {{> components/sbthemes/blog/recent_posts posts=(limit blog.posts 5)}}
+    {{else}}
+        {{> components/sbthemes/blog/recent_posts posts=(limit blog.recent_posts 5)}}
+    {{/if}}
+     
+    {{#if blog.posts}}
+    <div class="module blog-tags">
+        <h5 class="block-title"><i class="fa fa-tag"></i> {{lang 'sb_themes.blog.popular_tags'}}</h5>
+        <div class="block-content clearfix">
+        {{#each blog.posts}}
+        
+            {{#if tags}}
+                <ul class="tags">
+                    {{#each tags}}
+                    <li class="tag">
+                        <a href="{{url}}">#{{name}}</a>
+                    </li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+       
+        {{/each}}
+        </div>
+    </div>
+    {{/if}}
+
+    {{> components/sbthemes/module/sb_banner/banner status=true prefix="sidebarBanner" showContent=false limitation=1 display_mode="" class_sfx=""}}
+	
+</div>
+

@@ -1,0 +1,44 @@
+{{!--
+Arguments: Module banner
+	- status    	(boolean):is display state of add on
+    - prefix 		(string): Prefixes are added to the banner 
+    - showContent   (boolean): is display show content of banner
+    - limitation    (number): The number of banner item to display.
+    - display_mode  (string) : Support format  (horizontal , vertical)
+    - class_sfx     (string) : Class suffix for module. 
+	
+Arguments:Module sb_listing_tabs
+	- status    	(boolean):is display state of add on
+	- moduleId (number): section instance index number
+	- banner   (string): is the position banner 
+	- class_sfx (string) : Class suffix for module. 
+	
+Arguments:Module sb_extraslider
+	- status    	(boolean):is display state of add on
+	- moduleId (number): section instance index number
+	- row  	(number): The number of menu item to display.
+	- columns  (number): The number of menu item to display.
+	- banner   (string): is the position banner 
+	- class_sfx (string) : Class suffix for module. 
+--}}
+
+{{#if 		section '==' 'section1'}}	{{> components/sbthemes/module/sb_latest_blog/default status=true blogs= blog.recent_posts  show_desc="yes" show_read_more="no" hide_heading=false}}
+										{{#if customer}}
+										{{customer.length}} 
+{{> components/sbthemes/module/sb_extraslider/horizontal status=true products=customer.recently_viewed_products.items moduleId=4 row=4 columns=1 banner="no" class_sfx=" extraslider--recent" }}
+
+										{{/if}}
+										
+{{else if 	section '==' 'section2'}}	{{> components/sbthemes/module/sb_extraslider/horizontal status=false products= products.new moduleId=1 row=4 columns=4 banner="no" class_sfx=" extraslider--one" }}
+																		
+{{else if 	section '==' 'section3'}}	{{> components/sbthemes/module/sb_banner/banner status=false prefix="home1Banner2" showContent=false limitation=1 display_mode="horizontal" class_sfx=" banner-section" }}
+
+{{else if 	section '==' 'section4'}}  	{{> components/sbthemes/module/sb_extraslider/horizontal status=false products= products.featured moduleId=2 row=2 columns=4 banner="no" class_sfx=" extraslider--two" }}
+{{else if   section '==' 'section5'}}	{{> components/sbthemes/module/sb_banner/banner status=false prefix="home1Banner3" showContent=false limitation=2 display_mode="horizontal" class_sfx=" banner-section" }}
+
+{{else if 	section '==' 'section6'}}
+{{else if   section '==' 'section7'}}
+ 
+{{else if 	section '==' 'section8'}}	{{> components/sbthemes/module/sb_brand/default status=true prefix="static_brand" limitation=9 }}						
+
+{{/if}}

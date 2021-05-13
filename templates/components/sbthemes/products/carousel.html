@@ -1,0 +1,78 @@
+<section class="productCarousel products-list"
+		 {{#if row '!=' 3}}
+    data-slick='{
+        "dots": false,
+        "infinite": false,
+        "mobileFirst": true,
+        "slidesToShow": 3,
+        "slidesToScroll": 1,
+		"responsive": [
+		            {
+		                "breakpoint": 1200,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": {{ columns }}
+		                }
+		            },
+					{
+		                "breakpoint": 991,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": 3
+		                }
+		            },
+		            {
+		                "breakpoint": 400,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": 3
+		                }
+		            },
+		            {
+		                "breakpoint": 0,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow":1
+		                }
+		            }
+		        ]
+    }'
+{{/if}}
+
+>
+
+
+	{{#forEach products}}
+
+		{{#if ../row '==' 1}}<div class="productCarousel-slide product-layout product-grid">{{/if}}
+
+		{{#if ../row '==' 2}}
+			{{#ifOdd ../index}}<div class="productCarousel-slide product-layout product-grid"> {{/ifOdd}}
+		{{/if}}
+
+		{{#if ../row '==' 3}}<div class="productCarousel-slide product-layout product-grid right-related-products" style="clear: both; width: 100%;">{{/if}}
+			{{#if show_cart_action}}
+			{{#if (occurrences sku "CUS")}}
+			<script type="text/javascript">
+				console.log('SEARCH VALIDATOR: [related products] Product "{{name}}" was excluded from related products results (by "CUS" key in SKU).');
+			</script>
+			{{else}}
+			{{> components/sbthemes/products/card_listing show_compare=category.show_compare show_wishlist=settings.show_wishlist theme_settings=../theme_settings customer=../customer}}
+			{{/if}}
+			{{else}}
+			<script type="text/javascript">
+				console.log('SEARCH VALIDATOR: [related products] Product "{{name}}" was excluded from related products results.');
+			</script>
+			{{/if}}
+
+        {{#if ../row '==' 1}}</div>{{/if}}
+		{{#if ../row '==' 3}}</div>{{/if}}
+		{{#if ../row '==' 2}}
+			{{#ifEven ../index}}</div>{{/ifEven}}
+		{{/if}}
+
+
+    {{/forEach}}
+
+
+</section>

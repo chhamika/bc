@@ -1,0 +1,17 @@
+<nav class="navPages-horizontal">
+   
+    <ul class="navPages-list">
+        <li class="navPages-item navPages-item-page">
+            <a class="navPages-action" href="/">{{lang 'home.heading'}}</a>
+        </li>
+     
+        {{#unless theme_settings.hide_content_navigation}}
+            {{#each pages}}
+                 <li class="navPages-item navPages-item-page">
+                     <a class="navPages-action" href="{{url}}">{{name}}</a>
+                 </li>
+             {{/each}}
+        {{/unless}}
+    </ul>
+    
+</nav>

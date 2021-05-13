@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html  lang="{{ locale_name }}">
+    <head>
+        <title>{{ head.title }}</title>
+        {{{ head.meta_tags }}}
+        {{{ head.config }}}
+        {{#block "head"}} {{/block}}
+        <link href="{{ head.favicon }}" rel="shortcut icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		
+		{{#if theme_settings.general_rtl '==' 'ltr' }}
+			<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" >
+		{{else}}
+			<link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.0.0/css/bootstrap.min.css" rel="stylesheet">
+		{{/if}}
+		
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		
+        {{{stylesheet '/assets/css/theme.css'}}}
+        {{ getFontsCollection }}
+        <script src="{{cdn 'assets/modernizr-custom.js'}}"></script>
+
+        {{{head.scripts}}}
+        {{{head.rsslinks}}}
+		
+       
+        {{inject 'themeSettings' theme_settings}}
+        {{inject 'genericError' (lang 'common.generic_error')}}
+        {{inject 'maintenanceMode' settings.maintenance}}
+        {{inject 'urls' urls}}
+        {{{snippet 'htmlhead'}}}
+    </head>
+	
+	
+    <body class="{{theme_settings.theme_style}}--style 
+		{{#if theme_settings.layout_style '==' 'boxed' }} overlay--{{theme_settings.layout_pattern}}{{/if}}
+		{{#if theme_settings.layout_bgimage }} bg--body{{/if}}
+	">
+        <div id="wrapper" class="wrapper-{{theme_settings.layout_style}} banners-{{theme_settings.general_bannereffect}}">
+			
+			{{{snippet 'header'}}}
+			{{#if theme_settings.theme_style '==' 'home2' }}
+				{{> components/sbthemes/header/header2 logoPosition = theme_settings.logo-position stickyHeader = theme_settings.show_on_topheader typeheader = theme_settings.home_header}}
+			{{else if theme_settings.theme_style '==' 'home3' }}
+				{{> components/sbthemes/header/header3 logoPosition = theme_settings.logo-position stickyHeader = theme_settings.show_on_topheader typeheader = theme_settings.home_header}}
+			{{else if theme_settings.theme_style '==' 'home4' }}
+				{{> components/sbthemes/header/header4 logoPosition = theme_settings.logo-position stickyHeader = theme_settings.show_on_topheader typeheader = theme_settings.home_header}}
+			{{else}}
+				{{> components/sbthemes/header/header1 logoPosition = theme_settings.logo-position stickyHeader = theme_settings.show_on_topheader typeheader = theme_settings.home_header}}
+			{{/if}}
+			
+			{{{snippet 'Main Body'}}}
+			{{> components/common/body }}
+		   
+			{{{snippet 'Footer'}}}
+		   {{#if theme_settings.theme_style '==' 'home2' }}
+				{{> components/sbthemes/footer/footer2 typefooter = theme_settings.home_footer}}
+			{{else if theme_settings.theme_style '==' 'home3' }}
+				{{> components/sbthemes/footer/footer3 typefooter = theme_settings.home_footer}}
+			{{else if theme_settings.theme_style '==' 'home4' }}
+				{{> components/sbthemes/footer/footer4 typefooter = theme_settings.home_footer}}
+			{{else}}
+				{{> components/sbthemes/footer/footer1 typefooter = theme_settings.home_footer}}
+			{{/if}}
+		
+		</div>
+		
+        <div class="icons-svg-sprite">{{> components/common/icons/icon-defs }}</div>
+        {{#if settings.privacy_cookie}}
+            {{> components/common/cookie}}
+        {{/if}}
+		
+        <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+        <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+
+        <script>
+            // Exported in app.js
+            window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
+        </script>
+
+        {{{footer.scripts}}}
+        {{{snippet 'footer'}}}
+    </body>
+</html>

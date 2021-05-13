@@ -1,0 +1,60 @@
+<div class="row">
+	{{#if banner-mode '==' 'left'}}
+	<div class="imageArea colRight col-lg-3 d-none d-lg-block">
+		{{#if banner-img '!=' ' '}}
+		<a href="{{banner-url}}"><img class="img-fluid" src="{{cdn banner-img }}"  alt="{{name}}"  /></a>
+		{{else}}
+		<a href="{{banner-url}}"><img class="img-fluid" src="{{cdn banner-placeholder}}" alt="{{name}}"  /></a>
+		{{/if}}
+	</div>
+	{{/if}}
+	<div class="cateArea {{#if banner-mode '!=' ' '}}col-lg-9 col-md-12 columns-{{columns}} {{else}} col-md-12 {{/if}}">
+		<ul class="navPage-subMenu-list">
+			{{#each children}}
+				<li class="navPage-subMenu-item">
+					{{#if children}}
+						<a class="navPage-subMenu-action navPages-action navPages-action-depth-max has-subMenu" href="{{url}}" data-collapsible="navPages-{{id}}">
+							{{name}}
+						</a>
+						{{#if image}}
+						<div class="banners navPage-subMenu-banner">
+							<a href="{{url}}">
+								<img class="lazyload" src="{{cdn '/assets/img/loading.svg'}}" data-src="{{getImage image 'blog_size' }}" alt="{{name}}">
+							</a>
+							
+						</div>
+						{{/if}}
+						<ul class="navPage-childList">
+							{{#each children}}
+								<li class="navPage-childList-item">
+									{{#if children}}
+										<a class="navPage-childList-action navPages-action navPages-action-depth-max has-subMenu" href="{{url}}" data-collapsible="navPages-{{id}}">
+											{{name}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
+										</a>
+										{{> components/common/navigation-dropdown}}
+									{{else}}
+										<a class="navPage-childList-action navPages-action" href="{{url}}">{{name}}</a>
+									{{/if}}
+								</li>
+							{{/each}}
+						</ul>
+						
+
+					{{else}}
+						<a class="navPage-childList-action navPages-action" href="{{url}}">{{name}}</a>
+					{{/if}}
+				</li>
+			{{/each}}
+		</ul>
+	</div>
+	
+	{{#if banner-mode '==' 'right'}}
+	<div class="imageArea colRight col-lg-3 d-none d-lg-block">
+		{{#if banner-img '!=' ' '}}
+		<a href="{{banner-url}}"><img class="lazyload" src="{{cdn '/assets/img/loading.svg'}}" data-src="{{cdn banner-img }}"  alt="{{name}}"  /></a>
+		{{else}}
+		<a href="{{banner-url}}"><img class="lazyload" src="{{cdn '/assets/img/loading.svg'}}" data-src="{{cdn banner-placeholder}}" alt="{{name}}"  /></a>
+		{{/if}}
+	</div>
+	{{/if}}
+</div>

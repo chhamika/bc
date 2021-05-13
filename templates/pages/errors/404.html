@@ -1,0 +1,25 @@
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+<main class="page">
+    <section class="page-content content_404 row">
+			<div class="item-left col-lg-6 col-md-7">
+				<img src="{{cdn 'img/404/img-404.png'}}" alt="">
+			</div>
+			<div class="item-right col-lg-6 col-md-5">
+					<h1 class="page-heading">{{lang 'page_not_found.page_heading'}}</h1>
+					<p >
+						{{lang 'page_not_found.message'}}
+					</p>
+
+					{{> components/common/search-box}}
+				
+			</div>
+		
+       
+    </section>
+</main>
+
+{{/partial}}
+{{> layout/base}}

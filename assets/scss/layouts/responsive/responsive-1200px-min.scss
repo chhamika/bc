@@ -1,0 +1,25 @@
+// =============================================================================
+// RESPONSIVE (CSS)
+// =============================================================================
+
+@include breakpoints(lg){
+	
+	.default--style,
+	.home2--style{
+		//.navPages-horizontal ul.navPages-list > li.hasMegamenu .navPage-subMenu{width: 870px;}
+	}
+	
+}
+@media (min-width: 1649px){
+	
+}
+
+@media (min-width: 1200px) and (max-width: 1649px){
+	
+}
+
+
+
+
+
+

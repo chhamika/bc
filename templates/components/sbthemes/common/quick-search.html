@@ -1,0 +1,18 @@
+
+    {{{ snippet "forms_search"}}}
+    <form class="sb-searchpro" action="{{urls.search}}">
+        <fieldset class="form-fieldset">
+            <div class="input-group">
+                <input class="form-control form-input" data-search-quick name="search_query" id="search_query" data-error-message="{{lang 'search.error.empty_field'}}" placeholder="{{lang 'search.quick_search.input_placeholder'}}" autocomplete="off">
+                <div class="input-group-append"  >
+                    <button class="btn btn-outline-secondary" id="btn-quickSearch" type="submit"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+            
+        </fieldset>
+    </form>
+    <div class="dropdown dropdown--quickSearch">
+        <section class="quickSearchResults " data-bind="html: results"></section>  
+    </div>
+   
+

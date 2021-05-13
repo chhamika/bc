@@ -1,0 +1,28 @@
+{{#if status }}
+<article class="collapsed-block {{class_sfx}}" data-section-type="footer-webPages">
+	{{#if (lang (concat (concat 'sb_themes.' prefix) '.heading')) '!=' ' '}}
+		    <h5 class="footer-info-heading">
+				{{#if icon-fontawesom '==' ' '}}
+					<i class="fa fa-{{icon-fontawesome}}"></i> 
+				{{/if}}
+				{{lang (concat (concat 'sb_themes.' prefix) '.heading')}}
+				<span class="expander" ><i class="fa fa-chevron-circle-down"></i></span>
+			</h5>
+	{{/if}}
+	
+	{{#if horizontal '==' 'true'}}
+    <ul class="footer-info-list list-inline">
+	{{else}}
+	<ul class="footer-info-list">
+	{{/if}}
+	{{#if limitation '>' 1}}
+		{{#for limitation}}
+			{{> components/sbthemes/module/sb_menu/default-item 
+				menu_info = (concat (concat (concat 'sb_themes.' ../prefix) '.row_' ) $index) 
+				horizontal =  ../horizontal
+			}}
+		{{/for}}
+	    {{/if}}
+    </ul>
+</article>
+{{/if}}

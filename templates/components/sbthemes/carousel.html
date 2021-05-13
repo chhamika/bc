@@ -1,0 +1,39 @@
+{{#if carousel}}
+<div class="slideshow {{#if theme_settings.general_rtl '==' 'rtl' }}dir-rtl{{/if}}">
+    <div class="slideCarousel"
+    data-slick='{
+        "dots": false,
+        "arrows": true,
+        "mobileFirst": false,
+        "slidesToShow": 1,
+        "slidesToScroll": 1,
+        "autoplay": true,
+        "autoplaySpeed": {{carousel.swap_frequency}}
+    }'>
+   
+        {{#each carousel.slides}}
+        <div class="heroCarousel-slide "
+            style="background-image: url({{image}})" {{#if theme_settings.general_fadeimage}}data-size-image{{/if}}>
+            <a href="{{url}}">
+                <img class="heroCarousel-image lazyload" src="{{image}}" alt="{{alt_text}}" title="{{alt_text}}"/>
+                {{#if heading}}
+                    {{> components/carousel-content show_background=false}}
+                {{else}}
+                    {{#if text}}
+                        {{> components/carousel-content show_background=false}}
+                    {{else}}
+                        {{#if button_text}}
+                            {{> components/carousel-content show_background=false}}
+                        {{/if}}
+                    {{/if}}
+                {{/if}}
+            </a>
+        </div>
+        {{/each}}
+    
+    </div>
+        
+    
+
+</div>
+{{/if}}

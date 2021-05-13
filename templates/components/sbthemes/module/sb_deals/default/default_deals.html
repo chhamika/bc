@@ -1,0 +1,44 @@
+
+{{#if category_id '!==' ' '}}
+
+{{#each categories}}
+	{{#if id '===' ../category_id}}
+		
+		{{#if (merge ../../this 
+			category_name = name
+			category_url = url)}}
+		{{/if}}
+		
+	{{else}}
+		{{#each children}}
+			{{#if id '===' ../../../category_id}}
+				{{#if (merge ../../../../this
+					category_name = name
+					category_url = url)}}
+				{{/if}}
+			{{/if}}
+		{{/each}}
+	{{/if}}
+{{/each}}
+
+	<h5 class="block-title">
+		<span>{{lang 'sb_themes.sb_deals.heading' }}</span>
+		{{lang 'sb_themes.sb_deals.heading2' }}
+	</h5>
+	<div class="block-content" >
+		{{#if category_url}}
+			<div class="sb-deals-container {{#if theme_settings.general_rtl '==' 'rtl' }}dir-rtl{{/if}}" data-products-by-category-tabs="{{ concat category_url '?sort='}}{{theme_settings.homepage_deal_sort}}" >
+				<div class="productLoading">
+					<img class="img-responsive lazyload" src="{{cdn '/assets/img/loading.svg'}}" alt="loading" width="50" height="50" >
+				</div>
+			</div>
+		{{else}}
+			<div class="alert alert-info" role="alert"  style="margin:60px 20px 0">
+				<i class="fa fa-info-circle"></i> 
+			   {{{lang 'sb_themes.sb_deals.noCategory' }}}
+			</div>
+		
+		{{/if}}
+	</div>
+	
+{{/if}}

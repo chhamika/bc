@@ -1,0 +1,5 @@
+<div class="flag-badges">
+{{#contains textBadges "[badges]"}}
+	<img class="card-image lazyload" data-sizes="auto" width="60px" height="60px" src="{{cdn '/assets/img/loading.svg'}}" data-src="{{cdn (last (split (first (split textBadges '[/badges]')) '[badges]')) }}" alt="{{image.alt}}"  >
+{{/contains}}
+</div>

@@ -1,0 +1,13 @@
+{{#contains content "[/shortcode]"}}
+	{{#if prefix '==' 'badges'}}
+		{{#contains  (last (split (first (split ../content '[/shortcode]')) '[shortcode]')) ../prefix  }}
+			{{> components/sbthemes/shortcode/badges  textBadges = (last (split (first (split ../content '[/shortcode]')) '[shortcode]')) }}
+		{{/contains}}
+	{{/if}}
+	
+	{{#if prefix '==' 'countdown'}}
+		{{#contains  (last (split (first (split ../content '[/shortcode]')) '[shortcode]')) ../prefix  }}
+			{{> components/sbthemes/shortcode/countdown  textCountdown = (last (split (first (split ../content '[/shortcode]')) '[shortcode]')) }}
+		{{/contains}}
+	{{/if}}
+{{/contains}}

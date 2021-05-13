@@ -1,0 +1,155 @@
+{{!--
+Arguments:
+    - category_id (number)
+    - style (string): CSS class styling suffix
+    - banner
+    - url
+    - alignBanner
+
+
+Global variables:
+    - categories (array)
+
+--}}
+
+
+{{#if category_id '!==' ' '}}
+{{#withHash
+    categories               = categories
+    category_id              = category_id
+    alignBanner               = alignBanner
+    banner                   = banner
+    placeholder              = placeholder
+    url                      = url
+    theme_settings           = theme_settings
+}}
+
+{{#each categories}}
+	{{#if id '===' ../category_id}}
+		{{#if (merge ../../this 
+			category_name = name
+			category_url = url)}}
+		{{/if}}
+	{{else}}
+		{{#each children}}
+			{{#if id '===' ../../../category_id}}
+				{{#if (merge ../../../../this
+					category_name = name
+					category_url = url)}}
+				{{/if}}
+			{{/if}}
+		{{/each}}
+	{{/if}}
+{{/each}}
+
+{{#if category_url}}
+<div class="sb-listing-tabs">
+	<div class="ltabs-heading">
+		<h3 class="block-title"><a href="{{category_url}}" title="{{category_name}}">{{category_name}}</a></h3>
+		<ul class="tabs" data-tab data-tab-sblisting role="tablist">
+			{{#each categories}}
+				{{#if id '===' ../category_id}}
+					{{#each (limit children ../../../../limit_subcategory) }}
+						<li class="tab {{#if isFirst}} is-active {{/if}}" role="presentation"><a class="tab-title" href="#tab-sblisting-{{id}}" role="tab" tabindex="0" aria-selected="false" aria-controls="tab-sblisting-{{category_id}}">{{name}}</a></li>
+					{{/each}}
+				{{else}}
+					{{#each children}}
+					
+						{{#if id '===' ../../../category_id}}
+						
+						{{#forEach (limit children ../../../../../../limit_subcategory) }}
+							
+							<li class="tab {{#if isFirst}} is-active {{/if}}" role="presentation">
+							
+							<a class="tab-title" href="#tab-sblisting-{{id}}" role="tab" tabindex="0" aria-selected="false" aria-controls="tab-sblisting-{{category_id}}">{{name}}</a></li>
+						{{/forEach }}
+						{{/if}}
+					{{/each}}
+				{{/if}}
+			{{/each}}
+		</ul>
+	</div>
+	<div class="ltabs-container d-flex">
+		
+		{{#if alignBanner '==' 'left'}}
+		<div class="ltabs-items-image">
+			<div class="banners" {{#if theme_settings.general_fadeimage}}data-fade-image data-size-image{{/if}} >
+				<div class="banner-figure">
+					{{#if banner '!=' ' '}}
+						<a href="{{url}}" title="{{category_name}}"><img class="img-fluid" src="{{cdn banner}}" alt="{{category_name}}" /></a>
+					{{else}}
+						<a href="{{url}}" title="{{category_name}}"><img class="img-fluid" src="{{cdn placeholder}}" alt="{{category_name}}"  /></a>
+					{{/if}}
+				</div>
+			</div>
+		   
+		</div>
+		{{/if}}
+		
+		{{#if alignBanner '==' 'no'}}
+		<div class="ltabs-items-container ltabs-items-container--noimage">
+		{{else}}
+		<div class="ltabs-items-container ltabs-items-container--image">
+		{{/if}}
+			
+			{{#each categories}}
+				{{#if id '===' ../category_id}}
+					{{#each (limit children ../../../../limit_subcategory) }}
+						<section role="tabpanel" aria-hidden="false" class="tab-content {{#if isFirst}} is-active {{/if}}" id="tab-sblisting-{{id}}" 
+							data-items-sblisting="{{concat url '?sort=newest'}}"
+							data-urltemplate="sbthemes/module/sb_listing_tabs/home2/default_items">
+							
+							{{> components/sbthemes/module/sb_listing_tabs/home2/product-loading }}
+						</section>
+
+					{{/each}}
+				{{else}}
+					{{#each children}}
+						{{#if id '===' ../../../category_id}}
+						{{#forEach (limit children ../../../../../../limit_subcategory) }}
+							<section role="tabpanel" aria-hidden="false" class="tab-content {{#if isFirst}} is-active {{/if}}" id="tab-sblisting-{{id}}" 
+								data-items-sblisting="{{concat url '?sort=newest'}}"
+								data-urltemplate="sbthemes/module/sb_listing_tabs/home2/default_items">
+								
+								{{> components/sbthemes/module/sb_listing_tabs/home2/product-loading }}
+							</section>
+						{{/forEach}}
+						{{/if}}
+					{{/each}}
+				
+				{{/if}}
+			{{/each}}
+			
+			
+			
+		
+		</div>
+		
+		{{#if alignBanner '==' 'right'}}
+		<div class="ltabs-items-image">
+			<div class="banners" {{#if theme_settings.general_fadeimage}}data-fade-image data-size-image{{/if}} >
+				<div class="banner-figure">
+					{{#if banner '!=' ' '}}
+						<a href="{{url}}" title="{{category_name}}"><img  class="img-fluid" src="{{cdn banner}}" alt="{{category_name}}" /></a>
+					{{else}}
+						<a href="{{url}}" title="{{category_name}}"><img class="img-fluid" src="{{cdn placeholder}}" alt="{{category_name}}"  /></a>
+					{{/if}}
+				</div>
+			</div>
+		   
+		</div>
+		{{/if}}
+		
+	</div>
+</div>
+{{else}}
+	<div class="alert alert-info" role="alert" style="margin:0px">
+		<i class="fa fa-info-circle"></i> 
+	   {{{lang 'sb_themes.sb_listing_tabs.noCategory' }}}
+	</div>
+{{/if}}
+
+{{/withHash}}
+	
+
+{{/if}}

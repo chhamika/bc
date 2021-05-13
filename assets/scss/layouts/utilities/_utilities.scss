@@ -1,0 +1,376 @@
+// =============================================================================
+// UTILITIES
+// =============================================================================
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+.clear{clear: both;}
+.no-padding{padding: 0 !important;}
+.hidden{display:none !important;}
+
+// Text overflow
+// Requires inline-block or block for proper styling
+@mixin text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+
+//===== Minxin Link =======
+@mixin linkColor($linkColor,$linkColorHover){
+  color: $linkColor;
+  &:hover{color: $linkColorHover;}
+}
+@mixin link(){
+	color: $linkColor;text-decoration: none;
+	&:hover{color: darken($linkColor, 15%);}
+}
+@mixin linkGrayDark(){
+	color: $color-textLink;
+	&:hover{color: $color-textLink-hover;}
+}
+
+@mixin linkGray(){
+	color: $color-textLink;
+	&:hover{color: $color-textLink-hover;}
+}
+@mixin linkGraylighter(){
+	color: $input-color-placeholder ;
+	&:hover{color: $linkColor;}
+}
+@mixin linkGrayLight(){
+	color: $base-border-color;
+	&:hover{color: $linkColor;}
+}
+@mixin linkWhite(){
+	color: $white;
+	&:hover{color: $linkColor;}
+}
+@mixin opacity($opacity) {
+	opacity: $opacity;
+	-webkit-opacity: $opacity;
+	-moz-opacity: $opacity;
+	-o-opacity: $opacity;
+	-ms-opacity: $opacity;
+	
+}
+@mixin border-radius($border-radius) {
+	border-radius: $border-radius;
+	-webkit-border-radius: $border-radius;
+	-moz-border-radius: $border-radius;
+	-o-border-radius: $border-radius;
+	-ms-border-radius: $border-radius;
+}
+@mixin hoverFade() {
+	img { 
+		&:hover{opacity: 0.8;}
+	}
+	
+}
+
+
+//====== Minxin Buton =======
+@mixin buttonGrayDark(){
+	padding: 9px 20px; background: $gray-darker;color: #fff;   border-radius: 3px;border: none;
+	&:hover{background: $linkColor; border-color: $linkColor;color: #fff; }
+}
+
+@mixin buttonGray(){
+	padding: 9px 20px; background: $gray;color: #fff;  border-radius: 3px;border: none;
+	&:hover{background: $linkColor; border-color: $linkColor;color: #fff; }
+}
+
+@mixin buttonGraylighter(){
+	padding: 9px 20px;background: $gray-lighter;color: #333;  border-radius: 3px;border: none;
+	&:hover{background: $linkColor; border-color: $linkColor;color: #fff; }
+	
+}
+@mixin buttonGraylight(){
+	@include buttonGray(); 
+	background: $input-color-placeholder; 
+	&:hover{background: $linkColor;}
+}
+
+@mixin buttonColor(){
+	@include buttonGray();
+	background: $linkColor; border-color: $linkColor;
+	&:hover{background: $gray;border-color: $gray;}
+}
+@mixin bgbutton(){
+	background: -moz-linear-gradient(top, #474747 0%, #212121 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#474747), color-stop(100%,#212121));
+    background: -webkit-linear-gradient(top, #474747 0%,#212121 100%);
+    background: -o-linear-gradient(top, #474747 0%,#212121 100%);
+    background: -ms-linear-gradient(top, #474747 0%,#212121 100%);
+    background: linear-gradient(to bottom, #474747 0%,#212121 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#474747', endColorstr='#212121',GradientType=0 );
+}
+@mixin buttonColorLighten($opacity){
+	@include buttonGray();
+	background: $linkColor; border: none;
+	&:hover{background: lighten($linkColor, $opacity);}
+}
+
+//===== sass-triangle =======
+@mixin triangle($direction, $size: 12px, $color: currentColor, $before: false) {
+
+  $w: null;
+  $h: null;
+  $c: null;
+  $length: length($size);
+  $pseudo: if($before, 'before', 'after');
+
+  @if $length > 2 {
+    $w: nth($size, 1);
+    $h: nth($size, 2);
+    $c: nth($size, 3);
+  } @else if $length > 1 {
+    $w: nth($size, 1);
+    $h: nth($size, 2);
+    $c: nth($size, 2);
+  } @else if $length == 1 {
+    $w: nth($size, 1);
+    $h: nth($size, 1);
+    $c: nth($size, 1);
+  } @else {
+    @error "Invalid size \"#{$size}\"";
+  }
+
+  &:#{$pseudo} {
+
+    display: inline-block;
+    content: "";
+    width: 0;
+    height: 0;
+    vertical-align: middle;
+
+    @if $direction == 'up' {
+
+      @if ($length < 3) {
+
+        border-bottom: $h solid $color;
+        border-left: $w/2 solid transparent;
+        border-right: $w/2 solid transparent;
+
+      } @else {
+
+        border-bottom: $h solid $color;
+        border-left: $w solid transparent;
+        border-right: $c solid transparent;
+
+      }
+
+    } @else if $direction == 'down' {
+
+      @if ($length < 3) {
+
+        border-top: $h solid $color;
+        border-left: $w/2 solid transparent;
+        border-right: $w/2 solid transparent;
+
+      } @else {
+
+        border-top: $h solid $color;
+        border-left: $w solid transparent;
+        border-right: $c solid transparent;
+
+      }
+
+    } @else if $direction == 'left' {
+
+      @if ($length < 3) {
+
+        border-right: $h solid $color;
+        border-top: $w/2 solid transparent;
+        border-bottom: $w/2 solid transparent;
+
+      } @else {
+
+        border-right: $h solid $color;
+        border-top: $w solid transparent;
+        border-bottom: $c solid transparent;
+
+      }
+
+    } @else if $direction == 'right' {
+
+      @if ($length < 3) {
+
+        border-left: $h solid $color;
+        border-top: $w/2 solid transparent;
+        border-bottom: $w/2 solid transparent;
+
+      } @else {
+
+        border-left: $h solid $color;
+        border-top: $w solid transparent;
+        border-bottom: $c solid transparent;
+
+      }
+
+    } @else {
+      @error "Invalid direction \"#{$direction}\"";
+    }
+
+    @content;
+
+  }
+
+}
+//======   @include scrollbars(.5em, slategray);
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  30%)) {
+  // For Google Chrome
+  ::-webkit-scrollbar {
+      width:  $size;
+      height: $size;
+  }
+
+  ::-webkit-scrollbar-thumb {
+      background: $foreground-color;
+  }
+
+  ::-webkit-scrollbar-track {
+      background: $background-color;
+  }
+
+  // For Internet Explorer
+  body {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
+
+//====== Arrow -Listing Tabs  ====
+@mixin listingtabArrow(){
+	.slick-slider{
+    .slick-prev,
+    .slick-next{
+      top: 0px; margin-top: 0; transform: none; bottom: auto;width:26px;height: 26px;border-radius: 50%; 
+      padding: 0;text-align: center; margin-#{$right}: 10px; border: 1px solid #dddddd;
+        margin-#{$right}:0;
+      &:before{
+         font-family: $FontAwesome;
+         line-height: 25px;
+         color: #999999;
+        width: 100%; height: 100%;
+        background: none;
+        font-size: 16px;
+      }
+        &:hover{border-color:$background; 
+            &:before{color: $background;}
+        }
+    }
+    .slick-next{#{$right}: 0px; #{$left}: auto;
+      &:before{content: if-ltr('\f105', '\f104');}
+    }
+    .slick-prev{#{$right}: 30px; #{$left}: auto;
+      &:before{content: if-ltr('\f104', '\f105');}
+    }
+  }
+}
+@mixin dealsArrow(){
+  .slick-slider{
+    .slick-prev,
+    .slick-next{
+      width:24px;height: 32px;background: none;
+      padding: 0;text-align: center;
+      position: absolute; top: 50%; margin-top: -20px;
+
+      &:before{
+        background:none;
+        font-family: $FontAwesome;
+          font-size: 26px;line-height: 26px;
+          width: 100%; height: 100%;
+          color: #999999;
+
+      }
+      &:hover:before{color: $background;}
+    }
+    .slick-next{#{$right}: 10px; #{$left}: auto;
+      &:before{content: if-ltr('\f105', '\f104');}
+    }
+    .slick-prev{#{$left}: 10px; #{$right}: auto;
+      &:before{content: if-ltr('\f104', '\f105');}
+    }
+  }
+}
+
+@mixin roundSlickArrow(){
+  .slick-slider{
+    .slick-prev,
+    .slick-next{
+      top: -6px; bottom: auto;width:26px;height: 26px;border-radius: 50%; 
+      padding: 0;text-align: center; margin-#{$right}: 10px; border: 1px solid #dddddd;
+        margin-#{$right}:0;
+      &:before{
+         font-family: $FontAwesome;
+         line-height: 25px;
+         color: #999999;
+        width: 100%; height: 100%;
+        background: none;
+        font-size: 16px;
+      }
+        &:hover{border-color:$background; 
+            &:before{color: $background;}
+        }
+    }
+    .slick-next{#{$right}: 10px; #{$left}: auto;
+      &:before{content: if-ltr('\f105', '\f104');}
+    }
+    .slick-prev{#{$right}: 40px; #{$left}: auto;
+      &:before{content: if-ltr('\f104', '\f105');}
+    }
+  }
+}
+
+@mixin roundDealArrow(){
+  .slick-slider{
+    .slick-prev,.slick-next{
+        background: rgba(0,0,0,0.15);
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+        border-radius: 3px;
+        &:before{ transform: scale(0.7);}
+    }
+    &:hover{
+         .slick-prev,.slick-next{opacity: 1; visibility: visible; 
+           &:hover{ background: rgba(0,0,0,0.2);}
+         }
+        .slick-prev{#{$left}: 20px;}
+        .slick-next{#{$right}: 20px;}
+    }
+  
+  }
+}
+//====== EFFECT - SLIDERHOME  ====
+@keyframes myeffect-slideshow {
+    0%   {
+	opacity: 0;
+	transform: translateY(-300px);
+	-webkit-transform: translateY(-300px);
+	-moz-transform: translateY(-300px);
+	-ms-transform: translateY(-300px);
+	-o-transform: translateY(-300px);
+    }
+    100% {
+	opacity: 1;
+	transform: translateY(0);
+	-moz-transform: translateY(0);
+	-webkit-transform: translateY(0);
+	-ms-transform: translateY(0);
+	-o-transform: translateY(0);
+    }
+    
+    
+}
+
+

@@ -1,0 +1,119 @@
+{{#if banners.top}}
+    <div class="banners--top" data-banner-location="top">
+		<div class="container">
+            {{{limit banners.top 1}}}
+        </div>
+    </div>
+{{/if}}
+
+<header class="header logo-content--{{logoPosition}}" >
+
+    {{!-- HEADER TOP --}}
+    <div class="header-top ">
+        <div class="container">
+            <div class="header-top-inner">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12 d-none d-lg-block" >
+                        {{> components/sbthemes/module/sb_promotion/default status=true prefix="promotion" limitation=3 }}
+                    </div>
+                    <div class="col-lg-6 col-sm-12 text-right">
+                        {{> components/common/navigation}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- HEADER CENTER --}}
+    <div class="header-center"  {{#if stickyHeader }} data-sticky-header  {{/if}}>
+        <div class="container ">
+            <div class="row justify-content-between">
+                <div class="col-lg-3 col-md-3 col-8 logo-container">
+                    {{> components/common/store-logo}}
+                </div>
+                <div class="col-lg-6 col-md-2 col-4 ">
+					{{> components/sbthemes/module/sb_megamenu/default status=true  display_mode="horizontal" }}
+                </div>
+
+                <div class="col-lg-3 col-md-7 navbar-container">
+                    {{#if theme_settings.show_address_email}}
+                    <div class="navbar-phone d-none d-sm-block">
+						<svg class="icon-headset_mic" width="40" height="40"><use xlink:href="#icon-headset_mic"></use></svg>
+                        <div class="navbar-phone__inner">    
+                            <strong>{{lang 'sb_themes.header.my_phone' }}</strong> <span class="phone">{{settings.phone_number}}</span>
+                            <br>  <span > {{lang 'sb_themes.header.my_email' }} </span> 
+                            <a href="mailto:{{theme_settings.address_email}}"> {{theme_settings.address_email}}</a> 
+                        </div>                            
+                    </div>
+                   {{/if}}
+                    
+                </div>
+                 
+            </div>
+        </div>
+    </div>
+
+
+    {{!-- HEADER BOTTOM --}}
+    <div class="header-bottom">
+        <div class="container ">
+            <div class="row">
+                <div class="header-bottom-left col-lg-3 col-md-2 col-3">
+                    pr
+                    {{#if page_type '===' 'product'}}
+                    pr
+                    {{/if}}
+					{{> components/sbthemes/module/sb_megamenu/default status=true  display_mode="vertical" limit_item=9 }}
+                </div>
+                <div class="header-bottom-right col-lg-9 col-md-10 col-9">
+                    <div class="row">
+                        <div class="header-bottom__search collapsed-block col-xl-9 col-lg-8 col-sm-8 col-4">
+							<h5 class="search-info-heading  d-sm-none d-xl-none">
+								<span class="expander btn btn-outline-secondary" > <i class="fa fa-search"></i> </span>
+							</h5>
+                            <div class="sb-quickSearch search-info-content"  aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
+                                {{> components/sbthemes/common/quick-search}}
+                            </div>
+
+                        </div>
+
+                        <div class="header-bottom__cart col-xl-3 col-lg-4 col-sm-4 col-8 text-right">
+                            <ul class="navUser-section">
+								{{#if theme_settings.show_product_wishlist}}
+                                <li class="navUser-item"><a class="cart-button cart-button--wishlist" href="{{urls.account.wishlists.all}}">
+									<svg class="icon-heart-o" width="19" height="19" ><use xlink:href="#icon-heart-o"></use></svg>
+								</a> </li>
+								{{/if}}
+								
+								{{#if theme_settings.show_product_compare}}
+								<li class="navUser-item">
+									<a class="cart-button cart-button--compare navUser-item--compare" href="{{urls.compare}}" data-compare-nav> 
+										<svg class="icon-loop" width="18" height="18"><use xlink:href="#icon-loop"></use></svg>
+									</a>
+								</li>
+								{{/if}}
+                                <li class="navUser-item">
+                                    <a
+                                        class="cart-button cart-button--primary"
+                                        data-cart-preview
+                                        data-dropdown="cart-preview-dropdown"
+                                        data-options="align:left"
+                                        href="{{urls.cart}}">
+                                        <svg class="icon-shopping-cart" width="24" height="24"><use xlink:href="#icon-shopping-cart"></use></svg> 
+										<span class="countPill{{#if cart.items}} countPill--positive{{/if}} cart-quantity">{{cart.quantity}}</span>
+                                    </a>
+                                    <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
+                                </li>
+                            </ul>
+                            
+                           
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+   
+</header>

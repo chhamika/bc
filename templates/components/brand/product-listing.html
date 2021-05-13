@@ -1,0 +1,7 @@
+{{> components/products/filter sort=pagination.brand.sort}}
+
+<form action="{{urls.compare}}" method='POST' data-product-compare>
+    {{> components/products/grid products=brand.products show_compare=brand.show_compare theme_settings=theme_settings}}
+</form>
+
+{{> components/common/paginator pagination.brand}}

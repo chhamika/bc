@@ -1,0 +1,13 @@
+<ul class="productBlockContainer products-list row ">
+    {{#each wishlist.items}}
+    <li class="product-layout product-grid product-grid-3 col-lg-3 col-md-4 col-6">
+        {{> components/sbthemes/products/card_listing id=product_id theme_settings=../theme_settings}}
+        
+        {{#if ../show_remove}}
+            <form action="{{remove_url}}" class="form" method="post">
+                <input type="submit" class="button button--primary button--small" value="{{lang 'account.wishlists.remove_item'}}" />
+            </form>
+        {{/if}}
+    </li>
+    {{/each}}
+</ul>

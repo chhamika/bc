@@ -1,0 +1,11 @@
+{{#if product.related_products}}
+    <div class="module sb-banner sb-banner--cmsblock ">
+        <h5 class="block-title">
+            Related products
+        </h5>
+        <div class="block-content">
+            {{> components/sbthemes/products/carousel products=product.related_products columns=1 row=3}}
+        </div>
+
+    </div>
+{{/if}}

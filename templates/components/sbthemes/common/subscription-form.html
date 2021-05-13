@@ -1,0 +1,22 @@
+
+<form class="form" action="{{urls.subscribe.action}}" method="post">
+    <fieldset class="form-fieldset">
+        <input type="hidden" name="action" value="subscribe">
+        <input type="hidden" name="nl_first_name" value="bc">
+        <input type="hidden" name="check" value="1">
+        <div class="form-field">
+            <label class="form-label is-srOnly" for="nl_email">{{lang 'common.email_address'}}</label>
+            <div class="input-group justify-content-md-center">
+
+                <input class="form-input form-control" id="nl_email" name="nl_email" type="email" value="{{customer.email}}" placeholder="{{lang 'newsletter.email_placeholder'}}">
+                <div class="input-group-btn"> 
+                    <input class="btn btn-primary  button--primary " type="submit" value="{{lang 'newsletter.subscribe_submit'}}">
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<div class="form-head">
+    <h5>{{lang 'newsletter.subscribe'}}</h5>
+    <p>{{lang 'newsletter.subscribe_intro'}}</p>
+</div>

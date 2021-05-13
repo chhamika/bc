@@ -1,0 +1,83 @@
+// =============================================================================
+// LAYOUTS
+// =============================================================================
+/** simple and lightweight mixin library for Sass **/
+//-- url : http://bourbon.io/docs ---
+@import 'bourbon/bourbon';
+
+/* Mixins for Rem Font Sizing */
+//-- url : http://hugogiraudel.com/2013/03/18/ultimate-rem-mixin
+@import 'utilities/rem';
+
+/* Variables for responsive design in bootstrap with sass */
+//-- url : https://gist.github.com/webinfinita/11407836
+@import 'utilities/bootstrap_breakpoints';
+
+/* Makes supporting both left-to-right (LTR) and right-to-left (RTL) easy.*/
+//-- url : https://github.com/tysonmatanich/directional-scss
+@import 'utilities/directional';
+
+// Global layouts
+// -----------------------------------------------------------------------------
+@import "utilities/variables";
+@import "utilities/utilities";
+
+
+// Typo
+@import "general";
+
+//Navpages
+@import "navpages";
+
+
+// Page content layouts
+// -----------------------------------------------------------------------------
+
+// Blog
+@import "blog";
+
+// Sidebar blocks
+@import "module";
+
+// System 
+@import "system";
+
+// Product grid
+@import "productlist";
+
+// Product Detail
+@import "productdetail";
+
+
+// Other Page (Account, Contact, Checkout...)
+@import "subpage";
+@import "bonus_page";
+
+
+
+/* Theme Style*/
+@if $theme_style == default {
+  	@import "header/header1";
+  	@import "footer/footer1";
+  	@import "home/home1";
+} @else if $theme_style == home2 {
+  	@import "header/header2";
+  	@import "footer/footer2";
+  	@import "home/home2";
+} @else if $theme_style == home3 {
+  	@import "header/header3";
+  	@import "footer/footer3";
+  	@import "home/home3";
+} @else if $theme_style == home4 {
+  	@import "header/header4";
+  	@import "footer/footer4";
+  	@import "home/home4";
+
+} @else {
+    @import "header/header1";
+    @import "footer/footer1";
+    @import "home/home1";
+}
+
+// responsive
+@import "responsive/responsive";

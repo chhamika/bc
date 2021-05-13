@@ -1,0 +1,562 @@
+// =============================================================================
+// Navpages (CSS)
+// =============================================================================
+.navPages-container{z-index: 260;
+	.sb-banner{margin: 0 0 10px;}
+	.navPage-subMenu-banner{margin-bottom: 15px;}
+}
+.navPages-action svg{stroke: none !important;}
+
+.navPages-horizontal{
+	.badge{
+
+		background: #0f8db3;
+		position: absolute;
+		z-index: 1;
+		top: -10px;
+		right: 15%;
+		color: white;
+		border-radius: 0;
+		font-size: 10px;
+		font-family: "Arial";
+		padding: 4px 6px;
+		@include triangle(down, 10px 5px, $color: #0f8db3);
+		&:after{
+			position:absolute;
+			bottom: -4px;
+			left: 5px;
+			z-index: 2;
+		}
+		&.badge--hot{background: $red;
+			@include triangle(down, 10px 5px, $color: $red);
+		}
+		&.badge--popular{background: $cyan;
+			@include triangle(down, 10px 5px, $color: $cyan);
+		}
+		&.badge--top{background: $orange;
+			@include triangle(down, 10px 5px, $color: $orange);
+		}
+	}
+	@include breakpoint("large") {
+
+		ul.navPages-list{ width: 100%; vertical-align: middle;
+			ul{list-style: none; margin: 0; padding: 0;  width: 100%;}
+			/*--more arrow--*/
+			.navPages-action-moreIcon{transform: rotate(90deg); width: 16px; height: 16px; display: inline-block;}
+
+
+			/** NavPages item page **/
+			> li.navPages-item{ position: relative;float: $left;z-index: 0;
+				.navPages-action{font-size:14px;  padding: 0.9rem 1.14286rem; background: none; font-weight: 400;}
+
+				/*.has-subMenu.is-root + .navPage-subMenu-horizontal{width: 100%;}*/
+				.navPage-subMenu {
+					display: block;
+					background: #fff;
+					box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+					transition: all 0.35s ease-in-out;
+					transform: translateY(50px);
+					opacity: 0;
+					visibility: hidden;
+					z-index: -1;
+					padding: 1rem !important;
+					#{$left}: 0;
+					margin: 0;
+					min-width: 200px;
+					max-width: 1170px;
+					text-align: $left;
+
+					.navPage-subMenu-item{width: auto;float: none;margin: 0 -15px;}
+					.navPages-action-moreIcon{
+						@include if-rtl {transform: rotate(180deg); }
+						@include if-ltr {transform: rotate(0deg);  }
+						width: 16px; height: 16px;
+						position: absolute;
+						#{$right}: 0;
+						z-index: 5;
+						margin: 5px 10px;
+					}
+					.subMenu--level2{
+						#{$left}: 100%; top:0;
+						transform: translate(0px,50px);
+					}
+
+					// Link Menu Item
+					.navPages-action{
+						border-bottom: none; margin-bottom: 0;
+						padding: 5px 10px;
+						font-size: 13px;
+						font-weight: 400;
+
+					}
+				}
+
+
+				//Hover submenu level 1
+				&:hover > .navPage-subMenu,.navPage-subMenu.is-open{
+					opacity: 1;
+					visibility: visible;
+					z-index: 5;
+					transform: translateY(0px);
+
+				}
+
+				//Hover submenu level2
+				li.navPage-subMenu-item{ position: relative;z-index: 10;
+					&:hover > .subMenu--level2{
+						opacity: 1;
+						visibility: visible;
+						transform: translate(0px,0px);
+					}
+				}
+
+			}
+
+			/** NavPages item categories **/
+			> li.hasMegamenu{ position: static;
+				.navPages-action{position: relative;z-index: 1; background: none;}
+				.navPage-subMenu {
+					width: 100%;
+					@include breakpoints(lg){min-width: 886px;}
+
+					padding:  15px !important;
+
+					.navPage-subMenu-item{width: 20% ; float: $left; margin: 0;}
+					.columns-2 .navPage-subMenu-item{width: 50%;}
+					.columns-3 .navPage-subMenu-item{width: 33.33%;}
+					.columns-4 .navPage-subMenu-item{width: 25%;}
+					.columns-5 .navPage-subMenu-item{width: 20%;}
+
+					// Link Menu Item
+					ul.navPage-childList{margin-bottom: 20px;}
+					.navPages-action{
+						padding: 0 0 5px 0;
+
+					}
+					.navPages-action-depth-max{
+						margin-bottom:5px; font-weight: bold; text-transform: uppercase;
+						@include text-overflow();
+					}
+				}
+
+
+			}
+		}
+	}
+}
+
+
+// =============================================================================
+// Navpages - verticalCategories (CSS)
+// =============================================================================
+.navPages-verticalCategories .megamenuToogle-wrapper{
+	background: #444;
+	height: 52px; line-height: 52px;
+	cursor: pointer;
+	font-size: 14px;
+	text-transform: uppercase;
+	font-weight: bold;
+	padding: 0 15px;
+	color: white;
+	width: 100%;
+	position: relative;
+	.title-mega{display: inline-block; padding:  0 10px;}
+	.icon-list{margin-top: 18px; float: left;}
+	.icon-caret-circle{float: right; margin-top: 20px;}
+
+}
+
+.verticalCategories {
+	@include breakpoint("large") {
+		position: absolute;z-index: 2;
+		width: 100%;
+		background: #fff;
+		box-shadow: 0px 0px 2px rgba(color("blacks"), 0.2);
+		&.is-open {
+			transform: rotateX(0);
+		}
+		ul{list-style: none; padding: 0; margin: 0 0 15px;}
+		ul.navPage-subMenu-list{
+			width: 100%;float: left; margin: 0;
+
+			// Submenu content_column
+			&.grid-2{
+				.navPage-subMenu-item {width: 50%;
+					&:nth-child(2n+1){clear: both !important;}
+				}
+			}
+			&.grid-3{
+				.navPage-subMenu-item {width: 33%;
+					&:nth-child(3n+1){clear: both !important;}
+				}
+			}
+			&.grid-4{
+				.navPage-subMenu-item {width: 25%;
+					&:nth-child(4n+1){clear: both !important;}
+				}
+			}
+			&.grid-5{
+				.navPage-subMenu-item {width: 20%;
+					&:nth-child(45n+1){clear: both !important;}
+				}
+			}
+		}
+		.navPages-list {
+			display: block;
+			position: relative;
+			padding: 0;
+			margin: 0;
+			&:before{
+				border-color: transparent transparent #fff;
+				border-style: solid;
+				border-width: 0 6px 8px;
+				top: -8px;
+				content: "";
+				height: 0;
+				position: absolute;
+				width: 0;
+				z-index: 1;
+				#{$left}: 20px;
+			}
+
+		}
+		.navPages-item--default{position: relative;z-index: 1;}
+		.navPages-item {
+			width: 100%;
+			padding: 0px 0;
+			> .navPages-action {
+				color: stencilColor("navPages-subMenu-color");
+				display: block;
+				padding: 8px 15px;
+				font-size:13px; font-weight: 400;
+				text-transform: capitalize;
+				&:hover{
+					background-color: $background;
+					color: #fff;
+					.fa  {color:#fff;}
+					svg {
+						fill: #fff;
+					}
+				};
+
+			}
+			.fa {font-size: 14px;color: #7d7d7d; min-width: 22px;}
+			.fa-mobile{font-size: 22px;}
+			.navPages__icon{margin-right: 5px;}
+
+		}
+
+		.loadmore{cursor: pointer;
+			.navPages-action{border: none; font-weight: 700; padding-bottom: 12px;}
+			&:hover .navPages-action{color: $background; background-color: #fff;
+				.fa{color: $background; }
+			}
+
+		}
+		.navPages-action-moreIcon {
+			float: $right;
+			width: 18px;
+			height: remCalc(fontSize("smaller") * lineHeight("base"));
+			svg{fill: #999;stroke: none;}
+			@include if-rtl {
+				transform: rotate(180deg);
+			}
+		}
+
+		/*-- Submenu Moo Dropdown---*/
+		/*.navPages-item--default{position: relative;z-index: 1;}*/
+		.subMenu--default{
+			width: 240px;
+			#{$left}: 100%;
+			top: 0;
+			background: #fff;
+			display: block;
+			padding:1.5rem 0 !important;
+			text-align:$left;
+			box-shadow: 0 2px 2px rgba(color("blacks"), 0.15);
+			.navPages-action-moreIcon{
+				display: block;
+				@include if-rtl {
+					transform: rotate(180deg);
+				}
+			}
+			.navPage-subMenu-item{width: 100%; padding: 0 !important;}
+			.navPage-subMenu-action {
+				display: block;
+				padding: 5px 0rem;
+				border: none;
+				margin-bottom: 0;
+				font-size: 13px;
+				font-weight: 400;
+				padding-left: 20px;
+				padding-right: 20px;
+				&:hover{
+					background-color: $background;
+					color: #fff;
+					.fa  {color:#fff;}
+					svg {
+						fill: #fff;
+					}
+				};
+			}
+
+			//Hover submenu level2
+			ul{margin-bottom: 0;}
+			div.subMenu--level2{left: 100%;top:-20px; display: none;}
+			li.navPage-subMenu-item{ position: relative;z-index: 10;
+				&:hover > .subMenu--level2,
+				.is-open.subMenu--level2{
+					opacity: 1;
+					visibility: visible;
+					transform: translate(0px,0px);
+					display: block;
+				}
+			}
+
+		}
+
+		/*-- Submenu Mega Dropdown---*/
+		.subMenu--mega {
+			width: 300%;
+			#{$left}: 100%;
+			top: 0;
+			background: #fff;
+			display: block;
+			box-shadow: 0 2px 2px rgba(color("blacks"), 0.15);
+			.navPage-childList-item{padding: 3px 0;
+				.navPages-action{font-size: 13px;}
+			}
+			.navPage-subMenu-action {
+				display: block;
+				padding: 5px 0;
+				border-bottom: 1px solid #eaeaea;
+				text-transform: uppercase;
+				font-size: 14px;
+				margin-bottom: 5px;
+			}
+
+		}
+	}
+
+	/*@include breakpoints(md){
+		.navPage-subMenu.is-open{
+			margin-left: 0; 
+			opacity: 1;
+		}
+	}*/
+}
+.verticalCategories .navPage-subMenu{
+	/*padding-left:  20px !important;
+	padding-right:  20px !important;*/
+	padding-top:  0px !important;
+	padding-bottom:  0px !important;
+}
+// =============================================================================
+// verticalCategories -  Make the main menu open when hover
+// =============================================================================
+@mixin showSubMenu($vertical: true) {
+	margin-#{$left}: 0;
+	opacity: 1;
+	transform: if($vertical, translateY(0), translateX(0));
+	transition: 0s margin-left, opacity 0.2s ease 0.2s, transform 0.15s ease 0.2s;
+}
+
+@mixin hideSubMenu($vertical: true) {
+	opacity: 0;
+	margin-#{$left}: -9999px;
+	transform: if($vertical, translateY(32px), translateX(48px));
+	transition: 0s margin-left 0.4s, opacity 0.2s ease 0.2s, transform 0.15s ease 0.2s;
+}
+@include breakpoint("large") {
+
+	/*Hover megamenuToogle-wrapper all Catelgory*/
+	.verticalCategories.is-open {@include hideSubMenu(true);}
+	.navPages-verticalCategories:hover {
+		.verticalCategories.is-open {@include showSubMenu(true);}
+	}
+}
+
+@include breakpoints(lg){
+	.verticalCategories {
+		/*Hover and Click navPage-subMenu*/
+		.navPage-subMenu {@include hideSubMenu(false);}
+		.navPages-item:hover {
+			.navPage-subMenu {
+				@include showSubMenu(false);
+			}
+		}
+	}
+}
+
+@include breakpoints(md){
+	.verticalCategories {
+		.navPage-subMenu {@include hideSubMenu(false);}
+		.navPage-subMenu.is-open {@include showSubMenu(false);}
+	}
+}
+
+
+//  verticalCategories -  layout Mobile
+// -----------------------------------------------------------------------------
+@media (max-width: 1200px){
+	header .mobileMenu--vertical{margin-top: 9px;
+		.mobileMenu-toggleIcon::before{width:12px;}
+		&.is-open .mobileMenu-toggleIcon::before{width:1.42857rem;}
+		.mobileMenu-toggleIcon{width:16px;}
+	}
+	.navPages-container{
+		background: #fff;
+		width: 280px;
+		position: fixed;
+		padding: 15px;
+		z-index: 150;
+		left: auto; right: 0; display: block;
+		box-shadow: -1px 0 2px rgba(0, 0, 0, 0.1);
+		transition: all 0.5s cubic-bezier(0.99, 0.95, 0.49, 1.03);
+		transform: translateX(100%);
+		&.is-open{z-index: 990; padding-top: 15px;overflow: scroll; transform: translateX(0%);}
+		.megamenuToogle-wrapper,.banners{display: none;}
+		.mobileMenu-toggle{right: 0;}
+
+		ul.navPages-list{list-style: none;
+			> .navPages-item {border-bottom: 1px solid #ececec; position: relative;z-index: 2;
+				&:last-child{border-bottom:none;}
+				.badge{top: 5px;}
+			}
+			.navPage-subMenu-list, .navPage-childList{list-style: none; display: block;margin-#{$left}: 5px;
+				.navPages-action {text-transform: capitalize;}
+			}
+			.navPage-childList{    border-left: 1px solid #e6e6e6;}
+			.navPages-action{padding: 8px 0; font-size: 13px;
+				.fa{min-width: 22px;}
+
+			}
+			.navPage-childList-action{padding: 0 0 0.35714rem; }
+			.navPages-action-moreIcon{
+				float: $right;
+				width: 22px;
+				height: remCalc(fontSize("smaller") * lineHeight("base"));
+				svg{fill: #999;}
+			}
+		}
+	}
+}
+
+// =============================================================================
+// horizontal   -  Make the main menu Feature
+// =============================================================================
+.navPages-horizontal .shoppage {margin: 0 -15px 15px;
+
+	.title-shoppage{
+		text-transform: uppercase;
+		font-weight: bold;
+		font-size: 15px;
+	}
+	ul{
+		li{
+			transition: all 0.2s  ease-in-out;
+		}
+		.submenuitem{color: #777;}
+		a{display: inline-block; padding: 4px 0; position: relative;}
+
+
+	}
+	.submenu-shop{
+		position: relative;
+		.fa-angle-right {
+			position: absolute;#{$right}: 0; margin: 10px ;
+			@include if-rtl {transform: rotate(180deg);}
+		}
+		.menu-label {
+			#{$right}: -25px;
+			#{$left}: auto;
+			margin-top: -14px;
+		}
+		.menu-label-new{
+			background-color: #0f8db3;
+			&:after{color: #0f8db3;}
+		}
+		.menu-label-hot {
+			background-color: #ef7c0a;
+			&:after{color: #ef7c0a;}
+		}
+		.menu-label {
+			position: absolute;
+			top: 80%;
+			#{$right}: -30px;
+			padding: 2px 4px;
+			margin-top: -20px;
+			color: #fff;
+			line-height: 1.3;
+			font-size: 8px;
+			font-family: Karla,Arial,Helvetica,sans-serif;
+			text-transform: uppercase;
+			transform: translateY(-50%);
+			transition: opacity .3s ease-in-out;
+
+			&:after {
+				content: "\f0da";
+				font-family: FontAwesome;
+				position: absolute;
+				z-index: -1;
+				bottom: 5px;
+				font-size: 16px;
+				position: absolute;
+				bottom: -9px;
+				left: 3px;
+			}
+		}
+		&:hover{
+			ul{display:block;}
+		}
+		ul{
+			display: none;
+			width: 210px;
+			position: absolute;
+			z-index: 10;
+			#{$left}: 90%;
+			top: -15px;
+			box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 25px;
+			padding: 20px;
+			background: rgb(255, 255, 255);
+			border-width: 1px;
+			border-style: solid;
+			border-color: rgb(230, 230, 230);
+			border-image: initial;
+			border-radius: 2px;
+
+			&:before{
+				position: absolute;
+				display: block;
+				border-color: transparent;
+				border-style: solid;
+				border-width: 10px;
+				content: "";
+				top: 20px;
+				#{$left}: -11px;
+				border-right-color: #e6e6e6;
+				border-left-width: 0;
+
+				@include if-rtl {transform: rotate(180deg);}
+
+			}
+			&:after{
+				position: absolute;
+				display: block;
+				border-color: transparent;
+				border-style: solid;
+				border-width: 10px;
+				content: "";
+				top: 20px;
+				#{$left}: -10px;
+				border-right-color: #fff;
+				border-left-width: 0;
+				@include if-rtl {transform: rotate(180deg);}
+
+			}
+		}
+
+	}
+
+
+}

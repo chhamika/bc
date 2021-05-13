@@ -1,0 +1,43 @@
+{{#if status }}
+<div class="module sb-banner sb-banner--{{prefix}} {{class_sfx}}">
+	{{#if (lang (concat (concat 'sb_mainbanner.' prefix)'.heading')) '!=' ' '}}
+	<h5 class="block-title"> {{lang (concat (concat 'sb_mainbanner.' prefix)'.heading')}}</h5>
+	{{/if}}
+	
+	{{#if display_mode '==' 'horizontal'}}
+		<div class="block-content clearfix d-flex flex-row">
+	{{else}}
+		<div class="block-content clearfix ">
+	{{/if}}
+	
+	
+	{{#if limitation '>' 1}}
+		{{#for  limitation }}
+			{{> components/sbthemes/module/sb_banner/banner-item 
+				theme_settings = ../theme_settings
+				show_content = ../showContent
+				image	= (lang  (concat (concat (concat (concat 'sb_mainbanner.' ../prefix) '.banner') $index)'.image'))
+				placeholder	= (lang  (concat (concat (concat (concat 'sb_mainbanner.' ../prefix) '.banner') $index)'.placeholderImage'))
+				icon	= (lang  (concat (concat (concat (concat 'sb_mainbanner.' ../prefix) '.banner') $index)'.icon'))
+				url		= (lang  (concat (concat (concat (concat 'sb_mainbanner.' ../prefix) '.banner') $index)'.url'))
+				title	= (lang  (concat (concat (concat (concat 'sb_mainbanner.' ../prefix) '.banner') $index)'.title'))
+				text	= (lang  (concat (concat (concat (concat 'sb_mainbanner.' ../prefix) '.banner') $index)'.text'))
+				button	= (lang  (concat (concat (concat (concat 'sb_mainbanner.' ../prefix) '.banner') $index)'.button'))
+			}}
+			
+		{{/for}}
+	{{else}}
+		{{> components/sbthemes/module/sb_banner/banner-item 
+			show_content = ../showContent
+			image	= (lang    (concat (concat 'sb_mainbanner.' ../prefix) '.banner1.image'))
+			placeholder	= (lang    (concat (concat 'sb_mainbanner.' ../prefix) '.banner1.placeholderImage'))
+			icon	= (lang    (concat (concat 'sb_mainbanner.' ../prefix) '.banner1.icon'))
+			url		= (lang    (concat (concat 'sb_mainbanner.' ../prefix) '.banner1.url'))
+			title	= (lang    (concat (concat 'sb_mainbanner.' ../prefix) '.banner1.title'))
+			text	= (lang    (concat (concat 'sb_mainbanner.' ../prefix) '.banner1.text'))
+			button	= (lang    (concat (concat 'sb_mainbanner.' ../prefix) '.banner1.button'))
+		}}
+	{{/if}}
+	</div>
+</div>
+{{/if}}

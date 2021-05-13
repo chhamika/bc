@@ -1,0 +1,113 @@
+// =============================================================================
+// STENCIL  - Custom Your Theme
+// =============================================================================
+
+.productView-description #tab-description ul,
+.productView-description #tab-description dl,
+.productView-description #tab-description iframe {
+    margin-top: 8px !important;
+}
+
+.productView-description .tabs-contents ol {
+    padding-left: 40px;
+    line-height: 1.8;
+    margin: 8px 0 0;
+}
+
+.productView-description .tabs-contents ol li {
+    list-style: inherit;
+}
+
+.productView-description .tabs-contents .alert, 
+.productView-description .tabs-contents .alertBox {
+    padding: .75rem 1.25rem;
+    margin-top: 15px;
+}
+
+.table-sm {
+    width: auto !important;
+    max-width: 100% !important;
+}
+
+.table-sm td, .table-sm th {
+    padding: .3rem !important;
+}
+
+#tab-video .toggle-title .toggleLink {
+    line-height: auto;
+}
+
+#videoGallery-content {
+    margin-top: 10px;
+}
+
+@media (max-width: 991.98px){
+    .allo-assembly p {
+        min-height: auto !important;
+    }
+}
+
+div.page-content h1, 
+div.page-content h2, 
+div.page-content h3, 
+div.page-content h4, 
+div.page-content h5, 
+div.page-content h6 {
+    margin-bottom: 1rem;
+}
+
+.productOptions-list-item {
+    padding: .5rem .75rem;
+}
+
+.blogRecent .blogRecent--item:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+div.page-content ol, div.page-content ul {
+    padding-left: 35px;
+    margin-left: 0;
+    margin-bottom: 12px;
+}
+
+div.page-content ul li {
+    list-style: disc;
+}
+
+.banners--top div>p:last-child {
+    margin-bottom: 0;
+}
+
+.banners--top a {
+    color: #ff8282;
+    &:hover {
+        color: red;
+    }
+}
+
+.productView-options .productAttributes-message {
+    background-color: orange;
+}
+
+ul.productView-thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    &:before,
+    &:after {
+        content: none;
+    }
+    li {
+        float: none;
+        width: 100%;
+        max-width: 25%;
+        flex: 0 0 25%;
+    }
+}
+
+@media (min-width: 1261px){
+    .verticalCategories .subMenu--default div.subMenu--level2 {
+        top: 0;
+    }
+}

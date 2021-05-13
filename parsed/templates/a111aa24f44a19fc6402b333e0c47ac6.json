@@ -1,0 +1,1 @@
+{"components/sbthemes/products/discount":"<div class=\"sale-flag-discount\">\r\n\t<span class=\"sale-text\">{{concat (round discounts) '%'}}</span>\r\n</div>\r\n"}

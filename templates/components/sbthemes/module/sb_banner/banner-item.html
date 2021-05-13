@@ -1,0 +1,33 @@
+
+<div class="banners" {{#if theme_settings.general_fadeimage}}data-fade-image data-size-image{{/if}} >
+	<div class="banner-figure">
+		
+		{{#if icon '!=' ' '}}
+			<i class="fa fa-{{icon}}"></i>
+		{{else}}
+			{{#if image '!=' ' '}}
+			<a href="{{url}}"><img class="img-fluid" src="{{cdn image }}"  alt="{{title}}"  /></a>
+			{{else}}
+			<a href="{{url}}"><img class="img-fluid" src="{{cdn placeholder}}" alt="{{title}}"  /></a>
+			{{/if}}
+		{{/if}}
+	</div>
+	
+	{{#if show_content}}
+	<div class="banner-figcaption">
+		<div class="banner-figcaption__body">
+			{{#if title '!=' ' '}}
+			<h5 class="banner-figcaption__title">{{title}}</h5>
+			{{/if}}
+
+			{{#if text '!=' ' '}}
+			<p class="banner-figcaption__text">{{{text}}}</p>
+			{{/if}}
+
+			{{#if button '!=' ' '}}
+			<a href="{{url}}" class="button button--primary  banner-figcaption__button">{{button}}</a>
+			{{/if}}
+		</div>
+	</div>
+	{{/if}}
+</div>

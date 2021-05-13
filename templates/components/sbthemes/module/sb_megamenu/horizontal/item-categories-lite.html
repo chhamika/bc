@@ -1,0 +1,16 @@
+<li class="navPages-item {{#if type-menu '==' 'mega'}}hasMegamenu{{/if}} {{#if position '==' 'right'}}float-right{{/if}}">
+	<a class="navPages-action" href="{{url}}">
+		
+		{{#if ../icon-awesome '!=' ' '}}
+			<i class="fa fa-{{../icon-awesome }}"></i>
+		{{else if ../icon-image '!=' ' '}}
+			<img data-sizes="auto" class="navPages__icon lazyload" src="{{cdn '/assets/img/loading.svg'}}" data-src="{{cdn ../icon-image }}" alt="icons">
+		{{/if}}
+		{{#if ../badge '!=' ' '}}
+			<span class="badge badge--{{../badge}}">{{../badge}}</span>
+		{{/if}} 
+		
+		{{name}}
+
+	</a>
+</li>

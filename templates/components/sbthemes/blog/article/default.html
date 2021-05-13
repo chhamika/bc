@@ -1,0 +1,82 @@
+<main class="page--blog--detail article--{{theme_settings.blogdetail_style}}">
+    <div class="row ">
+        <div class="col-lg-9 col-md-12 page-content">
+			<div class="sidebar-overlay"></div>
+			<a href="javascript:void(0)" class="open-sidebar d-md-block d-lg-none"><i class="fa fa-bars"></i> {{lang 'sb_themes.categories.sidebar' }} </a>
+		
+            <article class="blog-post">
+                <div class="blog-header">
+                    <h2 class="blog-title">
+                        {{post.title}}
+                    </h2>
+                    <div class="blog-meta">
+                        <span class="blog-author"><i class="fa fa-user"></i>{{post.author}} </span>
+                        <span class="blog-date"><i class="fa fa-clock-o"></i> {{post.date_published}}  </span>
+                    </div>
+                </div>
+                <div class="blog-post-figure">
+                    {{#if post.thumbnail}}
+                        <figure class="blog-thumbnail">
+                            <a href="{{post.url}}">
+                                <img class="card-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage post.thumbnail }}" alt="{{post.thumbnail.alt}}" title="{{post.thumbnail.alt}}">
+                            </a>
+                        </figure>
+                    {{/if}}
+                </div>
+                
+
+                <div class="blog-post-body">
+                    <div class="blog-post-desc">
+                        {{#if post.body}}
+                            {{{post.body}}}
+                        {{else}}
+                            {{post.summary}}
+                             &hellip; 
+                        {{/if}}
+                    </div>
+                    <div class="clear"></div>
+                  
+                    <div class="excerpt-meta clearfix">
+                        {{#if post.author}}
+                        <div class="meta meta-author">
+                            <label class="label">{{lang 'blog.posted_by' name=post.author}}</label>
+                            
+                        </div>
+                        {{/if}}
+
+                        {{#if show_tags }}
+                        <div class="meta meta-tags">
+                            {{#if post.tags}}
+                                <label class="label">{{lang 'sb_themes.blog.tags' }}</label>
+                                <ul class="tags">
+                                    {{#each post.tags}}
+                                    <li class="tag">
+                                        <a href="{{url}}">#{{name}}</a>
+                                    </li>
+                                    {{/each}}
+                                </ul>
+                            {{/if}}
+                        </div>
+                        {{/if}}
+
+                        <div class="meta meta-sharing">
+                            <label class="label">{{lang 'sb_themes.blog.share_this' }}</label>
+                            {{>components/common/share}}
+                        </div>
+
+                    </div>
+                    
+
+                    
+                </div>
+            </article>
+
+        </div>
+
+        <aside class="col-md-3 page-sidebar sidebar-offcanvas">
+             {{> components/sbthemes/blog/sidebar}}
+        </div>
+    </div>
+
+</main>
+

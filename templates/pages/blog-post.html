@@ -1,0 +1,29 @@
+---
+products:
+    new:
+        limit: 5
+blog:
+    recent_posts:
+        limit: 10
+---
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs active_url=post.url}}
+
+{{#if theme_settings.blogdetail_style '==' 'default'}}
+    {{> components/sbthemes/blog/article/default post=blog.post show_tags=true}}
+    
+{{else if theme_settings.blogdetail_style '==' 'style1'}}
+    {{> components/sbthemes/blog/article/style1 post=blog.post show_tags=true}}
+
+{{else if theme_settings.blogdetail_style '==' 'style2'}}
+    {{> components/sbthemes/blog/article/style2 post=blog.post show_tags=true}}
+
+{{else }}
+    {{> components/sbthemes/blog/article/style3 post=blog.post show_tags=true}}
+
+{{/if}}
+
+
+{{/partial}}
+{{> layout/base}}

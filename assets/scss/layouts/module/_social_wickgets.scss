@@ -1,0 +1,143 @@
+/*============SOCIAL WICKGETS - SIDEBAR ==================*/
+.social-widgets {
+  overflow: visible;
+    position:fixed;
+    z-index:999;
+    top:50%;
+    height:0;
+    width:0;
+    #{$right} :0
+}
+.social-widgets .item, .social-widgets .items {
+    margin:0;
+    padding:0;
+    list-style-type:none
+}
+
+.social-widgets .items {
+    top:-100px;
+    position:relative
+}
+.social-widgets .item {
+    position:absolute;
+    top:0;
+    #{$left} : 120px
+}
+.social-widgets .active {
+    z-index:100;
+    #{$left} :-310px
+}
+.social-widgets .item-01, .social-widgets .item-02, .social-widgets .item-03, .social-widgets .item-04, .social-widgets .item-05, .social-widgets .item-06, .social-widgets .item-07, .social-widgets .item-08, .social-widgets .item-09 {
+    #{$left} :0;
+}
+.social-widgets .item-01 {
+    top:0;
+    z-index:99
+}
+.social-widgets .item-02 {
+    top:45px;
+    z-index:98
+}
+.social-widgets .item-03 {
+    top:90px;
+    z-index:97
+}
+.social-widgets .item-04 {
+    top:150px;
+    z-index:96
+}
+.social-widgets .item-05 {
+    top:200px;
+    z-index:95
+}
+
+.social-widgets .tab-icon .fa{font-size:18px;line-height:45px;}
+.social-widgets .tab-icon {
+    position:absolute;
+    top:0;
+    #{$left} :-45px;
+    display:block;
+    width:45px;
+    height:45px;
+    background:#fff;
+    text-align:center;
+    font-size:1.54em;
+    
+}
+.social-widgets .tab-icon:hover {
+    text-decoration:none
+}
+.social-widgets .active .tab-icon {
+    border-color:#E9E9E9;
+    background:#fff
+}
+.social-widgets .facebook .tab-icon{
+    background: #3b5998;
+    background-clip: content-box;
+    color: white;
+}
+.social-widgets .twitter .tab-icon{
+    background: #07779a;
+    background-clip: content-box;
+    color: white;
+}
+.social-widgets .youtube .tab-icon{
+    background: #DA2723;
+    background-clip: content-box;
+    color: white;
+}
+.social-widgets .tab-content {
+    background:#fff;
+    width:310px;
+    padding:10px ;
+    display:block;
+}
+.social-widgets .active .tab-content {
+    box-shadow:0 0 4px rgba(0, 0, 0, .15)
+}
+.social-widgets .title {
+    margin: side-values(-10px -10px 10px);
+    padding: 0px 10px;
+    background-color: #ccc;
+    text-transform: uppercase;
+    line-height: 45px;
+    color: #000;
+    font-weight: bold;
+    h5{
+        line-height: 45px;margin: 0;
+    }
+}
+.social-widgets .facebook.active {
+    #{$left} :-260px
+}
+.social-widgets .facebook .tab-content {
+    width:260px
+}
+.social-widgets .twitter.active {
+    #{$left} :-300px
+}
+.social-widgets .twitter .tab-content {
+    width:300px
+}
+.social-widgets .twitter-widget {
+    padding-top:10px
+}
+.social-widgets .youtube.active {
+    #{$left} :-450px
+}
+.social-widgets .youtube .tab-content {
+    width:450px;
+}
+.social-widgets .youtube .tab-content iframe{width:100%;}
+.social-widgets .loading {
+    min-height:200px;
+    position:relative;
+    z-index: 100;
+}
+.social-widgets .loading img.ajaxloader {
+    position:absolute;
+    top:45%;
+    #{$left} :45%;
+    width:32px;
+    height:32px
+}

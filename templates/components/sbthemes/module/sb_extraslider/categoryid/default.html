@@ -1,0 +1,102 @@
+
+{{#if category_id '!==' ' '}}
+
+{{#each categories}}
+	{{#if id '===' ../category_id}}
+		{{#if (merge ../../this 
+			category_name = name
+			category_url = url)}}
+		{{/if}}
+		
+	{{else}}
+		{{#each children}}
+			{{#if id '===' ../../../category_id}}
+				{{#if (merge ../../../../this
+					category_name = name
+					category_url = url)}}
+				{{/if}}
+			{{/if}}
+		{{/each}}
+	{{/if}}
+{{/each}}
+
+
+	<div class="block-content " >
+		{{#if banner '==' 'left'}}
+		<div class="sb-extraslider-image col-md-3 d-none d-lg-block">
+			<div class="banners" {{#if theme_settings.general_fadeimage}}data-fade-image data-size-image{{/if}} >
+				<div class="banner-figure">
+					{{#if banner_img '!=' ' '}}
+						<a href="{{banner_url}}">
+							<img  class="img-fluid"  src="{{cdn banner_img}}" alt="banner"  />
+						</a>
+					{{else}}
+						<a href="{{banner_url}}">
+							<img  class="img-fluid" src="{{cdn placeholderImage}}" alt="banner" />
+						</a>
+					{{/if}}
+				</div>
+			</div>
+		</div>
+		{{/if}}
+		
+		{{#or (if banner '==' 'left') (if banner '==' 'right') }}
+		<div class="sb-extraslider-container col-lg-9 col-12">
+			
+			<div class="block-title">
+				{{lang 'sb_themes.sb_extraslider_catid.heading' }}
+				
+			</div>
+		{{/or}} 
+		
+		{{#if banner '==' 'no'}}
+			<div class="sb-extraslider-container">
+			<h5 class="block-title">
+				{{#if (lang 'sb_themes.sb_extraslider_catid.heading-iconAwesome') '!=' ' '}}
+				<span class="block-title--icon"><i class="fa fa-{{lang 'sb_themes.sb_accordion.heading-iconAwesome'}}"></i> </span>
+			{{/if}}
+				{{lang 'sb_themes.sb_extraslider_catid.heading' }}
+			</h5>
+		{{/if}}		
+		
+			{{#if category_url}}
+				<div class="sb-deals-container {{#if theme_settings.general_rtl '==' 'rtl' }}dir-rtl{{/if}}" 
+					data-products-by-category-tabs="{{ concat category_url '?sort='}}{{theme_settings.homepage_deal_sort}}"
+					data-urltemplate="sbthemes/module/sb_extraslider/categoryid/default_item"				
+				>
+					<div class="productLoading">
+						<img class="img-responsive lazyload" src="{{cdn '/assets/img/loading.svg'}}" alt="loading" width="50" height="50" >
+					</div>
+				</div>
+			{{else}}
+				<div class="alert alert-info" role="alert"  style="margin:60px 20px 0">
+					<i class="fa fa-info-circle"></i> 
+				   {{{lang 'sb_themes.sb_extraslider_catid.noCategory' }}}
+				</div>
+			
+			{{/if}}
+			
+			</div>
+			
+		{{#if banner '==' 'right'}}
+		<div class="sb-extraslider-image col-md-3 d-none d-lg-block">
+		
+			<div class="banners" {{#if theme_settings.general_fadeimage}}data-fade-image data-size-image{{/if}} >
+				<div class="banner-figure">
+					{{#if banner_img '!=' ' '}}
+						<a href="{{banner_url}}">
+							<img  class="img-fluid"  src="{{cdn banner_img}}" alt="banner"  />
+						</a>
+					{{else}}
+						<a href="{{banner_url}}">
+							<img  class="img-fluid" src="{{cdn banner_placeholder}}" alt="banner" />
+						</a>
+					{{/if}}
+				</div>
+			</div>
+		</div>
+		{{/if}}
+		
+	</div>
+	
+{{/if}}

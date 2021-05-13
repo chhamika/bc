@@ -1,0 +1,13 @@
+<div class="module" id="sideShopByBrands">
+    <h5 class="block-title">{{lang 'footer.brands'}}</h5>
+    <div class="block-content clearfix">
+        <ul class="navList">
+            {{#each shop_by_brand}}
+                <li>
+                    <a href="{{url}}">{{name}}</a>
+                </li>
+            {{/each}}
+            <li><a href="{{urls.brands}}"><strong>{{lang 'common.view_all'}}</strong></a></li>
+        </ul>
+    </div>
+</div>

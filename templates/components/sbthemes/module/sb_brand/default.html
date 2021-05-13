@@ -1,0 +1,64 @@
+{{#if status }}
+<div class="module sb-brand sb-brand--{{prefix}} {{class_sfx}}">
+	<div class="block-content clearfix">
+	{{#if limitation '>' 1}}
+		<div class="sb-brand--carousel d-flex justify-content-between {{#if theme_settings.general_rtl '==' 'rtl' }}dir-rtl{{/if}}"
+            data-slick='{
+		        "dots": false,
+		        "infinite": true,
+		        "mobileFirst": true,
+		        "slidesToShow": 1,
+		        "slidesToScroll": 6,
+		        "responsive": [
+		            {
+		                "breakpoint": 1200,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": 6
+		                }
+		            },
+					{
+		                "breakpoint": 992,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": 4
+		                }
+		            },
+		            {
+		                "breakpoint": 480,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": 3
+		                }
+		            },
+		            {
+		                "breakpoint": 0,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": 2
+		                }
+		            }
+		        ]
+		    }'
+    	>
+		{{#for  limitation }}
+			{{> components/sbthemes/module/sb_brand/default-item 
+				placeholder	= (lang  (concat (concat (concat (concat 'sb_mainbanner.' ../prefix) '.banner') $index)'.placeholderImage'))
+				image	= (lang  (concat (concat (concat (concat 'sb_mainbanner.' ../prefix) '.banner') $index)'.image'))
+				url		= (lang  (concat (concat (concat (concat 'sb_mainbanner.' ../prefix) '.banner') $index)'.url'))
+				title	= (lang  (concat (concat (concat (concat 'sb_mainbanner.' ../prefix) '.banner') $index)'.title'))
+			}}
+			
+		{{/for}}
+		</div>
+	{{else}}
+		{{> components/sbthemes/module/sb_brand/default-item 
+			placeholder	= (lang    (concat (concat 'sb_mainbanner.' ../prefix) '.banner1.placeholderImage'))
+			image	= (lang    (concat (concat 'sb_mainbanner.' ../prefix) '.banner1.image'))
+			url		= (lang    (concat (concat 'sb_mainbanner.' ../prefix) '.banner1.url'))
+			title	= (lang    (concat (concat 'sb_mainbanner.' ../prefix) '.banner1.title'))
+		}}
+	{{/if}}
+	</div>
+</div>
+{{/if}}

@@ -1,0 +1,241 @@
+// =============================================================================
+// FOOTER (CSS)
+// =============================================================================
+
+
+// Layout and columns
+// -----------------------------------------------------------------------------
+//
+// 1. To enable the grid's display: inline-block; to work properly, we need to
+//    remove the white-space that it creates between columns with font-size: 0;
+// 2. Re-set the font-size that was reduced to 0 in point 1 for children.
+//
+// -----------------------------------------------------------------------------
+
+.footer {
+    background: #f8f8f8; margin-top:15px; 
+}
+.footer-top{
+    padding: 26px 0 0 0px;
+}
+.footer-bottom{
+    padding: 10px 0;
+}
+.footer-center{ 
+        
+    .footer-center__two{
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        background-color: #eee;
+        padding: 20px 0 40px 0;
+    }
+    .footer-center__three{
+
+    }
+}
+.block-hottags{ border-bottom: 1px solid #ccc; padding: 23px 0;
+    h3{ font-size: 14px; color: #444; font-weight: 700; margin-bottom: 10px; }
+    ul{
+        margin: 0;
+        li{ display: inline-block;
+            padding-#{$right}: 5px; margin-#{$right}: 5px;
+            position: relative;
+            &:after{
+                position: absolute; content: ""; width: 1px; height: 12px; 
+                background-color: #ddd; top: 6px; #{$right}: -2px;
+            }
+            &:last-child:after{ display: none; }
+            a{ @include linkGray(); }
+        }
+    }  
+}
+
+.footer-info-col--social {
+    
+        @include breakpoint(medium) {
+        flex-basis: unset;
+    }
+    .media{margin-bottom:15px;}
+    > p{padding-right: 30px;}
+}
+
+
+
+// Content
+// -----------------------------------------------------------------------------
+
+div.sb-banner--services{ margin-bottom: 0;
+    .banners{  width: 25%;   padding-#{$left}: 25px;
+        text-align: center;
+        &:first-child{  padding-left: 0px;
+            .fa{padding-left: 0;}
+        }
+        .banner-figure{
+            font-size: 40px; color: #999;
+        }
+        .banner-figcaption{
+            text-align: center;
+            overflow: hidden;
+            margin:0;
+           font-size: 12px;
+        }
+        .banner-figcaption__title{
+            color: #444; font-size: 12px; text-transform: capitalize; font-weight: 600;
+        }
+        .banner-figcaption__text{margin:0; color: #666; line-height: 20px; margin-top: 5px;}
+        &:hover{ cursor: pointer;
+            .banner-figcaption__title{ color: $linkColor; }
+        }
+    }
+}
+
+.footer-info-heading {
+    font-size: 16px;
+    font-weight: 400;
+    border: none;
+    color: #444;
+    text-transform: capitalize;
+    margin: 0 0 12px 0;
+}
+
+
+.footer-info-list {
+    list-style: none;
+    margin: 0 0 30px;
+    li{padding: 2px 0;
+        a {
+            display:inline-block;
+            @include linkGray();
+            transition: all 0.3s ease 0s;
+            font-size: 12px; text-transform: capitalize;
+            &:before{
+                content: if-ltr('\f0da', '\f0d9');
+                font-family: $FontAwesome;
+                font-size: 12px;
+                margin-#{$right}: 8px;
+                @include if-rtl {
+                    float: right;
+                }
+            }
+
+            &:hover{padding-#{$left}: 10px;}
+        }
+    }
+    
+}
+
+.footer-info{
+    address{padding-#{$left}: 30px;line-height: 25px; margin: 0; position: relative;
+        > i{position: absolute; top: -2px; z-index: 2; transform: translateX(#{if-ltr('-30px','30px')});      
+            color: $color-primary;
+            line-height: 28px;
+            font-size: 16px;
+            text-align: center;
+            float: $left;
+            border-radius: 3px;
+            margin-#{$right}: 10px;
+        }
+    }
+}
+.footer-socials .socialLinks{padding: 0 15px;
+    .socialLinks-item{
+        width: 34px;
+        height: 34px;
+        text-align: center;
+        line-height: 34px;
+        background-color: #fff;
+        border-radius: 50%;
+        margin-bottom: 0;
+        transition: box-shadow 0.2s  ease-in-out;
+        margin-#{$right}:5px;
+        &:hover{background-color: $color-primary; box-shadow: 0 0 0 4px rgba($background, 0.4) ;
+            svg{fill: white;}
+        }
+        
+        .icon{width: 1.3rem; height: 1.3rem;}
+    }
+}
+.footer-newsletter{
+    margin: 0 auto;
+    width: 80%;
+    .form-head{ width: 35%;
+        color: #fff;
+        h5{ font-size: 16px; text-transform: capitalize; color: #fff; margin: 0; }
+        p{
+            font-size: 12px; margin: 0;
+        }
+    }
+    .form{margin: 0; width: 65%; }
+    .form-field{margin: 0; padding: 0 25px;}
+    .input-group {width:100%; border-radius: 5px;       
+        position: relative;
+        &:after{
+            height: 2px;
+            width: 100%;
+            bottom: 0;
+            position: absolute;
+            background: #000;
+            opacity: 0.2;
+            content: "";
+            z-index: 2;
+            left: 0;
+            border-radius: corner-values(0px 0 5px 5px);
+        }
+
+        .form-control,.button--primary{margin-bottom:0; min-height: 42px;}
+        .form-control{border-radius: corner-values(5px 0 0 5px);text-indent: 15px; border: none; }
+        .button--primary{border-radius: corner-values(0 5px 5px 0); background: $color-primary; border-color: $color-primary; padding: 0 20px;
+            font-weight: 700;text-transform: capitalize; font-size: 12px;
+            &:hover{background-color: darken($color-primary,15%); border-color: darken($color-primary,15%)};
+
+        }
+    }
+
+}
+
+.footer-copyright {
+    > .powered-by {
+        font-size: fontSize("base");
+        margin: 0;
+    }
+   
+}
+
+.footer-payment-icons {
+    height: remCalc(40);
+    text-align: $right;
+    .footer-payment-icon {
+        height: 100%;
+        vertical-align: middle;
+        width: remCalc(35);
+    }
+
+    svg {
+        fill: #888888;
+        margin:0 10px;
+    }
+}
+
+.footer-geotrust-ssl-seal {
+    @include breakpoint("small") {
+        bottom: 0;
+        position: absolute;
+        right: 16px;
+    }
+
+    table {
+        margin: auto;
+    }
+}
+
+.expander {display: none;}
+@media only screen and (max-width: 992px){
+    .collapsed-block{
+        .footer-info-heading{border-bottom: 1px solid #e2e2e2;    padding-bottom: 15px; margin-bottom: 15px;}
+        .expander {display: inline-block; float: $right;color: #adadad; font-size: 22px;
+            
+        }
+        .footer-info-heading.open .fa:before{content: "\f139";}
+        .footer-info-list{display: none;}
+    }
+}

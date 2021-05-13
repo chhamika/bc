@@ -1,0 +1,12 @@
+
+{{!--
+Arguments:
+	- moduleId (number): section instance index number
+	- class_sfx (string): Use for CSS class styling suffix
+--}}
+
+{{#if display_mode '==' 'horizontal'}}
+	{{#if status }} {{> components/sbthemes/module/sb_megamenu/navigation-menu}} {{/if}}
+{{else}}
+	{{#if status }} {{> components/sbthemes/module/sb_megamenu/navigation-vertical limit_item = limit_item}}{{/if}}
+{{/if}}

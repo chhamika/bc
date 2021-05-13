@@ -1,0 +1,156 @@
+// =============================================================================
+// BLOG
+// =============================================================================
+
+// Latest Blog
+// -----------------------------------------------------------------------------
+
+
+.blog-post {
+
+    margin-bottom: 30px;
+    clear: both;
+    &:hover{
+        .blog-title > a{color:$color-textLink-hover;}
+    };
+    .blog-meta{
+        display: inline-block;
+        padding: 0 0 7px;
+        vertical-align: top;
+        width: 100%;
+        color: #b3b3b3;
+        font-size: 13px;
+        .fa{margin-#{$right}: 6px;}
+        > span.blog-author{margin-#{$right}: 10px;}
+    }
+}
+.blog-thumbnail {
+    margin: 0 0 (spacing("base") * 1);
+    @include hoverFade();
+}
+.blog-title {
+    font-size: 15px;
+    margin-top: 0; margin-bottom: 10px;
+    a {@include linkGray();}
+}
+
+
+.blog-post-body {
+    display: block;
+    width: 100%;
+    .btn--readmore{
+        color: $color-textLink;
+        text-transform: capitalize;
+       
+        transition: all 0.2s ease-in-out 0s;
+        padding: 6px 0; 
+        display: inline-block;
+        .fa{margin-#{$right}: 5px;
+            @include if-rtl { 
+                &:before{content:"\f0d9"};
+            }
+        }  
+        &:hover{background-color:$color-textLink-hover; color: white; padding: 6px 16px; }    
+    }
+}
+
+
+.blogRecent{margin:0; padding: 0;list-style: none;
+    .blogRecent--item{margin-bottom: 10px;
+        &:last-child{margin-bottom:0;}
+    }
+    .blog-post-figure{width: 40%; float: $left; margin-#{$right}: 15px; }
+    .blog-header{overflow: hidden;}
+    h4.blog-title{font-size: 13px; text-transform: none;}
+    .blog-meta{color: #999;}
+}
+
+// Blog post
+// -----------------------------------------------------------------------------
+.blog-category {
+    .blog-post{margin-bottom: 30px;}
+    .product-grid{
+        .article-description{display: none;}
+    }
+    .product-list{
+        .blog-post-figure{width:300px; float:$left; margin-#{$right}:30px;}
+        .blog-header{overflow: hidden;}
+        .blog-post-body{overflow-y: hidden; width: auto;}
+    }
+    .blog-post-figure{}
+    .blog-thumbnail{margin: 0 0 10px;}
+    .blog-title{margin: 0 0 10px;}
+    .tags {
+        margin-top: spacing("double");
+        text-align: center;
+    }
+    
+    
+}
+
+
+
+// Blog post Detail
+// -----------------------------------------------------------------------------
+
+.page--blog--detail {
+    .blog-title{font-size: 20px; text-transform: uppercase; margin-bottom: 5px;}
+    .blog-meta{border:none; margin-bottom: 10px;}
+    .excerpt-meta{ margin:30px 0; padding-top: 30px;     border-top: 1px solid #ddd;
+        .meta {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #1c1c1c;
+            margin-bottom: 5px;
+            float: $left;
+            width: 100%;
+            > .label {
+                color: #898989;
+                float: $left;
+                margin: 0 3px 0 0;
+                font-weight: 400;
+                min-width: 80px;
+            }
+        }
+        .socialLinks{line-height: 22px;}
+        .google_plusone_iframe_widget{width: auto !important;}
+        .tags{margin-bottom: 0; text-align: $left;
+            .tag{  font-size: 12px; padding-#{$right}: 10px; display: inline;
+                a{padding:0;}
+            }
+        }
+    }
+
+}
+
+// Blog post Detail Style
+// -----------------------------------------------------------------------------
+
+.article--style1{
+    .blog-post-figure{float: left; width: 50%; margin-#{$right}: 30px;}
+}
+
+.article--style2{
+    .article--mainimage{position: relative;z-index: 1; margin-bottom: 30px;
+        .blog-meta{margin-bottom: 0; padding-bottom: 0;}
+        .blog-header{
+            .blog-title{color: white;}
+            position: absolute;bottom: 0;z-index: 5;
+
+            width: 100%;
+            padding: 10px 15px; color: #f3f3f3;
+            background: -webkit-linear-gradient(left, #717171  0%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: -moz-linear-gradient(left, #717171  0%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(left, #717171  0%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to right, #717171  0%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        }
+    }
+    
+}
+
+.article--style3{
+
+}
+
+
+ol.blogresults--content{padding: 0;}

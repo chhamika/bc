@@ -1,0 +1,14 @@
+{{!--
+Arguments:
+	- moduleId (number): section instance index number
+	- class_sfx (string): Use for CSS class styling suffix
+--}}
+{{#if status }}
+<div class="module clearfix {{class_sfx}}">
+{{> components/sbthemes/module/sb_deals/default2/default_deals
+    category_id=(lang (concat (concat 'sb_themes.sb_deals.category_' moduleId) '.id'))
+    style=(concat 'instance' index)
+}}
+
+</div>
+{{/if}}

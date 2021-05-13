@@ -1,0 +1,53 @@
+
+
+<div class="module latest-blog-slider" >
+	<div class="modtitle text-center">
+        <h3>{{lang 'simolux.latest_blog.heading' }}</h3>
+        <p class="subtitle ">{{lang 'simolux.latest_blog.subheading' }}</p>
+    </div>
+    <div class="modcontent">
+    	<div class="latest-blog--carousel"
+    		data-slick='{
+		        "dots": false,
+		        "infinite": true,
+		        "mobileFirst": true,
+		        "slidesToShow": 1,
+		        "slidesToScroll": 1,
+		        "responsive": [
+		            {
+		                "breakpoint": 1260,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": 3
+		                }
+		            },
+		            {
+		                "breakpoint": 800,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": 3
+		                }
+		            },
+		            {
+		                "breakpoint": 550,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": 1
+		                }
+		            }
+		        ]
+		    }'
+    	>
+    		
+    		{{#each blogs}}
+		    <div class="productCarousel-slide">
+		        {{> components/sbthemes/custom/latest_blog_item post=this settings=../settings}}
+
+		    </div>
+		    {{/each}}
+
+			
+		</div>
+    </div>
+   
+</div>

@@ -1,0 +1,50 @@
+<nav class="navUser">
+
+    <ul class="navUser-section">
+		{{#if customer}} {{else}}
+	    <li class="navUser-item d-none d-sm-block">
+             <a class="navUser-action" href="{{urls.auth.login}}"><!-- <i class="fa fa-lock" ></i> --> {{lang 'common.login'}}</a>
+        </li>
+		{{/if}}
+		{{#if settings.gift_certificates_enabled}}
+            <li class="navUser-item">
+                <a class="navUser-action" href="{{urls.gift_certificate.purchase}}"><!-- <i class="fa fa-gift" ></i> --> {{lang 'common.gift_cert'}}</a>
+            </li>
+        {{/if}}
+
+        <li class="navUser-item">
+            <a class="navUser-action has-dropdown" href="#" data-dropdown="accountSelection" aria-controls="accountSelection" aria-expanded="false">
+                <!-- <i class="fa fa-user"></i> --> {{lang 'header.my_account'}}
+                <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
+            </a>
+            <ul class="dropdown-menu" id="accountSelection" data-dropdown-content aria-hidden="true" tabindex="-1">
+				{{#if theme_settings.show_product_compare}}
+                <li class="dropdown-menu-item"><a href="{{urls.compare}}" > {{lang 'common.compare'}} </a></li>
+				{{/if}}
+                <li class="dropdown-menu-item"><a href="{{urls.checkout.single_address}}" title="{{lang 'cart.checkout.title'}}">{{lang 'cart.checkout.button'}}</a></li>
+            {{#if customer}}
+				{{#if theme_settings.show_product_wishlist}}
+                <li class="dropdown-menu-item"><a  href="{{urls.account.wishlists.all}}">{{lang 'account.mobile_nav.wishlists'}}</a> </li>
+				{{/if}}
+                <li class="dropdown-menu-item"><a  href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a> </li>
+                {{#if settings.returns_enabled}}
+                <li class="dropdown-menu-item"><a  href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a></li>
+                {{/if}}
+                <li class="dropdown-menu-item"> <a  href="{{urls.account.inbox}}">{{lang 'account.mobile_nav.messages'}}</a> </li>
+                <li class="dropdown-menu-item"> <a href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</span></a> </li>
+                <li class="dropdown-menu-item"> <a href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a></li>
+                <li class="dropdown-menu-item"><a  href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a></li>
+                <li class="dropdown-menu-item"><a  href="{{urls.auth.logout}}"><i class="fa fa-sign-out"></i>  {{lang 'common.logout'}}</a></li>
+            {{else}}
+                    <li class="dropdown-menu-item"> <a href="{{urls.auth.login}}">{{lang 'common.login'}}</a></li>
+                    {{#if settings.account_creation_enabled}}
+                    <li class="dropdown-menu-item">  <a href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a></li>
+                    {{/if}}
+            {{/if}}
+
+
+            </ul>
+        </li>
+    </ul>
+    {{> components/common/currency-selector}}
+</nav>

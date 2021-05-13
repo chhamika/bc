@@ -1,0 +1,17 @@
+{{!--
+Arguments:
+	- moduleId (number): section instance index number
+	- class_sfx (string): Use for CSS class styling suffix
+--}}
+
+{{#if status }}
+
+<div class="module extraslider--home1 clearfix {{class_sfx}}">
+{{> components/sbthemes/module/sb_extraslider/categoryid/default
+    category_id =(lang (concat (concat 'sb_themes.sb_extraslider_catid.category_' moduleId) '.id'))
+    banner_img = (lang (concat (concat 'sb_themes.sb_extraslider_catid.category_' moduleId) '.image'))
+    banner_placeholder =(lang (concat (concat 'sb_themes.sb_extraslider_catid.category_' moduleId) '.placeholderImage'))
+    banner_url =(lang (concat (concat 'sb_themes.sb_extraslider_catid.category_' moduleId) '.url'))
+}}
+</div>
+{{/if}}

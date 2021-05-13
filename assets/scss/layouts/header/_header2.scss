@@ -1,0 +1,433 @@
+svg// =============================================================================
+// HEADER (CSS)
+//
+// 1. Setting font size of header-logo to 0, since wrapper element may vary, and
+//    inline-block whitespace messes with header height. Font-size is reset to
+//    appropriate size on header-logo-text.
+// 2. Needs left/right margin so it doesn't cover left/right nav bar toggles
+// 3. Offset the letter-spacing on the last character by adding a right negative
+//    margin. This centers the text logo properly.
+// 4. When the word "cart" is added to the mobile header's cart link, add more
+//    margin to compensate.
+//
+// -----------------------------------------------------------------------------
+
+// 1. Header Layout 
+// -----------------------------------------------------------------------------
+.header {
+   
+}
+header .navbar-compact.header-center{
+    padding: 0px 0 15px;
+}
+.header {
+    width: 100%;
+    position: relative;
+    border-top: 2px solid $background;
+    z-index: zIndex("low");
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow:    0px 1px 4px 0px rgba(0, 0, 0, 0.4);
+    box-shadow:         0px 1px 4px 0px rgba(0, 0, 0, 0.4);
+    .navUser-section{margin-bottom: 0; float: $right; vertical-align: top; margin: 0;}
+    a{ @include linkGray();}
+
+}
+
+.header-top{
+    border-bottom: 1px solid #ddd;
+    color: #444; font-size: 12px;
+    position: relative; z-index: 500;
+
+    
+    ul.list-inline{margin: 10px 0;}
+    .navUser {padding: 0 ; position: static ; transform: translateY(0); z-index: 2; float: $right; width: auto; }
+    .navUser-section{
+        float: $left;
+        .fa{font-size: 14px; padding-#{$right}: 5px;}
+        .navUser-item + .navUser-item{padding: 0 10px;}
+        .navUser-item{
+            display: inline-block; line-height: 40px; position: relative;
+        }
+        .navUser-item:before{
+            content: "|";display: inline-block;
+            float: $right;margin: 0;transform: translateX(#{if-rtl('-10px','10px')}); color: #999;
+
+        }
+        .navUser-action{padding: 0 10px; text-transform: capitalize; font-weight: normal;}
+        &.currencies{
+            padding-right: #{if-rtl('10px','0px')}
+        }
+    }
+    .navUser-section + .navUser-section{margin: 0;
+        .navUser-item:before{display:none;}
+    }
+    
+    .navbar-phone__inner{
+        li{ 
+            float: $left; margin-#{$right}: 20px;
+            line-height: 40px;
+            i{ color: $background; margin-#{$right}: 5px; }
+        }
+    }
+}
+.header-center{
+    @include breakpoints(lg){
+      .navPages-horizontal{}
+    }
+}
+.header-bottom{
+    padding: 18px 0;
+}
+
+.header-bottom-right{position: static;}
+.header-center .navPages{ text-align: $left; margin-top: 8px; height: auto;}
+
+// 2. Logo
+// -----------------------------------------------------------------------------
+.logo_center{
+    .col-sm-3{ max-width: 100%; flex: 0 0 100%; text-align: center;}
+}
+.navbar-logo{
+    > a{display: inline-block;}
+}
+
+.header-logo {
+    display: block; background-color: $background;
+    height: 100%;
+    display: flex;
+  justify-content: center;
+  flex-direction: column;
+    .header-logo-image-container{ text-align: center; }
+}
+
+.header-logo-text {
+    display: block;
+    font-size: 24px;  
+    letter-spacing: remCalc(1px);
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    @include breakpoint("small") {
+        font-size: 24px;
+        letter-spacing: remCalc(9px);
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+
+    @include breakpoint("medium") {
+        display: inline;
+        font-size: 32px;
+        margin-left: 0;
+        margin-right: -(remCalc(9px)); // 3
+        max-width: none;
+        overflow: auto;
+        white-space: normal;
+
+        .header.fixed & {
+            font-size: fontSize("larger");
+        }
+    }
+}
+
+.header-logo-image {
+
+    @include breakpoint("medium") {
+        max-height: none;
+    }
+}
+
+// Drop DownMenu
+.navUser-section{
+    .dropdown-menu {
+        border: 1px solid rgba(0,0,0,.15); box-shadow: none; background:white;
+        padding: 0; list-style: none; 
+        #{$right}: 0; #{$left}: auto !important;
+
+        @include breakpoint("large") {
+            &.is-open:before,
+            &.is-open:after{
+                width: 0;
+                content: "";
+                border-color: transparent transparent #d2d2d2;
+                #{$right}: 0.76923rem;  #{$left}: auto;
+                display: none;
+            }
+
+            &.is-open:after{border-color: transparent transparent #fff;}
+        }
+    
+    }
+}
+
+
+//
+// Mobile Menu Toggle
+//
+// 3. Animate lines from 'x' to hamburger
+// -----------------------------------------------------------------------------
+
+.mobileMenu-toggle {
+   
+    display: inline-block;
+    font-size: 0;
+    width: 42px;height: 40px;
+    overflow: hidden;
+    padding: 0 10px;
+    position: absolute;
+    z-index: zIndex("high");
+    background: linear-gradient(to bottom, #474747 0%, #212121 100%);
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin: 5px 10px;
+    @include breakpoint("medium") {
+        display: none;
+    }
+
+    .mobileMenu-toggleIcon,
+    .mobileMenu-toggleIcon::before,
+    .mobileMenu-toggleIcon::after {
+        background: #fff;
+        content: "";
+        display: block;
+        height: 2px;
+        position: absolute;
+        transform: rotate(0deg);
+        transition: transform 100ms ease-in, top 100ms ease-in 150ms, bottom 100ms ease-in 150ms; // 1
+        width: remCalc(20);
+    }
+
+    .mobileMenu-toggleIcon {
+        top: 17px;
+        transition: background-color 10ms ease-in 100ms;
+    }
+
+    .mobileMenu-toggleIcon::before {
+        top: -0.5rem;
+    }
+
+    .mobileMenu-toggleIcon::after {
+        bottom: -0.5rem;
+    }
+
+    &.is-open .mobileMenu-toggleIcon {
+        background-color: transparent;
+        transition-delay: 100ms;
+
+        // scss-lint:disable NestingDepth
+        &::before,
+        &::after {
+            background-color:#fff;
+            bottom: auto;
+            top: auto;
+            transition: transform 100ms ease-in 150ms, top 100ms ease-in, bottom 100ms ease-in; // Animate lines from hamburger to 'x'
+        }
+
+        &::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        &::after {
+            bottom: 0;
+            transform: rotate(-45deg);
+        }
+
+    }
+}
+// 4. Main Menu
+// -----------------------------------------------------------------------------
+.navPages-horizontal ul.navPages-list > li.navPages-item .navPages-action{
+    font-weight: 700;
+    margin: 0;
+    padding: side-values(10px 40px 10px 0);
+}
+
+// 5. Quicksearch
+// -----------------------------------------------------------------------------
+.sb-quickSearch{ z-index: 50;position: relative; margin: 6px;}
+.sb-searchpro{ z-index: 55;position: relative;
+    .input-group{
+        .form-control{border-radius: 0; border:none; text-indent: 15px; height:40px;}
+        .btn {
+                border-radius: 0;
+                background: $background;
+                border: 0;
+                font-size: 14px; color: #fff;
+                height: 40px;
+                padding: 0;
+                min-width: 40px;
+                height: 40px; line-height: 40px;
+                text-align: center;
+            &:hover{
+                opacity: 0.8;
+            }
+        }
+    }
+}
+
+// search
+.header-bottom__search{
+    float: $right;
+    margin-#{$left}: 10px;
+    position: relative;
+}
+.collapsed-block{
+    .search-info-heading{         
+        .expander {
+            width: 46px; height: 46px; border-radius: 4px; border: 1px solid #ddd;
+            display: inline-block;
+            position: relative;
+            font-size: 16px; color: #999;
+            margin: 0; padding: 0;
+            line-height: 42px;
+            &:hover{
+                background-color: $background; color: #fff; border-color: $background;
+            }
+        }
+        &.open .fa:before{content: "\f00d";}
+    }
+        
+    .search-info-content{
+        display: none;
+        position: absolute;
+        z-index: 10;
+        width: 230px;
+        #{$right}: 0; top: 46px;
+        z-index: 65;
+        margin: 5px 0;
+         -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow:    0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+    box-shadow:         0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+    }
+}
+
+// Responsvie searchpro
+@media only screen and (max-width: 640px){
+    .collapsed-block{                    
+        .footer-info-heading.open .fa:before{content: "\f139";}      
+    }
+}
+
+.dropdown--quickSearch { 
+    padding: 0;  max-height: 300px;background-color: white; box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);  overflow-y: scroll;
+    &.is-open {
+        
+    }
+    .quickSearchResults .modal-close{color: #999;#{$right}: 0.75rem;#{$left}: auto;}
+    .quickSearchMessage{margin: 15px;font-size: 18px;}
+    .products-list {
+        padding: 0; 
+        display: inline-block;
+        width: 100%;
+        margin: 0;
+        .product-layout{
+            .product-item-container{
+                width: 100%; margin-bottom: 0; float: none;
+                border: none;padding:  10px;border-bottom: 1px solid #e5e5e5;
+                &:hover{background:#efefef;};
+                .left-block{width: 60px;}
+                .right-block{margin: 0; overflow-y: hidden;}
+
+            }
+        }
+        
+    }
+    
+}
+
+
+
+
+
+//7.SHOW PREVIEW CART
+// -----------------------------------------------------------------------------
+.header__cart{
+
+    float: $right;
+
+    //-------------- wishlist compare ----------------------
+    .navUser-item--compare{
+        display: block; margin-right: 10px;
+        position: relative;
+        .countPill{
+            position: absolute; top: 0; #{$right}: -3px;
+        }
+    }
+    .cart-btn{
+        width: 30px; height: 40px; 
+        display: block; line-height: 40px; text-align: center;
+        svg{ margin-top: 12px;
+            fill: #444;
+        }
+        &:hover svg{
+            fill: $linkColor;
+        }
+    }
+    .item-wishlist,
+    .item-compare{
+        padding: 2px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        width: 44px; height: 44px;
+        margin-#{$right}: 5px;
+        .cart-btn{
+            background-color: #fff;
+            border: 1px solid #eaeaea;
+            margin: 0; width: auto; height: auto; line-height: 26px;
+            svg{ margin-top: 9px; }
+        }
+    }
+
+    .cart-button--primary {
+        background-color: $background;
+        border-radius: 4px;
+        display: table; padding: side-values(5px 20px 5px 10px);
+        @media screen and(-webkit-min-device-pixel-ratio:0) {
+            max-width: 180px;
+            padding: side-values(8px 20px 7px 10px);
+            svg{ margin: 2px 8px 4px 10px !important;}
+        }
+        .countPill{
+            display: table-cell; vertical-align: middle;
+           width: 100%; border-radius: 0; background-color: $background;
+           color: #fff; text-transform: uppercase; font-size: 14px;
+           text-align: $left;
+           font-weight: 400;
+        }
+        svg{margin: side-values(5px 8px 0 10px);
+            fill: #fff;
+            display: table-cell;
+
+        }
+        &:hover{box-shadow: 0 0 0 6px rgba($white, 0.2) ;
+            svg{fill: #fff;}
+        }
+    }
+    
+
+    .dropdown-menu{    
+        transform: translate(109px, 47px);
+        min-width: 315px;
+        &.is-open:before{right:12px;}
+        &.is-open:after{right:14px;}
+    }
+}
+.navUser-item--cart,.navUser-item--account{
+    .fa{font-size: 18px;}
+    
+}
+.navUser-item--cart .dropdown-menu{transform: translate(45px,50px); min-width: 315px;}
+.previewCart{
+    .previewCartItem{padding: 5px 0;}
+    .previewCartItem-image{  padding: 0 ; width: 60px;}
+    .previewCartItem-content{padding: 10px;}
+    .previewCartItem-name{margin-bottom: 10px;}
+    .previewCartItem-price{color: $background; font-weight: 600;}
+    .previewCartAction{    padding: 1rem 0 0.5rem;
+        .button{color: white;}
+    }
+}

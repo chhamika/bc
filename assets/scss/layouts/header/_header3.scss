@@ -1,0 +1,400 @@
+// =============================================================================
+// HEADER (CSS)
+//
+// 1. Setting font size of header-logo to 0, since wrapper element may vary, and
+//    inline-block whitespace messes with header height. Font-size is reset to
+//    appropriate size on header-logo-text.
+// 2. Needs left/right margin so it doesn't cover left/right nav bar toggles
+// 3. Offset the letter-spacing on the last character by adding a right negative
+//    margin. This centers the text logo properly.
+// 4. When the word "cart" is added to the mobile header's cart link, add more
+//    margin to compensate.
+//
+// -----------------------------------------------------------------------------
+
+// 1. Header Layout 
+// -----------------------------------------------------------------------------
+.header {
+    background-color: $background;
+    width: 100%;
+    position: relative;
+    z-index: zIndex("low");
+    margin-bottom: 10px;
+    a{ @include linkGray();}
+    @include breakpoints(lg){ .navbar-compact { background-color: $background;} }
+    .navUser-section{margin-bottom: 0; float: none; display: inline-block; vertical-align: top; margin: 0; position: relative;}
+}
+
+.header-top{
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #e8e8e8;
+    color: #2d2d2d;
+    position: relative; z-index: 500;
+    .header-top-inner{}
+    ul.list-inline{margin: 10px 0;}
+    .navUser {padding: 0 ; position: static ; transform: translateY(0); z-index: 2; }
+    .navUser-section{
+        + .navUser-section{
+            .navUser-item:before{display:none;}
+        }
+        .fa{font-size: 14px; padding-#{$right}: 5px;}
+        .navUser-item + .navUser-item{padding: 0 10px;}
+
+        .navUser-item:before{
+            content: "|";display: inline-block;
+            float: $right;margin: 10px 0;transform: translateX(#{if-rtl('-10px','10px')}); color: #999;
+
+        }
+        .navUser-action{padding:  10px; text-transform: capitalize; font-weight: normal;}
+    }
+    .navUser-section + .navUser-section{margin: 0;}
+    
+
+}
+.header-center{padding: 35px 0 ;
+   
+}
+.header-bottom{
+    background-color: darken($background,8%);
+    min-height: 57px;
+    box-shadow: -1px 3px 3px 0 rgba(0, 0, 0, 0.2);
+}
+.header-bottom-left{min-height: 54px;}
+.header-bottom-right,.header-bottom__search{position: static;}
+.header-center .navPages{ text-align: $left; margin-top: 8px; height: auto;}
+
+// 2. Logo
+// -----------------------------------------------------------------------------
+.logo_center{
+    .col-sm-3{max-width: 100%;flex: 0 0 100%;text-align: center;}
+}
+.navbar-logo{
+    > a{display: inline-block;}
+}
+.navbar-phone{
+    display: inline-block;
+    margin-top: 15px;
+    color: white;
+    .icon-headset_mic{ fill: white; float: $left; margin-#{$right}: 10px;}
+    a{@include linkColor($white,#ccc);}
+
+}
+
+.header-logo {
+    margin: 5px 0; 
+    display: inline-block;
+}
+
+.header-logo-text {
+    display: block;
+    font-size: 24px;  
+    letter-spacing: remCalc(1px);
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: white;
+    @include breakpoint("small") {
+        font-size: 24px;
+        letter-spacing: remCalc(9px);
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+
+    @include breakpoint("medium") {
+        display: inline;
+        font-size: 32px;
+        margin-left: 0;
+        margin-right: -(remCalc(9px)); // 3
+        max-width: none;
+        overflow: auto;
+        white-space: normal;
+
+        .header.fixed & {
+            font-size: fontSize("larger");
+        }
+    }
+}
+
+.header-logo-image {
+
+    @include breakpoint("medium") {
+        max-height: none;
+    }
+}
+
+// Drop DownMenu
+.navUser-section{
+    .dropdown-menu {
+        border: 1px solid rgba(0,0,0,.15); box-shadow: none; background:white;
+        padding: 0; list-style: none; 
+        @include breakpoint("large") {
+            &.is-open:before,
+            &.is-open:after{
+                width: 0;
+                content: "";
+                border-color: transparent transparent #d2d2d2;
+            }
+
+            &.is-open:after{border-color: transparent transparent #fff;}
+        }
+    
+    }
+}
+
+
+//
+// Mobile Menu Toggle
+//
+// 3. Animate lines from 'x' to hamburger
+// -----------------------------------------------------------------------------
+
+.mobileMenu-toggle {
+   
+    display: inline-block;
+    font-size: 0;
+    width: 42px;height: 40px;
+    overflow: hidden;
+    padding: 0 10px;
+    position: absolute;
+    z-index: zIndex("high");
+    background: linear-gradient(to bottom, #474747 0%, #212121 100%);
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin:  10px;
+    @include breakpoint("medium") {
+        display: none;
+    }
+
+    .mobileMenu-toggleIcon,
+    .mobileMenu-toggleIcon::before,
+    .mobileMenu-toggleIcon::after {
+        background: #fff;
+        content: "";
+        display: block;
+        height: 2px;
+        position: absolute;
+        transform: rotate(0deg);
+        transition: transform 100ms ease-in, top 100ms ease-in 150ms, bottom 100ms ease-in 150ms; // 1
+        width: remCalc(20);
+    }
+
+    .mobileMenu-toggleIcon {
+        top: 17px;
+        transition: background-color 10ms ease-in 100ms;
+    }
+
+    .mobileMenu-toggleIcon::before {
+        top: -0.5rem;
+    }
+
+    .mobileMenu-toggleIcon::after {
+        bottom: -0.5rem;
+    }
+
+    &.is-open .mobileMenu-toggleIcon {
+        background-color: transparent;
+        transition-delay: 100ms;
+
+        // scss-lint:disable NestingDepth
+        &::before,
+        &::after {
+            background-color:#fff;
+            bottom: auto;
+            top: auto;
+            transition: transform 100ms ease-in 150ms, top 100ms ease-in, bottom 100ms ease-in; // Animate lines from hamburger to 'x'
+        }
+
+        &::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        &::after {
+            bottom: 0;
+            transform: rotate(-45deg);
+        }
+
+    }
+}
+
+
+
+// 4. Main Menu
+// -----------------------------------------------------------------------------
+ @include breakpoint(medium){
+    .navPages-horizontal{ 
+        ul.navPages-list > li.navPages-item > .navPages-action{
+             padding: 1.2rem 1.14286rem;
+            color: #e4e4e4;
+            svg{fill: #e4e4e4;}
+            &:before{
+                  content: "";
+                  position: absolute;
+                  right: 0;
+                  top: 0;
+                  width: 0%;
+                  height: 1px;
+                  z-index:1;
+                  background-color: $background;
+                  background: linear-gradient(to right, lighten($background,15%) 0, lighten($background,35%) 100%);
+                  transition: all 0.5s ease-in-out 0s; 
+            }
+           
+          
+           
+        }
+        ul.navPages-list > li.navPages-item:hover > .navPages-action{ color:$white;
+            &:before{
+              width: 100%;
+              left: 0;
+              right: auto; 
+            }
+        }
+    }
+}
+// 5. Quicksearch
+// -----------------------------------------------------------------------------
+.sb-quickSearch{ z-index: 290;position: relative;}
+.sb-searchpro{ margin-top: 8px;z-index: 55;position: relative;
+    .input-group{
+        .form-control{border-radius: corner-values(28px 0 0 28px);  text-indent: 15px; height:43px; border:none;}
+        .btn {
+                border-radius: corner-values(0 28px 28px 0);
+                background-color: darken($background,12%);
+                border: 0;
+                color: white;
+                font-size: 16px;
+                height: 43px;
+                padding: 0 8px;
+                min-width: 68px;
+                text-align: center;
+        }
+    }
+}
+
+// Responsvie searchpro
+@media only screen and (max-width: 640px){
+    .collapsed-block{
+        .search-info-heading{ margin: 9px 30px 0; padding: 0; height: 40px;
+            .expander {
+                width: 42px;
+                height: 42px;
+                line-height: 30px;
+                display: inline-block;
+                
+                border-color: $white;
+                border-radius: 50%;
+                margin: 0 5px;
+                position: relative;
+                font-size: 16px;
+               color: white;
+                
+            }
+            &.open .fa:before{content: "\f00d";}
+        }
+            
+        .footer-info-heading.open .fa:before{content: "\f139";}
+        .search-info-content{
+            display: none;
+            position: absolute;
+            z-index: 10;
+            width: 100%;
+            left: 0;
+            z-index: 65;
+        }
+    }
+}
+
+.dropdown--quickSearch { 
+    padding: 0;  max-height: 300px;background-color: white; box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);  overflow-y: scroll;
+    &.is-open {
+        width: calc(100% - 78px) !important;
+        left: 10px !important;
+    }
+    .quickSearchResults .modal-close{color: #999;#{$right}: 0.75rem;#{$left}: auto;}
+    .quickSearchMessage{margin: 15px;font-size: 18px;}
+    .products-list {
+        padding: 0; 
+        display: inline-block;
+        width: 100%;
+        margin: 0;
+        .product-layout{
+            .product-item-container{
+                width: 100%; margin-bottom: 0; float: none;
+                border: none;padding:  10px;border-bottom: 1px solid #e5e5e5;
+                &:hover{background:#efefef;};
+                .left-block{width: 60px;}
+                .right-block{margin: 0; overflow-y: hidden;}
+
+            }
+        }
+        
+    }
+    
+   
+    
+}
+
+
+
+//7.SHOW PREVIEW CART
+// -----------------------------------------------------------------------------
+.header-bottom__cart{
+    margin-top: 8px;
+    .cart-button {
+        width: 36px;
+        height: 36px;
+        display: inline-block;
+        background: white;
+        border-radius: 50%;
+        margin: 0 5px;
+        position: relative;
+        text-align: center;
+        transition: box-shadow 0.2s  ease-in-out;
+         .countPill{
+            display: block;
+            width: 22px;
+            height: 22px;
+            line-height: 22px;
+            border-radius: 100%;
+            background: white;
+            position: absolute;
+            top: -4px;
+            color: #222;
+            overflow: hidden;
+            text-align: center;
+            right: -10px;
+            box-shadow: 1px 0px 3px rgba(0,0,0,0.4);
+        }
+        svg{margin: 8px 0 0;fill: #545454;}
+        &:hover{box-shadow: 0 0 0 6px rgba($background, 0.2) ;
+            svg{fill: $linkColor;}
+        }
+    }
+
+    .cart-button--compare{margin: 0 10px}
+    .dropdown-menu{    
+        transform: translate(45px,40px);
+        min-width: 315px;
+        &.is-open:before{right:12px;}
+        &.is-open:after{right:14px;}
+    }
+}
+.navUser-item--cart,.navUser-item--account{
+    .fa{font-size: 18px;}
+    .countPill{position: absolute;display: block; top: 4px; right: 10px;z-index: 2;    background: #df8f90;}
+}
+.navUser-item--cart .dropdown-menu{transform: translate(45px,50px); min-width: 315px;}
+.previewCart{
+    .previewCartItem{padding: 5px 0;}
+    .previewCartItem-image{  padding: 0 ; width: 60px;}
+    .previewCartItem-content{padding: 10px;}
+    .previewCartItem-name{margin-bottom: 10px;}
+    .previewCartItem-price{color: $background; font-weight: 600;}
+    .previewCartAction{    padding: 1rem 0 0.5rem;
+        .button{color: white;}
+    }
+}

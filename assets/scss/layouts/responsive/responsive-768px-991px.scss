@@ -1,0 +1,187 @@
+// =============================================================================
+// RESPONSIVE (CSS)
+// =============================================================================
+@include breakpoints(sm){
+    .modal {min-height:550px;right: auto; overflow-y: scroll;}
+    .modal-body {overflow: visible;}
+    .previewCartCheckout {width: 50%;float: right;}
+    .previewCart .productView{width: 50%; float: left;}
+    .form-prefixPostfix{display: block;}
+    
+    /*================ HEADER GROUP ===================*/
+    .dropdown--quickSearch.is-open{   width: 100% !important;}
+    .quickSearchResults .modal-close {display: block;}
+
+    .custom_categories ul.navPages-list{ list-style: none;
+        .navPages-item{ display: inline-block; padding: 0 10px; }
+    }
+    /*================ Page Category Product - Can Remove ===================*/
+    .productView-options .form-action{width: 100%; margin-bottom: 5px; padding: 0;}
+
+  .slideshow {
+    min-height: 1px;
+  }
+  .header-bottom-left{
+    display: none;
+  }
+  .header-bottom-right {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-basis: 100% !important;
+  }
+  .search-info-heading{
+    display: none;
+  }
+  .search-info-content{
+    display: block !important;
+    padding: 5px;
+    position: relative !important;
+    width: 100%;
+    z-index: 1 !important;
+  }
+  .sb-quickSearch{
+    margin: 0px !important;
+  }
+  .slideshow {
+    min-height: 1px;
+  }
+  .categories-sub-menu{
+    display: block !important;
+  }
+  .logo-container{
+    margin-left: 100px !important;
+    margin-top: 20px !important;
+  }
+  .main-menu{
+    width: 50px !important;
+    max-width: 50px !important;
+    position: absolute !important;
+  }
+    
+    /*====== Home Page 1 - Can Remove =======*/
+    .default--style{
+        header{
+            .mobileMenu-toggle{ margin-top: 22px; 
+                &.mobileMenu--vertical{ margin-top: 6px; }
+            }
+            .navPages-horizontal .shoppage .submenu-shop ul{
+                width: 120px;
+                position: relative;
+                margin: 0;
+                #{$left}: 0; top: 0;
+                &:before,
+                &:after{ display: none; }
+            }
+        }
+
+        .section-slideshow{        
+            .block-slideshow{
+               @include breakpoint("medium") {padding-#{$left}: 0;}
+               padding-left: 15px;
+            }
+            .block-slideshow__left{
+                padding: 0;
+                max-width: 100%;
+                flex: 0 0 100%;
+            }
+            .block-slideshow__right{
+                @include breakpoint("medium") {padding-#{$left}: 0px;}
+                padding-left: 15px;
+                max-width: 100%;
+                flex: 0 0 100%;
+            }
+        }
+        .sb-accordion .sb-accordion-container ul li .accordion-heading{
+          padding-#{$left}: 30px;
+        }
+        div.sb-deals{
+            margin-top: 20px;
+            .sb-deals-detail .product-item-container{
+                padding: 0 10px;
+            }
+        } 
+        .sb-banner.sb-banner--home1Banner1 .flex-row{
+            margin: 0 10px;
+        }
+       
+        div.sb-supper-category ul.spcat--category--all{
+            overflow-x: scroll;
+            li{  width: 20%;
+                -webkit-box-flex: 0;
+            -ms-flex: 0 0 20%;
+            flex: 0 0 20%;
+            }
+        }
+        footer{
+          .footer-newsletter{
+            width: 100%;
+            .form{ width: 50%; }
+            .form-head{ width: 50%; }
+          }
+          .footer-payment-icons,
+          .footer-bottom{
+            text-align: center;
+          }
+          .footer-bottom{
+            padding: 10px 0;
+            }
+        }
+    }
+
+    /*====== Home Page 2 - Can Remove =======*/
+
+    .home2--style{
+      header .mobileMenu-toggle{
+        margin-top: 5px;
+      }
+      .navPages-horizontal ul.navPages-list > li.navPages-item .navPages-action{
+        padding-#{$right}: 0;
+      }
+      .verticalCategories .navPages-item > .navPages-action{
+        text-transform: capitalize; font-weight: 400;
+      }
+      .verticalCategories .navPages-list .navPages-item .fa{
+        display: none;
+      }
+      .slideshow .slick-slider .slick-prev{
+            #{$left}: 30px; margin-top: -5px;
+        }
+        .slideshow .slick-slider .slick-next{
+            #{$right}: 30px; margin-top: -5px;
+        }
+      .sb-banner--home2Banner1{
+        top: 0;
+        margin: 30px 0;
+      }
+      div.listingtabs1 .sb-listing-tabs .ltabs-heading ul.tabs li.tab a{
+        font-size: 14px; 
+      }
+      .newsletter-sidebar{ margin-top: 60px; }
+      .sb-testimonial{
+        padding: 40px 15px;
+      }
+      .sb-testimonial div.slick-slider .slick-prev,
+      .sb-testimonial div.slick-slider .slick-next{
+        top: 20%;
+      }
+      .sb-testimonial div.slick-slider .slick-prev{
+        #{$left}: 24%;
+      }
+      .sb-testimonial div.slick-slider .slick-next{
+        #{$right}: 24%;
+      }
+      .blog-title{ margin-bottom: 7px; }
+
+      footer{
+          .footer-payment-icons,
+          .footer-bottom{
+            text-align: center;
+          }
+          .footer-bottom{
+            padding: 10px 0;
+            }
+        }
+    }
+
+
+}

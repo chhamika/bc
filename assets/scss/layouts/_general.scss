@@ -1,0 +1,200 @@
+
+// =============================================================================
+// TYPE (CSS)
+// =============================================================================
+html {
+    @include if-rtl {direction: rtl;}
+}
+
+body{line-height: 1.8;}
+
+// Stencil type component additions
+// -----------------------------------------------------------------------------
+h1, h2, h3, h4, h5, h6{ font-weight: 600; margin: 0;}
+.page-heading {
+    margin: 0 0 spacing("base");
+    font-size:23px;
+    text-align: $left;
+}
+:focus {outline: none;}
+
+ul,li{ list-style: none; margin: 0; padding: 0; }
+
+// Link Color
+a{color: $color-textLink-hover; text-decoration: none;
+    &:hover{color: $color-textLink;text-decoration: none;}
+    a:focus{ outline: none !important;text-decoration: none;}
+}
+
+
+
+@include scrollbars(.8em, $gray-light);
+@media only screen and (max-width: 992px){
+    @include scrollbars(.3em, $gray-lighter, rgba(255,255,255,0.1));
+}
+.dir-rtl{ direction: ltr;
+    .slick-slide {direction: rtl;}
+}
+
+/*================ FORM Vendor ===================*/
+.slick-track{margin: 0;}
+body.hasAdminBar div.banners{margin:0;}
+.form-select--date{height: 35px;}
+.lazyload, .lazyloading{height: auto;}
+/*================ FORM GROUP ===================*/
+
+ul.menu, ol.menu ,ul.blank{list-style: none;margin: 0;padding: 0;}
+.alert ol li {list-style-type:decimal;margin:0 0 5px 15px;  }
+img { max-width:100%;}
+
+// Modal Content
+.heroCarousel-image {visibility: hidden;}
+.slick-slide:focus { outline: none; }
+.rte{
+    ul{list-style: none;padding:0;margin: 0 0 1rem;}
+    li{ padding-#{$left}: 20px;
+        &:before{
+            content:'\f00c'; font-family: $FontAwesome; transform: translateX(-20px);position: absolute; font-size: 10px; margin: 2px 0;
+        }
+    }
+}
+
+.button{border-radius: 2px;}
+.button--action{background:$color-primary; border-color:$color-primary;
+    &:hover{background: darken($color-primary, 15%); border-color:darken($color-primary, 15%);}
+}
+.alert code{     
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding:3px;
+}
+.navList-action{font-size: 1rem;}
+.navBar--sub {    margin-bottom: 2rem;
+    .navBar-item {
+         display: inline-block;
+        margin: 0 10px 0 0;
+    }
+   
+}
+
+.pagination-list{
+    li{ background:#f2f2f2; border: 1px solid #dedede;border-radius: 4px;     margin-#{$left}: 0.35714rem;
+        &:hover{background:#fff;}
+        &.pagination-item--current{background: $background; border-color: $background;
+            a{color: white;}
+        }
+        a,button{
+            padding: 8px 15px;
+            height: 32px;
+            color: $gray;
+        }
+    }
+}
+div.actionBar-section{
+    .form-label{    font-size: 1rem;font-weight: 600; color: $gray-dark; text-transform: uppercase;letter-spacing: .05em;}
+    .form-field{border: none;background: transparent; border-radius: 0;}
+    .form-select{
+        -webkit-appearance:none!important;
+        -moz-appearance:none!important;
+        background-position:100% center;
+        background-repeat:no-repeat;
+        color:#454545;
+        line-height:normal;
+        cursor:pointer;
+        outline:0;
+    }
+    .accordion-navigation>a,.compare-link-top a{
+        font-family:Poppins,Arial,Helvetica,sans-serif;
+    }
+    .form-select::-ms-expand{
+        display:none;
+    }
+    .form-select:disabled{
+        cursor:not-allowed;
+    }
+    .form-select{
+        appearance:none;
+        background-image:url(#{$imgPath}icon/select-arr.png);
+        border-radius:0;
+        padding: side-values(.75rem 3rem .75rem 1rem);
+        border: 1px solid #dedede;
+        height:3.5em;
+    }
+    .form-select:focus{
+        background-image:url(#{$imgPath}icon/select-arr-focus.png)
+    }
+
+    .form-select--date,.form-select--small{
+        background-position:$right;
+        background-size:auto;
+        font-size:1rem;
+        height:2.8rem;
+        line-height:1rem;
+        max-width:20rem;
+        padding:side-values(.75rem 3rem .75rem 1rem);
+        
+    }
+    
+}
+.cart-item-figure:after{padding-bottom: 60%;}
+
+// Tab foundation
+.tab {
+    border-top-color: $tab-title-border-color;
+    float: $left;
+
+    &.is-active {
+        border: $tab-active-border;
+        border-bottom: $tab-title-border;
+    }
+}
+
+.tab-title {
+    padding: spacing("half") spacing("single");
+}
+
+// =============================================================================
+// RTL Foundation (CSS)
+// =============================================================================
+ @include if-rtl {
+    .dropdown{left: auto;right: -9999px;}
+    .modal-close {right: auto;left: 0.75rem;}
+   .form-checkbox + .form-label, .form-radio + .form-label {
+        padding-#{$left}: 1.85714rem;
+    }
+    .form-select--date + .form-select--date {
+        margin-right: 0.35714rem;
+    }
+    .cart-item-label{text-align: right;}
+    .productView-options .form-action .button{margin:0;     margin-left: 0.78571rem;}
+    .form-checkbox + .form-label::before, .form-radio + .form-label::before{#{$left}:0;}
+    .form-checkbox + .form-label::after, .form-radio + .form-label::after{#{$left}:1px;}
+    @include breakpoint(medium){
+        .cart-header {
+            text-align: $left;
+        }
+    }
+    .productView-options {
+        text-align: right;
+    }
+    .accordion--navList .accordion-navigation-actions{
+        left: 0;
+        right: auto;
+    }
+    .navList-action--checkbox{ padding: 0; }
+    .navList-action--checkbox::before{
+        left: auto;
+        right: 0;
+    }
+    .navList-action--checkbox::after{
+        right: 1px;
+        left: auto;
+    }
+    ul {
+        margin:0;
+        margin-right: 1.15rem;
+    }
+    .toggle-title .toggleLink{float: left;}
+
+
+}

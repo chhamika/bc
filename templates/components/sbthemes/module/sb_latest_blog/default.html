@@ -1,0 +1,67 @@
+{{#if status }}
+<div class="module sb-latestblog" >
+	{{#unless hide_heading}}
+	<h5 class="block-title">
+		{{#if (lang 'sb_themes.latest_blog.heading-iconAwesome') '!=' ' '}}
+			<span class="block-title--icon"><i class="fa fa-{{lang 'sb_themes.latest_blog.heading-iconAwesome'}}"></i> </span>
+		{{/if}}
+		{{lang 'sb_themes.latest_blog.heading'}}
+    </h5>
+	{{/unless}}
+    <div class="block-content">
+    	<div class="latest-blog--carousel {{#if theme_settings.general_rtl '==' 'rtl' }}dir-rtl{{/if}}"
+    		data-slick='{
+		        "dots": true,
+		        "arrows": false,
+		        "infinite": false,
+		        "mobileFirst": true,
+		        "slidesToShow": 1,
+		        "slidesToScroll": 2,
+		        "responsive": [
+		            {
+		                "breakpoint": 1200,
+		                "settings": {
+		                    "slidesToScroll": 1,
+		                    "slidesToShow": 1
+		                }
+		            },
+					{
+					"breakpoint": 991,
+						"settings": {
+							"slidesToScroll": 1,
+							"slidesToShow": 1
+						}
+					},
+					{
+						"breakpoint": 400,
+						"settings": {
+							"slidesToScroll": 1,
+							"slidesToShow": 1
+							
+						}
+					},
+					{
+						"breakpoint": 0,
+						"settings": {
+							"slidesToScroll": 1,
+							"slidesToShow": 1,
+							"arrows": false
+						}
+					}
+		        ]
+		    }'
+    	>
+    		
+    		{{#each blogs}}
+		    <div class="productCarousel-slide">
+		        {{> components/sbthemes/module/sb_latest_blog/item post=this show_desc=../show_desc settings=../settings}}
+
+		    </div>
+		    {{/each}}
+
+			
+		</div>
+    </div>
+   
+</div>
+{{/if}}

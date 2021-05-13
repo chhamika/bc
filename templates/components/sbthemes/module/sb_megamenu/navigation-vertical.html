@@ -1,0 +1,38 @@
+<div id="menu--verticalCategories" class="navPages-container navPages-verticalCategories">
+	
+    <a href="#" class="navPages-action megamenuToogle-wrapper hidden-sm hidden-xs"
+        data-collapsible="verticalCategories"
+        data-collapsible-disabled-breakpoint="medium"
+        data-collapsible-disabled-state="open"
+        data-collapsible-enabled-state="open"
+		data-collapsible-limit="{{limit_item}}"
+		data-collapsible-textmore="{{lang 'sb_themes.sb_megamenu.vertical.more_categories'}}"
+		data-collapsible-textclose="{{lang 'sb_themes.sb_megamenu.vertical.close_categories'}}">
+			<!-- <svg class="icon-list" width="18" height="18"><use xlink:href="#icon-list"></use></svg> -->
+			<i class="fa fa-th-list"></i>
+			<span class="title-mega">{{lang 'category.label'}} </span>		
+		</a>
+	
+    <div class="verticalCategories is-open" id="verticalCategories"  aria-hidden="true" tabindex="-1">
+		<span class="mobileMenu-close fa fa-times" ></span>
+        <ul class="navPages-list navPages-list--categories">
+            {{#each categories}}
+				{{> components/sbthemes/module/sb_megamenu/vertical/vertical-list
+					type-menu= (lang (concat (concat 'sb_themes.sb_megamenu.vertical.menu_cat_'@index)'.type-menu'))
+					icon-awesome = (lang (concat (concat 'sb_themes.sb_megamenu.vertical.menu_cat_'@index)'.icon-awesome'))
+					icon-image = (lang (concat (concat 'sb_themes.sb_megamenu.vertical.menu_cat_'@index)'.icon-image'))
+					content_column = (lang (concat (concat 'sb_themes.sb_megamenu.vertical.menu_cat_'@index)'.content_column'))
+					banner_enable = (lang (concat (concat 'sb_themes.sb_megamenu.vertical.menu_cat_'@index)'.show_banner'))
+					banner_mode = (lang (concat (concat 'sb_themes.sb_megamenu.vertical.menu_cat_'@index)'.banner_mode'))
+					banner_url = (lang (concat (concat 'sb_themes.sb_megamenu.vertical.menu_cat_'@index)'.url'))
+					banner_image = (lang (concat (concat 'sb_themes.sb_megamenu.vertical.menu_cat_'@index)'.image'))
+					placeholder = (lang (concat (concat 'sb_themes.sb_megamenu.vertical.menu_cat_'@index)'.placeholderImage'))
+				}}
+            {{/each}}
+        </ul>
+    </div>
+</div>
+
+<a href="#" class="mobileMenu-toggle mobileMenu--vertical" data-mobile-menu-toggle="menu--verticalCategories" aria-controls="menu--verticalCategories">
+	<span class="mobileMenu-toggleIcon"> Vertical Categories</span>
+</a>

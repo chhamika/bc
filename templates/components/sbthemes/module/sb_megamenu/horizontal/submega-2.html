@@ -1,0 +1,37 @@
+<div class="row">
+	<div class="cateArea col-lg-9 col-md-12 columns-{{columns}}">
+		<ul class="navPage-subMenu-list">
+			{{#each children}}
+				<li class="navPage-subMenu-item">
+					{{#if children}}
+						<a class="navPage-subMenu-action navPages-action navPages-action-depth-max has-subMenu" href="{{url}}" data-collapsible="navPages-{{id}}">
+							{{name}}
+						</a>
+						<ul class="navPage-childList">
+							{{#each children}}
+								<li class="navPage-childList-item">
+									{{#if children}}
+										<a class="navPage-childList-action navPages-action navPages-action-depth-max has-subMenu" href="{{url}}" data-collapsible="navPages-{{id}}">
+											{{name}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
+										</a>
+										{{> components/common/navigation-dropdown}}
+									{{else}}
+										<a class="navPage-childList-action navPages-action" href="{{url}}">{{name}}</a>
+									{{/if}}
+								</li>
+							{{/each}}
+						</ul>
+						
+
+					{{else}}
+						<a class="navPage-childList-action navPages-action" href="{{url}}">{{name}}</a>
+					{{/if}}
+				</li>
+			{{/each}}
+		</ul>
+	</div>
+	
+	<div class="imageArea colRight col-lg-3 d-none d-lg-block">
+		{{> components/sbthemes/module/sb_banner/banner status=true prefix="sidebarBanner" showContent=false limitation=1 display_mode="" class_sfx=""}}
+	</div>
+</div>

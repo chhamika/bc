@@ -1,0 +1,29 @@
+{{#if status }}
+<div class="module sb-testimonial sb-testimonial--{{prefix}} {{class_sfx}}">
+	<div class="block-content clearfix">
+	
+		<div class="sb-testimonial--carousel"
+           data-slick='{
+				"dots": false,
+				"arrows": true,
+				"mobileFirst": true,
+				"slidesToShow": 1,
+				"slidesToScroll": 1,
+				"autoplay": false,
+				"autoplaySpeed": 5000
+			}'
+    	>
+		{{#for  limitation }}
+			{{> components/sbthemes/module/sb_testimonial/default-item 
+				avatar		= (lang  (concat (concat (concat (concat 'sb_themes.' ../prefix) '.item') $index)'.image'))
+				content		= (lang  (concat (concat (concat (concat 'sb_themes.' ../prefix) '.item') $index)'.content'))
+				author_name	= (lang  (concat (concat (concat (concat 'sb_themes.' ../prefix) '.item') $index)'.author_name'))
+				author_position	= (lang  (concat (concat (concat (concat 'sb_themes.' ../prefix) '.item') $index)'.author_position'))
+			}}
+		{{/for}}
+		</div>
+
+	
+	</div>
+</div>
+{{/if}}

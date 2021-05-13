@@ -1,0 +1,52 @@
+
+
+<ul class="productView--gallerygrid">
+	 {{#each product.images}}
+	<li class="productView-thumbnail productView-image "
+		data-image-gallery-main
+		>
+		<a
+			class="productView-thumbnail-link  "
+			 href="{{getImage this 'zoom_size' (cdn theme_settings.default_image_product)}}"
+			data-image-gallery-new-image-url="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
+			data-image-gallery-zoom-image-url="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}">
+			<img class="productView-image--default lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}" alt="{{this.alt}}" title="{{this.alt}}">
+		</a>
+	</li>
+	{{/each}}
+</ul>
+<div class="btn-productViewzoom text-center">
+	<button class="btn btn-outline-secondary" id="btn-productViewzoom" type="submit"><i class="fa fa-search"></i>  Click to zoom in</button>
+</div>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('.image-popup-sizechart').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        mainClass: 'mfp-img-mobile',
+        image: {
+        verticalFit: true
+        }
+    });
+	{{#if product.images}}
+	$('#btn-productViewzoom').magnificPopup({
+		items: [
+		{{#each product.images}}
+			{src: "{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}"},
+		{{/each}}
+		],
+		gallery: { enabled: true, preload: [0,2] },
+		type: 'image',
+		mainClass: 'mfp-fade',
+		callbacks: {
+			open: function() {
+				
+				/*var magnificPopup = $.magnificPopup.instance;
+				magnificPopup.goTo(activeIndex);*/
+			}
+		}
+	});
+	{{/if}}
+});
+//--></script>

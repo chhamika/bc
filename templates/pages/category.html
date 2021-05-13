@@ -1,0 +1,102 @@
+---
+products:
+    new:
+        limit: {{theme_settings.homepage_new_products_count}}
+    featured:
+        limit: {{theme_settings.homepage_featured_products_count}}
+    top_sellers:
+        limit: {{theme_settings.homepage_top_products_count}}
+category:
+    shop_by_price: true
+    products:
+        new:
+            limit: {{theme_settings.categorypage_products_per_page}}
+        limit: {{theme_settings.categorypage_products_per_page}}
+---
+
+{{inject "currentPage" category.url}}
+
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{inject "settings_subcategory_col" theme_settings.settings_subcategory_col}}
+{{inject "text_refine_more" (lang 'sb_themes.sub_categories.text_refine_more' )}}
+{{inject "text_refine_less" (lang 'sb_themes.sub_categories.text_refine_less' )}}
+
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+
+
+
+<div class="row page">
+    
+    <aside class="col-sm-3 page-sidebar sidebar-offcanvas" id="faceted-search-container" style="margin-top: 450px; min-height: 450px;">
+        {{> components/category/sidebar }} 
+    </aside>
+    
+    <main class="col-lg-9 col-md-12 page-content" id="product-listing-container">
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs active_url=category.url}}
+        <div class="products-category clearfix">
+            {{#if category.name}} 
+            <div class="form-group category-info">
+                <h3 class="title-category ">{{category.name}}</h3>
+                
+                {{#if category.description}}
+                <div class="category-info__desc">
+                    {{{category.description}}}
+                </div>
+                {{/if}}
+                {{{snippet 'categories'}}}
+            </div>
+            {{/if}}
+            
+            {{#all category.subcategories theme_settings.settings_subcategory}}
+            <div class="refine-search form-group clearfix">
+                <h3 class="title-category">{{lang 'sb_themes.sub_categories.heading' }}</h3>
+                <div class="refine-search__content blank row">
+                {{#each category.subcategories}}
+                <div class="refine-search__subitem col-lg-2 col-md-2 col-6">
+                        <a href="{{url}}" class="thumbnail"><img class="img-thumbnail" src="{{getImage image 'category_card_size' (cdn ../theme_settings.default_image_product)}}" alt="{{name}}" /></a>
+                        <div class="refine-search__subitem-body">
+                            <h4 class="refine-search__subitem-name">
+                                <a href="{{url}}">{{name}}</a>
+                            </h4>
+                            
+                        </div>
+                </div>
+                {{/each}}
+                </div>
+            </div>
+            {{/all}}
+
+                
+            {{#if category.products}}
+                {{> components/category/product-listing}}
+            {{else}}
+                {{#unless category.subcategories}}
+                    <p>{{lang 'categories.no_products'}}</p>
+                {{/unless}}
+            {{/if}}
+        </div>
+        
+    </main>
+	
+	
+</div>
+<script type="text/javascript">
+function ShowMenu() {
+           var element = document.getElementById("verticalCategories");
+            element.classList.remove("is-open");
+        }
+        window.onload = ShowMenu;
+
+
+</script>
+{{/partial}}
+{{> layout/base}}

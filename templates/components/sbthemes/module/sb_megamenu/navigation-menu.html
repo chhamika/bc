@@ -1,0 +1,51 @@
+<nav class="navPages-horizontal navPages-container"  id="menu" >
+	<span class="mobileMenu-close fa fa-times" ></span>
+    <ul class="navPages-list">
+        <li class="navPages-item navPages-item-page">
+            <a class="navPages-action" href="/"> {{lang 'home.heading'}}</a>
+        </li>
+		<li class="navPages-item navPages-item-page categories-sub-menu" style="display: none">
+			<a class="navPages-action has-subMenu " href="/categories/"> Categories
+				<span class=" has-subMenu" data-collapsible="navPages-webpage-10" aria-controls="navPages-webpage-10" aria-expanded="false">
+					<i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-right"></use></svg></i>
+				</span>
+			</a>
+
+		<div class="navPage-subMenu" id="navPages-webpage-10" aria-hidden="true" tabindex="-1">
+
+			<ul class="navPage-subMenu-list ">
+		{{#each categories}}
+            {{> components/sbthemes/module/sb_megamenu/horizontal/item-categories-lite
+				icon-awesome = (lang (concat (concat 'sb_themes.sb_megamenu.horizontal.menu_cat_'@index)'.icon-awesome'))
+				icon-image = (lang (concat (concat 'sb_themes.sb_megamenu.horizontal.menu_cat_'@index)'.icon-image'))
+				position = (lang (concat (concat 'sb_themes.sb_megamenu.horizontal.menu_cat_'@index)'.position'))
+				type-menu = (lang (concat (concat 'sb_themes.sb_megamenu.horizontal.menu_cat_'@index)'.type-menu'))
+				
+				columns = (lang (concat (concat 'sb_themes.sb_megamenu.horizontal.menu_cat_'@index)'.mega-category-col'))
+				banner-mode = (lang (concat (concat 'sb_themes.sb_megamenu.horizontal.menu_cat_'@index)'.mega-banner-mode'))
+				banner-img = (lang (concat (concat 'sb_themes.sb_megamenu.horizontal.menu_cat_'@index)'.mega-banner-img'))
+				banner-placeholder = (lang (concat (concat 'sb_themes.sb_megamenu.horizontal.menu_cat_'@index)'.mega-banner-placeholder'))
+				banner-url = (lang (concat (concat 'sb_themes.sb_megamenu.horizontal.menu_cat_'@index)'.mega-banner-url'))
+
+			}}
+        {{/each}}
+				</ul>
+		</li>
+		{{#unless theme_settings.hide_content_navigation}}
+			{{#each pages}}
+					{{> components/sbthemes/module/sb_megamenu/horizontal/item-page
+						icon-image = (lang (concat (concat 'sb_themes.sb_megamenu.webpage.menu_cat_'@index)'.icon-image'))
+						icon-awesome = (lang (concat (concat 'sb_themes.sb_megamenu.webpage.menu_cat_'@index)'.icon-awesome'))
+						badge = (lang (concat (concat 'sb_themes.sb_megamenu.webpage.menu_cat_'@index)'.menu-badge'))
+						position = (lang (concat (concat 'sb_themes.sb_megamenu.webpage.menu_cat_'@index)'.position'))
+						load-webpage = (lang (concat (concat 'sb_themes.sb_megamenu.webpage.menu_cat_'@index)'.load-webpage'))
+					}}
+			 {{/each}}
+		{{/unless}}
+    </ul>
+    
+</nav>
+<a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
+	<span class="mobileMenu-toggleIcon">Toggle menu</span>
+</a>
+

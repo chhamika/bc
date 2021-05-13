@@ -1,0 +1,107 @@
+
+<section class="slideCarousel productCarousel products-list {{#if theme_settings.general_rtl '==' 'rtl' }}dir-rtl{{/if}}"
+
+		 data-slick='{
+        "dots": false,
+        "infinite": true,
+        "mobileFirst": true,
+        "slidesToShow": 1,
+        "slidesToScroll": 1,
+        "responsive": [
+            {
+	                "breakpoint": 1260,
+	                "settings": {
+	                    "slidesToScroll": 1,
+	                    "slidesToShow": {{columns}}
+	                }
+	            },
+				{
+					"breakpoint": 991,
+					"settings": {
+						"slidesToScroll": 1,
+						"slidesToShow": 3
+					}
+				},
+				{
+					"breakpoint": 400,
+					"settings": {
+						"slidesToScroll": 1,
+						"slidesToShow": 2
+						
+					}
+				},
+				{
+					"breakpoint": 0,
+					"settings": {
+						"slidesToScroll": 1,
+						"slidesToShow": 1,
+						"arrows": false
+					}
+				}
+        ]
+    }'
+
+>
+	{{#forEach (limit products 25)}}
+
+
+	{{#if ../row '==' 1}}
+	<div class="{{#if isFirst}}first-side{{/if}} productCarousel-slide product-layout product-grid">
+		{{> components/sbthemes/products/card_listing theme_settings=../../theme_settings  customer=../../customer}}
+	</div>
+	{{else}}
+	{{#or isFirst (if index '===' (add 1 ../../row)) (if index '===' (add 1 (multiply 2 ../../row))) (if index '===' (add 1 (multiply 3 ../../row))) (if index '===' (add 1 (multiply 4 ../../row))) }}
+	<div class="productCarousel-slide product-layout product-grid">
+		{{/or}}
+		{{#if index '<' 17}}
+		{{> components/sbthemes/products/card_listing theme_settings=../../theme_settings customer=../../customer}}
+		{{else}}
+		<div class="hidden-item" style="display: none">
+			{{> components/sbthemes/products/card_listing theme_settings=../../theme_settings  customer=../../customer}}
+		</div>
+		{{/if}}
+		{{#or (if index '===' ../../row)(if index '==='(multiply 2 ../../row)) (if index '==='(multiply 3 ../../row)) (if index '==='(multiply 4 ../../row)) (if index '===' 16)}}
+	</div>
+	{{/or}}
+	{{/if}}
+
+	{{/forEach}}
+
+
+</section>
+<script type="text/javascript">
+	var externalProducts = document.getElementsByClassName("extraslider--one")[0].getElementsByClassName("hidden-item");
+	var externalI = 0;
+	var externalProductsArr = [];
+	for (externalI = 0; externalI < externalProducts.length; externalI++) {
+		var curExternalArticle = externalProducts[externalI].getElementsByTagName("article");
+		if(curExternalArticle.length == 1){
+			externalProductsArr.push(curExternalArticle[0]);
+		}
+	}
+	console.log(' - additional products: '+externalProductsArr.length);
+	var slides = document.getElementsByClassName("extraslider--one")[0].getElementsByClassName("productCarousel-slide");
+	var i;
+	for (i = 0; i < slides.length; i++) {
+		if(i < 4){
+			var curSlideContent = slides[i].getElementsByTagName("article");
+			if(curSlideContent.length < 4){
+				console.log(' - slide needs to be updated '+curSlideContent.length);
+				var productI = curSlideContent.length;
+				for (productI = curSlideContent.length; productI < 4; productI++) {
+					if(externalProductsArr.length !== 0){
+						slides[i].append(externalProductsArr[0]);
+						externalProductsArr.shift();
+					}else{
+						console.log(' - no products left...');
+					}
+				}
+			}else{
+				console.log(' - slide is correct '+curSlideContent.length);
+			}
+		}else{
+			console.log(' - additional slide found');
+			slides[i].remove();
+		}
+	}
+</script>
